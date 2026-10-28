@@ -21,8 +21,6 @@
 body{margin:0;font-family:"Bootzy TM","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
 a{color:inherit;text-decoration:none}
 ::selection{background:#890000;color:#f1ebe2}
-.hm-root{cursor:none}
-.hm-root a,.hm-root button,.hm-root input{cursor:none}
 .hm-nav a{position:relative}
 .hm-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--silver,#b4b9be);transition:right .4s ease}
 .hm-nav a:hover::after{right:0}
@@ -367,24 +365,26 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
           <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d8pool }}px; height: {{ d8poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
         </span>
       </a>
-      <svg class="hm-flow" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; opacity: {{ flowO }};">
-        <sc-for list="{{ flowSegs }}" as="g" hint-placeholder-count="0">
+      <svg class="hm-flow" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3;">
+        <sc-for list="{{ flows }}" as="fl" hint-placeholder-count="0"><g opacity="{{ fl.o }}">
+        <sc-for list="{{ fl.segs }}" as="g" hint-placeholder-count="0">
           <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="#000000" stroke-opacity="0.28" stroke-width="{{ g.ws }}" stroke-linecap="round" stroke-dasharray="{{ g.dash }}" transform="translate(1.5 1.5)"></line>
           <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="#8f0000" stroke-width="{{ g.w }}" stroke-linecap="round" stroke-dasharray="{{ g.dash }}"></line>
           <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="#e0372a" stroke-opacity="0.55" stroke-width="{{ g.wh }}" stroke-linecap="round" stroke-dasharray="{{ g.dash }}" transform="translate({{ g.hx }} {{ g.hy }})"></line>
         </sc-for>
-        <sc-for list="{{ flowStains }}" as="q" hint-placeholder-count="0">
+        <sc-for list="{{ fl.stains }}" as="q" hint-placeholder-count="0">
           <ellipse cx="{{ q.x }}" cy="{{ q.y }}" rx="{{ q.rx }}" ry="{{ q.ry }}" fill="#8f0000" fill-opacity="0.9" transform="{{ q.tr }}"></ellipse>
         </sc-for>
-        <sc-for list="{{ flowHangs }}" as="hg" hint-placeholder-count="0">
+        <sc-for list="{{ fl.hangs }}" as="hg" hint-placeholder-count="0">
           <path d="{{ hg.neck }}" fill="#8f0000"></path>
           <sc-if value="{{ hg.hasDrop }}" hint-placeholder-val="{{ false }}"><path d="{{ hg.drop }}" fill="#8f0000" fill-opacity="{{ hg.dropO }}"></path></sc-if>
           <circle cx="{{ hg.gx }}" cy="{{ hg.gy }}" r="{{ hg.gr }}" fill="#ff7a68" fill-opacity="0.75"></circle>
         </sc-for>
-        <sc-for list="{{ flowBeads }}" as="b" hint-placeholder-count="0">
+        <sc-for list="{{ fl.beads }}" as="b" hint-placeholder-count="0">
           <ellipse cx="{{ b.x }}" cy="{{ b.y }}" rx="{{ b.rx }}" ry="{{ b.ry }}" fill="#8f0000"></ellipse>
           <ellipse cx="{{ b.hx }}" cy="{{ b.hy }}" rx="{{ b.hr }}" ry="{{ b.hr }}" fill="#ff7a68" fill-opacity="0.8"></ellipse>
         </sc-for>
+      </g></sc-for>
       </svg>
     </div>
   </section>
@@ -442,7 +442,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
   </sc-if>
 
   <sc-if value="{{ showIntro }}" hint-placeholder-val="{{ false }}">
-    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 100vh; z-index: 20; pointer-events: none;">
+    <div aria-hidden="true" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 20; pointer-events: none;">
       <div style="position: absolute; inset: 0; background: {{ c.ground }}; clip-path: inset({{ scanY }}% 0 0 0); display: flex; align-items: center; justify-content: center;">
         <img src="{{ logo }}" alt="" style="height: 96px; width: auto; display: block; opacity: {{ logoO }};">
         <span style="position: absolute; left: 48px; bottom: 40px; display: flex; gap: 32px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};"><span>PattEcks! / Drop 01</span><span>Scanning {{ scanPct }}%</span></span>
@@ -536,7 +536,7 @@ class Component extends DCLogic {
             const h = this.catVals(this.state.t, false);
             if (e.isIntersecting) h['ce' + i](); else h['cl' + i]();
           });
-        }, { threshold: 0.6 });
+        }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
         cells.forEach((el) => this.io.observe(el));
       } catch (e) {}
     }, 600);
@@ -686,7 +686,8 @@ class Component extends DCLogic {
     return { cells: cells.map((el) => { const r = el.getBoundingClientRect(); return { x0: r.left - cb.left, x1: r.right - cb.left, y0: r.top - cb.top, y1: r.bottom - cb.top }; }), V, H: HL };
   }
   startFlow(i) {
-    if (this.flow && !this.flow.done) return; // one flow at a time
+    this.flows = (this.flows || []).filter((q) => !q.done);
+    if (this.flows.some((q) => q.cell === i) || this.flows.length >= 3) return; // a cell bleeds once at a time, at most three at once
     const G = this.readGrid();
     if (!G || !G.cells[i]) return;
     const c = G.cells[i];
@@ -741,15 +742,18 @@ class Component extends DCLogic {
       }
     });
     const finish = Math.max(segs.reduce((m, g) => Math.max(m, g.t0 + g.dur), this.state.t), hangs.reduce((m, h) => Math.max(m, h.t0 + 2.6), 0));
-    this.flow = { segs, hangs, finish, done: false };
+    this.flows.push({ cell: i, segs, hangs, finish, done: false });
   }
   flowVals(t) {
-    const F = this.flow;
-    if (!F || !F.segs.length) return { flowSegs: [], flowBeads: [], flowStains: [], flowHangs: [], flowO: 0 };
+    this.flows = (this.flows || []).filter((q) => !q.done);
+    return { flows: this.flows.map((F) => this.oneFlow(F, t)).filter((v) => v) };
+  }
+  oneFlow(F, t) {
+    if (!F.segs.length) { F.done = true; return null; }
     const now = this.reduced ? F.finish + 0.01 : t;
     const HOLD = 2.6, FADE = 1.4;
     const o = Math.max(0, Math.min(1, 1 - (now - F.finish - HOLD) / FADE));
-    if (o <= 0) { F.done = true; this.flow = null; return { flowSegs: [], flowBeads: [], flowStains: [], flowHangs: [], flowO: 0 }; }
+    if (o <= 0) { F.done = true; return null; }
     const segs = [], beads = [], stains = [], hangs = [];
     F.segs.forEach((g) => {
       if (now < g.t0) return;
@@ -795,7 +799,7 @@ class Component extends DCLogic {
       }
       hangs.push({ neck: out.neck, drop: out.drop, dropO: out.o, hasDrop: !!out.drop, gx: (hx - hr * 0.35).toFixed(1), gy: (hy - hr * 0.25).toFixed(1), gr: (hr * 0.28).toFixed(2) });
     });
-    return { flowSegs: segs, flowBeads: beads, flowStains: stains, flowHangs: hangs, flowO: o.toFixed(3) };
+    return { segs, beads, stains, hangs, o: o.toFixed(3) };
   }
   catVals(t, dark) {
     // Comic blood: the drip is redrawn at 12 frames a second so it moves in small, laggy steps.
