@@ -45,6 +45,7 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion:reduce){.rv-metal .hm-rivet .hm-rv-shine::before{animation:hm-shine-band 14s ease-in-out infinite;animation-delay:inherit;opacity:.5}}
 .rv-metal .hm-rivet .hm-rv-img{display:block}
 .rv-metal .hm-rivet svg{display:none !important}
+.hm-rv-mob{display:none !important}
 .hm-rivet{position:absolute;width:44px;height:44px;z-index:4;pointer-events:none}
 .hm-plate{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;color:var(--muted,#9ca0a6)}
 .hm-pd{display:none;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#6b7075 70%);box-shadow:inset 0 0 0 .5px rgba(0,0,0,.5)}
@@ -67,7 +68,8 @@ a{color:inherit;text-decoration:none}
 #collection{padding:56px 24px 32px !important}
 .hm-cell{padding:28px 22px 32px 0 !important;border-right:1px solid var(--grid,#8a8f96) !important}
 .hm-cell .hm-tile{height:300px !important}
-.hm-rivet[style*="top: -22px"]{display:none}
+.hm-cell + .hm-cell .hm-rivet[style*="top: -22px"]{display:none}
+.hm-rv-mob{display:block !important}
 .hm-idx{padding:48px 24px 64px !important}
 .hm-row span[style*="font-size: 32px"]{font-size:24px !important}
 #about{padding:48px 24px !important}
@@ -268,7 +270,8 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
           <span style="position: absolute; left: 50%; top: {{ d2len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
           <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d2pool }}px; height: {{ d2poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
         </span>
-      </article>
+              <span class="hm-rivet hm-rv-mob" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 0.00s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal0)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(0 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face0)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><ellipse cx="20" cy="9.6" rx="1.4" ry="0.9" fill="#0c0d0f"></ellipse><path d="M12.6 18.6q2.6-1.8 5 0q-2.5 1.2-5 0z M22.4 18.6q2.5-1.8 5 0q-2.5 1.2-5 0z" fill="#0c0d0f"></path><ellipse cx="15" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><ellipse cx="25" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><path d="M17.2 27.4q2.8 1.6 5.6 0q-2.8 1.4-5.6 0z" fill="#0c0d0f"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+</article>
 
       <article class="hm-cell" onMouseEnter="{{ ce3 }}" onMouseLeave="{{ cl3 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
@@ -319,7 +322,8 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
           <span style="position: absolute; left: 50%; top: {{ d5len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
           <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d5pool }}px; height: {{ d5poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
         </span>
-      </article>
+              <span class="hm-rivet hm-rv-mob" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 0.00s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal0)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(0 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face0)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><ellipse cx="20" cy="9.6" rx="1.4" ry="0.9" fill="#0c0d0f"></ellipse><path d="M12.6 18.6q2.6-1.8 5 0q-2.5 1.2-5 0z M22.4 18.6q2.5-1.8 5 0q-2.5 1.2-5 0z" fill="#0c0d0f"></path><ellipse cx="15" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><ellipse cx="25" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><path d="M17.2 27.4q2.8 1.6 5.6 0q-2.8 1.4-5.6 0z" fill="#0c0d0f"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+</article>
       <article class="hm-cell" onMouseEnter="{{ ce6 }}" onMouseLeave="{{ cl6 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <img src="assets/silver-mask.jpg" alt="Reference: polished silver mask with a tear" style="width: 100%; height: 100%; object-fit: contain; display: block;">
@@ -364,6 +368,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
           <span style="position: absolute; left: 50%; top: {{ d8len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
           <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d8pool }}px; height: {{ d8poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
         </span>
+        <span class="hm-rivet hm-rv-mob" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 0.00s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal0)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(0 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face0)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><ellipse cx="20" cy="9.6" rx="1.4" ry="0.9" fill="#0c0d0f"></ellipse><path d="M12.6 18.6q2.6-1.8 5 0q-2.5 1.2-5 0z M22.4 18.6q2.5-1.8 5 0q-2.5 1.2-5 0z" fill="#0c0d0f"></path><ellipse cx="15" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><ellipse cx="25" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><path d="M17.2 27.4q2.8 1.6 5.6 0q-2.8 1.4-5.6 0z" fill="#0c0d0f"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
       </a>
       <svg class="hm-flow" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3;">
         <sc-for list="{{ flows }}" as="fl" hint-placeholder-count="0"><g opacity="{{ fl.o }}">
@@ -534,7 +539,9 @@ class Component extends DCLogic {
             const i = cells.indexOf(e.target);
             if (i < 0) return;
             const h = this.catVals(this.state.t, false);
-            if (e.isIntersecting) h['ce' + i](); else h['cl' + i]();
+            this.inView = this.inView || {};
+            this.inView[i] = e.isIntersecting;
+            if (e.isIntersecting) h['ce' + i](); else { h['cl' + i](); if (this.nextFlow === i) this.nextFlow = null; }
           });
         }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
         cells.forEach((el) => this.io.observe(el));
@@ -687,7 +694,9 @@ class Component extends DCLogic {
   }
   startFlow(i) {
     this.flows = (this.flows || []).filter((q) => !q.done);
-    if (this.flows.some((q) => q.cell === i) || this.flows.length >= 3) return; // a cell bleeds once at a time, at most three at once
+    // one flow at a time: a new one waits until the old one has faded away
+    if (this.flows.length) { if (this.flows[0].cell !== i) this.nextFlow = i; return; }
+    this.nextFlow = null;
     const G = this.readGrid();
     if (!G || !G.cells[i]) return;
     const c = G.cells[i];
@@ -746,6 +755,7 @@ class Component extends DCLogic {
   }
   flowVals(t) {
     this.flows = (this.flows || []).filter((q) => !q.done);
+    if (!this.flows.length && this.nextFlow != null) { const n = this.nextFlow; this.nextFlow = null; if (this.inView == null || this.inView[n]) this.startFlow(n); }
     return { flows: this.flows.map((F) => this.oneFlow(F, t)).filter((v) => v) };
   }
   oneFlow(F, t) {
