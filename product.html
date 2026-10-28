@@ -11,26 +11,18 @@
 <link rel="icon" href="assets/wordmark-ink.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&amp;family=Krona+One&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&amp;display=swap" rel="stylesheet">
 <style>
 
 *{font-synthesis-weight:none}
-.fx-worn{-webkit-mask-image:var(--worn,none);mask-image:var(--worn,none);-webkit-mask-size:300px 300px;mask-size:300px 300px}
-.fx-ink{text-shadow:0 0 .6px currentColor,.3px .4px 1.8px color-mix(in srgb,currentColor 45%,transparent)}
-.fx-drip{position:relative;display:inline-block}
-.fx-drip i{position:absolute;top:74%;width:3px;height:16px;margin-left:-1.5px;border-radius:0 0 3px 3px;background:#890000;transform-origin:top;transform:scaleY(0);animation:fx-drip 6s cubic-bezier(.5,0,.75,0) infinite;pointer-events:none}
-.fx-drip i::after{content:"";position:absolute;left:50%;bottom:-3px;width:6px;height:7px;margin-left:-3px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;background:#890000}
-.fx-drip i:nth-child(1){left:14%;animation-delay:.4s}
-.fx-drip i:nth-child(2){left:47%;height:24px;animation-delay:2.1s}
-.fx-drip i:nth-child(3){left:83%;height:12px;animation-delay:3.6s}
-@keyframes fx-drip{0%{transform:scaleY(0);opacity:1}55%{transform:scaleY(1);opacity:1}85%{transform:scaleY(1.08);opacity:1}100%{transform:scaleY(1.08);opacity:0}}
-@media (prefers-reduced-motion:reduce){.fx-drip i{animation:none;transform:scaleY(1)}}
+.pe-script{font-family:"Jim Nightshade","SOV UI","SOV MuekMod",serif;letter-spacing:0}
 @font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-regular.woff") format("woff");font-weight:400;font-display:swap;size-adjust:125%}
 @font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:700;font-display:swap;size-adjust:125%}
 @font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0E00-0E7F;size-adjust:138%}
+@font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0000-0DFF,U+0E80-FFFF;size-adjust:112%}
 .tx-bg > div{transition:opacity .9s ease}
 .is-th *{letter-spacing:.01em !important}
-body{margin:0;font-family:"Jim Nightshade","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
+body{margin:0;font-family:"SOV UI","SOV MuekMod","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
 a{color:inherit;text-decoration:none}
 ::selection{background:#890000;color:#f1ebe2}
 .pd-nav a{position:relative}
@@ -55,7 +47,7 @@ a{color:inherit;text-decoration:none}
 <div id="app"></div>
 <template id="tpl">
 
-<div class="pd-root {{ thCls }}" style="--worn: {{ tx.img.worn }}; --silver: {{ c.silver }}; --raised: {{ c.raised }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
+<div class="pd-root {{ thCls }}" style="--silver: {{ c.silver }}; --raised: {{ c.raised }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
 
   <div class="tx-bg" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
     <div style="position: absolute; inset: 0; background-image: {{ tx.img.weave }}; background-size: 510px 510px; opacity: {{ tx.weave }};"></div>
@@ -119,7 +111,7 @@ a{color:inherit;text-decoration:none}
     <aside class="pd-info" style="flex: 5 1 0; min-width: 0; position: sticky; top: 24px; display: flex; flex-direction: column; gap: 28px;">
       <div style="position: relative;" onMouseEnter="{{ wetOn }}" onMouseLeave="{{ wetOff }}">
         <span style="display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; margin-bottom: 12px;">{{ p.no }} — Drop 01</span>
-        <h1 class="pd-big fx-ink" style="margin: 0; font-size: 48px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
+        <h1 class="pd-big pe-script" style="margin: 0; font-size: 48px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
         <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none;">
           <sc-for list="{{ nameDrops }}" as="d" hint-placeholder-count="0">
             <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
@@ -266,7 +258,6 @@ class Component extends DCLogic {
       leather: [fl(turb('type="fractalNoise" baseFrequency="0.1" numOctaves="4" seed="9"', 'pebble') + turb('type="turbulence" baseFrequency="0.012 0.02" numOctaves="3" seed="21"', 'crease') + `<feComposite in="pebble" in2="crease" operator="arithmetic" k1="0" k2="0.75" k3="0.45" k4="-0.1" result="h"/><feDiffuseLighting in="h" surfaceScale="2.2" diffuseConstant="1" lighting-color="#ffffff" result="lit"><feDistantLight ${lit}/></feDiffuseLighting><feSpecularLighting in="h" surfaceScale="2.2" specularConstant="0.3" specularExponent="30" lighting-color="#ffffff" result="spec"><feDistantLight ${lit}/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="spec2"/><feColorMatrix in="lit" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="shade"/><feMerge><feMergeNode in="shade"/><feMergeNode in="spec2"/></feMerge>`), `<rect width="${W}" height="${W}" fill="#000" filter="url(#f)"/>`],
       grain: [fl(turb('type="fractalNoise" baseFrequency="0.9" numOctaves="2"', 'g') + '<feColorMatrix in="g" type="saturate" values="0"/>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
       concrete: [fl(turb('type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="5" seed="11"', 'c') + '<feColorMatrix in="c" type="saturate" values="0"/><feComponentTransfer><feFuncR type="gamma" exponent="1.8"/><feFuncG type="gamma" exponent="1.8"/><feFuncB type="gamma" exponent="1.8"/></feComponentTransfer>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
-      worn: [fl(turb('type="fractalNoise" baseFrequency="0.16" numOctaves="4" seed="5"', 'w') + '<feColorMatrix in="w" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -16 0 0 0 11.4"/>'), `<rect width="${W}" height="${W}" fill="#fff" filter="url(#f)"/>`],
       weave: [fl(turb('type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="4"', 'n') + '<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>') + '<pattern id="p" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 1.5H6M0 4.5H6" stroke="#1a1b1d" stroke-width="0.8" opacity="0.7" fill="none"/><path d="M1.5 0V6M4.5 0V6" stroke="#1a1b1d" stroke-width="0.6" opacity="0.45" fill="none"/></pattern>', `<rect width="${W}" height="${W}" fill="url(#p)" filter="url(#f)"/>`],
     };
     const one = (name) => new Promise((done) => {
@@ -284,7 +275,7 @@ class Component extends DCLogic {
       img.onerror = () => done(null);
       img.src = url;
     });
-    const order = ['leather', 'weave', 'worn', 'grain', 'concrete'];
+    const order = ['leather', 'weave', 'grain', 'concrete'];
     const next = (i) => {
       if (this.stopped || i >= order.length) return;
       one(order[i]).then((u) => {
@@ -373,8 +364,8 @@ class Component extends DCLogic {
       t: th ? { collection: 'คอลเลกชัน', archive: 'อาร์ไคฟ์', about: 'เกี่ยวกับเรา' } : { collection: 'Collection', archive: 'Archive', about: 'About us' },
       thCls: th ? 'is-th' : '',
       langLabel: th ? 'EN' : 'TH',
-      navFont: th ? '"Jim Nightshade", "SOV UI", "Helvetica Neue", Arial, sans-serif' : '"Jim Nightshade", "SOV UI", "Helvetica Neue", Arial, sans-serif',
-      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"Krona One", "SOV MuekMod", "Arial Black", sans-serif',
+      navFont: th ? '"SOV UI", "SOV MuekMod", "Helvetica Neue", Arial, sans-serif' : '"SOV UI", "SOV MuekMod", "Helvetica Neue", Arial, sans-serif',
+      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"SOV MuekMod", "Arial Black", sans-serif',
       sizes: this.sizeList.map((s) => ({ label: s, on: st.size === s, bg: st.size === s ? c.ink : 'transparent', fg: st.size === s ? c.ground : c.ink, pick: () => this.setState({ size: st.size === s ? null : s }) })),
       sizeNote: st.size ? ', size ' + st.size : '',
       sections: sec.map((s) => ({ ...s, open: st.open === s.id, rot: st.open === s.id ? 45 : 0, toggle: () => this.setState({ open: st.open === s.id ? null : s.id }) })),
@@ -384,7 +375,7 @@ class Component extends DCLogic {
         const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
         const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
         const tl = this.state.tiles || {};
-        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none', worn: tl.worn ? `url(${tl.worn})` : 'none' };
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
         if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
         return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
       })(),
