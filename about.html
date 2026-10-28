@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PattEcks! — About us</title>
+<meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:title" content="PattEcks! — About us">
+<meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:image" content="assets/henley.jpg">
+<link rel="icon" href="assets/wordmark-ink.png">
+<style>
+
+@font-face{font-family:"Akira Expanded";src:url("assets/akira-expanded.woff") format("woff");font-weight:800;font-display:swap}
+@font-face{font-family:"Bootzy TM";src:url("assets/bootzy.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-regular.woff") format("woff");font-weight:400;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:700;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0E00-0E7F;size-adjust:138%}
+.tx-bg > div{transition:opacity .9s ease}
+.is-th *{letter-spacing:.01em !important}
+body{margin:0;font-family:"Bootzy TM","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
+a{color:inherit;text-decoration:none}
+::selection{background:#890000;color:#f1ebe2}
+.ab-root{cursor:none}
+.ab-root a,.ab-root button,.ab-root input{cursor:none}
+.ab-nav a{position:relative}
+.ab-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--silver,#b4b9be);transition:right .4s ease}
+.ab-nav a:hover::after,.ab-nav a[aria-current="page"]::after{right:0}
+.ab-row{position:relative;transition:padding-left .45s cubic-bezier(.2,.8,.2,1)}
+.ab-row::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:#890000;transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.ab-row:hover{padding-left:24px}
+.ab-row:hover::after{transform:scaleX(1)}
+.ab-row .ab-no{transition:color .3s ease}
+.ab-row:hover .ab-no{color:#890000}
+.ab-row .ab-sub{transition:opacity .45s ease,transform .45s ease;opacity:.75}
+.ab-row:hover .ab-sub{opacity:1;transform:translateX(6px)}
+.ab-img img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.ab-img:hover img{transform:scale(1.04)}
+.ab-btn{transition:background .3s ease}
+.ab-btn:hover{background:#a30d0d}
+.is-th [style*="font-size: 11px"]{font-size:14px !important}
+.is-th [style*="font-size: 13px"]{font-size:15px !important}
+.ab-root a:focus-visible,.ab-root button:focus-visible{outline:2px solid var(--silver,#b4b9be);outline-offset:2px}
+@media (max-width:900px){.ab-big{font-size:44px !important}.ab-cols{flex-direction:column !important}.ab-deg{font-size:120px !important}.ab-cards{grid-template-columns:1fr !important}}
+
+</style>
+<script src="assets/gsap.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="ab-root {{ thCls }}" style="--silver: {{ c.silver }}; --raised: {{ c.raised }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
+
+  <div class="tx-bg" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.weave }}; background-size: 510px 510px; opacity: {{ tx.weave }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.concrete }}; background-size: 510px 510px; opacity: {{ tx.concrete }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.grain }}; background-size: 510px 510px; opacity: {{ tx.grain }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.leather }}; background-size: 510px 510px; opacity: {{ tx.leather }};"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 55% at 45% 22%, rgba(255,255,255,0.05), rgba(255,255,255,0)); opacity: {{ tx.sheen }};"></div>
+  </div>
+
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
+    <a href="index.html" aria-label="PattEcks! home"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
+    <nav class="ab-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-family: {{ navFont }};">
+      <a href="index.html#collection">{{ t.collection }}</a>
+      <a href="index.html#archive">{{ t.archive }}</a>
+      <a href="about.html" aria-current="page">{{ t.about }}</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+      <a href="https://www.instagram.com/" style="margin-right: 12px;">Instagram</a>
+      <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
+      <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
+    </div>
+  </header>
+
+  <section class="ab-hero" style="position: relative; padding: 120px 48px 96px;">
+    <span style="display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: {{ c.muted }}; margin-bottom: 40px;">{{ L.kicker }}</span>
+    <h1 class="ab-big" style="margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: {{ heroSize }}px; line-height: 1.02; letter-spacing: 0; text-transform: uppercase;">
+      <span class="ab-line1" style="display: table;">{{ L.h1 }}</span>
+      <span class="ab-line2" style="display: table; color: #890000;">{{ L.h2 }}</span>
+    </h1>
+    <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none;">
+          <sc-for list="{{ heroDrops }}" as="d" hint-placeholder-count="0">
+            <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
+            <span style="position: absolute; left: {{ d.rx }}px; top: {{ d.land }}px; width: {{ d.rw }}px; height: 1px; background: #890000; opacity: {{ d.so }};"></span>
+            <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate({{ d.dx }}px, {{ d.dy }}px);"></span>
+            <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
+          </sc-for>
+    </span>
+    <p style="margin: 56px 0 0 auto; max-width: 46ch; font-size: 19px; line-height: 30px; color: {{ c.muted }};">{{ L.intro }}</p>
+  </section>
+
+  <section style="padding: 0 48px 120px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid {{ c.hair }}; padding-bottom: 16px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: {{ c.muted }};"><span>{{ L.rulesLabel }}</span><span>01 — 03</span></div>
+    <sc-for list="{{ rules }}" as="r" hint-placeholder-count="3">
+      <div class="ab-row" style="display: grid; grid-template-columns: 96px minmax(0, 1.3fr) minmax(0, 1fr); gap: 32px; align-items: baseline; padding: 40px 0; border-bottom: 1px solid {{ c.hair }};">
+        <span class="ab-no" style="font-size: 13px; letter-spacing: .14em; color: {{ c.muted }};">{{ r.no }}</span>
+        <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: {{ ruleSize }}px; line-height: 1.15; letter-spacing: 0;">{{ r.line }}</span>
+        <span class="ab-sub" style="font-size: 15px; line-height: 24px; color: {{ c.muted }};">{{ r.sub }}</span>
+      </div>
+    </sc-for>
+  </section>
+
+  <section class="ab-cols" style="display: flex; gap: 64px; align-items: center; padding: 0 48px 140px;">
+    <figure class="ab-img" style="flex: 5 1 0; min-width: 0; margin: 0; position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: {{ c.stone }};">
+      <img src="assets/silver-mask.jpg" alt="Reference: polished silver mask with a tear" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      <figcaption style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #f1ebe2;"><span>{{ L.maskCap }}</span><span>Reference</span></figcaption>
+    </figure>
+    <div style="flex: 6 1 0; min-width: 0; display: flex; flex-direction: column; gap: 28px;">
+      <span style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: {{ c.muted }};">{{ L.faceLabel }}</span>
+      <h2 class="ab-big" style="margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: {{ faceSize }}px; line-height: 1; letter-spacing: 0; text-transform: uppercase;">{{ L.faceTitle }}</h2>
+      <p style="margin: 0; max-width: 44ch; font-size: 19px; line-height: 30px;">{{ L.face1 }}</p>
+      <p style="margin: 0; max-width: 44ch; font-size: 15px; line-height: 25px; color: {{ c.muted }};">{{ L.face2 }}</p>
+    </div>
+  </section>
+
+  <section style="position: relative; padding: 96px 48px 120px; background: {{ c.raised }};">
+    <div class="ab-cols" style="display: flex; gap: 64px; align-items: flex-start;">
+      <div style="flex: 6 1 0; min-width: 0; display: flex; flex-direction: column; gap: 28px;">
+        <span style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: {{ c.muted }};">{{ L.cityLabel }}</span>
+        <div style="position: relative; align-self: flex-start;" onMouseEnter="{{ coolOn }}" onMouseLeave="{{ coolOff }}">
+          <span class="ab-deg" style="display: block; font-family: 'Akira Expanded', 'Arial Black', sans-serif; font-weight: 800; font-size: 220px; line-height: .9; letter-spacing: -.02em; color: {{ degColor }}; transition: color .9s ease;">{{ deg }}°</span>
+          <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none;">
+          <sc-for list="{{ degDrops }}" as="d" hint-placeholder-count="0">
+            <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
+            <span style="position: absolute; left: {{ d.rx }}px; top: {{ d.land }}px; width: {{ d.rw }}px; height: 1px; background: #890000; opacity: {{ d.so }};"></span>
+            <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate({{ d.dx }}px, {{ d.dy }}px);"></span>
+            <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
+          </sc-for>
+          </span>
+          <span style="display: block; margin-top: 12px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: {{ c.muted }};">{{ L.degNote }}</span>
+        </div>
+        <h2 style="margin: 16px 0 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 40px; line-height: 1.1; letter-spacing: 0; text-transform: uppercase;">{{ L.cityTitle }}</h2>
+        <p style="margin: 0; max-width: 46ch; font-size: 17px; line-height: 28px; color: {{ c.muted }};">{{ L.city }}</p>
+      </div>
+      <figure class="ab-img" style="flex: 5 1 0; min-width: 0; margin: 0; position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: {{ c.stone }};">
+        <img src="assets/street.jpg" alt="Reference: street-cast editorial in layered long sleeves" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <figcaption style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #f1ebe2;"><span>{{ L.streetCap }}</span><span>Reference</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section style="padding: 120px 48px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid {{ c.hair }}; padding-bottom: 16px; margin-bottom: 32px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: {{ c.muted }};"><span>{{ L.matLabel }}</span><span>{{ L.matHint }}</span></div>
+    <div class="ab-cards" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px;">
+      <button type="button" onClick="{{ m0.flip }}" aria-pressed="{{ m0.on }}" aria-label="{{ L.flipAria }}" style="position: relative; display: block; width: 100%; height: 380px; padding: 0; margin: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; perspective: 1400px;">
+        <span style="position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); transform: rotateY({{ m0.deg }}deg);">
+          <span style="position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: {{ c.ground }}; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+            <span aria-hidden="true" style="position: absolute; top: -1px; left: 28px; width: 10px; height: 3px; background: #890000;"></span>
+            <span style="display: flex; justify-content: space-between; gap: 16px;"><span>PattEcks! / {{ L.material }}</span><span style="color: {{ c.muted }};">No. 01</span></span>
+            <span style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: 30px; letter-spacing: 0; text-transform: none;">{{ m0.name }}</span>
+              <span style="display: flex; flex-direction: column; gap: 8px; color: {{ c.muted }};"><span>{{ m0.f1 }}</span><span>{{ m0.f2 }}</span><span>{{ m0.f3 }}</span></span>
+            </span>
+            <span style="align-self: flex-end; font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px;">{{ L.flip }}</span>
+          </span>
+          <span style="position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background: {{ c.raised }}; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; letter-spacing: .12em;">
+            <span style="display: flex; justify-content: space-between; gap: 16px; text-transform: uppercase;"><span>{{ L.why }}</span><span style="color: {{ c.muted }};">No. 01 — {{ L.back }}</span></span>
+            <span style="font-size: 17px; line-height: 27px; letter-spacing: .02em;">{{ m0.why }}</span>
+            <span style="display: grid; grid-template-columns: 96px 1fr; gap: 10px 16px; text-transform: uppercase;">
+              <span style="color: {{ c.muted }};">{{ L.care }}</span><span>{{ m0.care }}</span>
+              <span style="color: {{ c.muted }};">{{ L.note }}</span><span>{{ m0.note }}</span>
+            </span>
+            <span style="align-self: flex-end; font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px; text-transform: uppercase;">{{ L.flipBack }}</span>
+          </span>
+        </span>
+      </button>
+      <button type="button" onClick="{{ m1.flip }}" aria-pressed="{{ m1.on }}" aria-label="{{ L.flipAria }}" style="position: relative; display: block; width: 100%; height: 380px; padding: 0; margin: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; perspective: 1400px;">
+        <span style="position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); transform: rotateY({{ m1.deg }}deg);">
+          <span style="position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: {{ c.ground }}; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+            <span aria-hidden="true" style="position: absolute; top: -1px; left: 28px; width: 10px; height: 3px; background: #890000;"></span>
+            <span style="display: flex; justify-content: space-between; gap: 16px;"><span>PattEcks! / {{ L.material }}</span><span style="color: {{ c.muted }};">No. 02</span></span>
+            <span style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: 30px; letter-spacing: 0; text-transform: none;">{{ m1.name }}</span>
+              <span style="display: flex; flex-direction: column; gap: 8px; color: {{ c.muted }};"><span>{{ m1.f1 }}</span><span>{{ m1.f2 }}</span><span>{{ m1.f3 }}</span></span>
+            </span>
+            <span style="align-self: flex-end; font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px;">{{ L.flip }}</span>
+          </span>
+          <span style="position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background: {{ c.raised }}; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; letter-spacing: .12em;">
+            <span style="display: flex; justify-content: space-between; gap: 16px; text-transform: uppercase;"><span>{{ L.why }}</span><span style="color: {{ c.muted }};">No. 02 — {{ L.back }}</span></span>
+            <span style="font-size: 17px; line-height: 27px; letter-spacing: .02em;">{{ m1.why }}</span>
+            <span style="display: grid; grid-template-columns: 96px 1fr; gap: 10px 16px; text-transform: uppercase;">
+              <span style="color: {{ c.muted }};">{{ L.care }}</span><span>{{ m1.care }}</span>
+              <span style="color: {{ c.muted }};">{{ L.note }}</span><span>{{ m1.note }}</span>
+            </span>
+            <span style="align-self: flex-end; font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px; text-transform: uppercase;">{{ L.flipBack }}</span>
+          </span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <section style="padding: 0 48px 120px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-end;">
+    <h2 style="margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 40px; line-height: 1.1; letter-spacing: 0; text-transform: uppercase; max-width: 18ch;">{{ L.ctaTitle }}</h2>
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a class="ab-btn" href="index.html#collection" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: #890000; color: #f1ebe2; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.cta }}</a>
+      <a href="https://www.instagram.com/" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border: 1px solid {{ c.silver }}; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">Instagram</a>
+    </div>
+  </section>
+
+  <footer style="padding: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; border-top: 1px solid {{ c.hair }};">
+    <span>PattEcks! — Bangkok</span><span>Instagram @[HANDLE]</span><span>{{ L.tagline }}</span>
+  </footer>
+
+  <div class="ab-dot" aria-hidden="true" style="position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; border: 1px solid {{ c.silver }}; box-sizing: border-box; pointer-events: none; z-index: 10; will-change: transform;"></div>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+DC.mount(document.getElementById('tpl'), document.getElementById('app'), function (DCLogic) {
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const mq = (q) => !!(window.matchMedia && window.matchMedia(q).matches);
+    this.sysDark = mq('(prefers-color-scheme: dark)');
+    this.reduced = mq('(prefers-reduced-motion: reduce)');
+    this.state = { theme: null, th: false, t: 0, cool: false, cooledAt: null, flip0: false, flip1: false };
+    // Language and theme are shared by every page through this browser's storage.
+    try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
+    // Rain on the headline: each drop has a spot across the words (frac) and lands on the letter tops.
+    this.hero = [];
+    for (let i = 0; i < 18; i++) this.hero.push({ frac: ((i * 0.381966) % 1), top: 140, h: 22 + (i * 7) % 26, v: 760 + (i % 3) * 160, off: i * 0.23, gap: 0.2 + (i % 4) * 0.22, o: 0.85 });
+    // Rain on the temperature number, only while the visitor holds the pointer over it.
+    this.degRain = [];
+    for (let i = 0; i < 9; i++) this.degRain.push({ x: 14 + ((i * 61) % 380), land: 26, top: 120, h: 18 + (i * 5) % 18, v: 760 + (i % 3) * 140, off: i * 0.17, gap: 0.08 + (i % 3) * 0.16, o: 0.9 });
+    this.running = false;
+  }
+  componentDidMount() {
+    this.syncPrefs();
+    this.onStore = () => this.syncPrefs();
+    window.addEventListener('storage', this.onStore);
+    this.start();
+    this.bakeTiles();
+    setTimeout(() => this.measure(), 300);
+  }
+  bakeTiles() {
+    // Draw each code texture ONCE into a small seamless tile, then the page just repeats the picture.
+    // The tile is drawn 3x3 with the noise stitched, and only the centre is kept, so edges match.
+    const T = 510, W = 3 * T;
+    const turb = (a, r) => `<feTurbulence ${a} stitchTiles="stitch" x="0" y="0" width="${T}" height="${T}" result="${r}0"/><feTile in="${r}0" x="0" y="0" width="${W}" height="${W}" result="${r}"/>`;
+    const fl = (inner) => `<filter id="f" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${W}" color-interpolation-filters="sRGB">${inner}</filter>`;
+    const lit = 'azimuth="235" elevation="48"';
+    const src = {
+      leather: [fl(turb('type="fractalNoise" baseFrequency="0.1" numOctaves="4" seed="9"', 'pebble') + turb('type="turbulence" baseFrequency="0.012 0.02" numOctaves="3" seed="21"', 'crease') + `<feComposite in="pebble" in2="crease" operator="arithmetic" k1="0" k2="0.75" k3="0.45" k4="-0.1" result="h"/><feDiffuseLighting in="h" surfaceScale="2.2" diffuseConstant="1" lighting-color="#ffffff" result="lit"><feDistantLight ${lit}/></feDiffuseLighting><feSpecularLighting in="h" surfaceScale="2.2" specularConstant="0.3" specularExponent="30" lighting-color="#ffffff" result="spec"><feDistantLight ${lit}/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="spec2"/><feColorMatrix in="lit" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="shade"/><feMerge><feMergeNode in="shade"/><feMergeNode in="spec2"/></feMerge>`), `<rect width="${W}" height="${W}" fill="#000" filter="url(#f)"/>`],
+      grain: [fl(turb('type="fractalNoise" baseFrequency="0.9" numOctaves="2"', 'g') + '<feColorMatrix in="g" type="saturate" values="0"/>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      concrete: [fl(turb('type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="5" seed="11"', 'c') + '<feColorMatrix in="c" type="saturate" values="0"/><feComponentTransfer><feFuncR type="gamma" exponent="1.8"/><feFuncG type="gamma" exponent="1.8"/><feFuncB type="gamma" exponent="1.8"/></feComponentTransfer>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      weave: [fl(turb('type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="4"', 'n') + '<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>') + '<pattern id="p" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 1.5H6M0 4.5H6" stroke="#1a1b1d" stroke-width="0.8" opacity="0.7" fill="none"/><path d="M1.5 0V6M4.5 0V6" stroke="#1a1b1d" stroke-width="0.6" opacity="0.45" fill="none"/></pattern>', `<rect width="${W}" height="${W}" fill="url(#p)" filter="url(#f)"/>`],
+    };
+    const one = (name) => new Promise((done) => {
+      const [defs, body] = src[name];
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${W}"><defs>${defs}</defs>${body}</svg>`;
+      const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const cv = document.createElement('canvas'); cv.width = T; cv.height = T;
+          cv.getContext('2d').drawImage(img, T, T, T, T, 0, 0, T, T);
+          cv.toBlob((b) => done(b ? URL.createObjectURL(b) : null), 'image/png');
+        } catch (e) { done(null); }
+      };
+      img.onerror = () => done(null);
+      img.src = url;
+    });
+    const order = ['leather', 'weave', 'grain', 'concrete'];
+    const next = (i) => {
+      if (this.stopped || i >= order.length) return;
+      one(order[i]).then((u) => {
+        if (this.stopped) return;
+        if (u) this.setState({ tiles: { ...(this.state.tiles || {}), [order[i]]: u } });
+        setTimeout(() => next(i + 1), 60);
+      });
+    };
+    setTimeout(() => next(0), 200);
+  }
+  syncPrefs() {
+    // Every page reads the same saved language and theme, so a switch on one page shows on the others.
+    try {
+      const th = localStorage.getItem('pe-lang') === 'th';
+      const tm = localStorage.getItem('pe-theme');
+      const theme = tm === 'night' || tm === 'linen' ? tm : null;
+      if (th !== this.state.th || theme !== this.state.theme) this.setState({ th, theme });
+    } catch (e) {}
+  }
+  measure() {
+    // Find where the headline letters really are, so the rain lands on them in either language.
+    try {
+      const hero = document.querySelector('.ab-hero');
+      const els = [document.querySelector('.ab-line1'), document.querySelector('.ab-line2')];
+      if (!hero || !els[0] || !els[1]) return;
+      const hb = hero.getBoundingClientRect();
+      const fs = parseFloat(getComputedStyle(els[0]).fontSize) || 120;
+      const cap = this.state.th ? 0.3 : 0.12;
+      this.lines = els.map((el) => { const r = el.getBoundingClientRect(); return { l: r.left - hb.left, r: r.right - hb.left, top: Math.round(r.top - hb.top + fs * cap) }; });
+    } catch (e) {}
+  }
+  placeHero(list) {
+    const L = this.lines;
+    if (!L || !L.length) return [];
+    const minL = Math.min(L[0].l, L[1].l), maxR = Math.max(L[0].r, L[1].r);
+    const out = [];
+    list.forEach((d) => {
+      const x = Math.round(minL + 6 + d.frac * (maxR - minL - 12));
+      const line = L.find((ln) => x >= ln.l + 4 && x <= ln.r - 4);
+      if (line) out.push({ ...d, x, land: line.top, top: line.top });
+    });
+    return out;
+  }
+  componentWillUnmount() { this.stopped = true; try { Object.values(this.state.tiles || {}).forEach((u) => URL.revokeObjectURL(u)); } catch (e) {} if (this.tick && window.gsap) window.gsap.ticker.remove(this.tick); if (this.raf) cancelAnimationFrame(this.raf); }
+  start() {
+    if (this.running) return;
+    this.running = true;
+    let last = performance.now();
+    const step = () => {
+      const now = performance.now();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      this.syncN = (this.syncN || 0) + 1;
+      if (this.syncN % 20 === 0) { this.syncPrefs(); this.measure(); }
+      this.setState({ t: this.state.t + dt * (this.reduced ? 0.3 : 1) });
+    };
+    if (window.gsap) { this.tick = step; window.gsap.ticker.fps(30); window.gsap.ticker.add(this.tick); }
+    else { const f = () => { if (this.stopped) return; step(); this.raf = requestAnimationFrame(f); }; this.raf = requestAnimationFrame(f); }
+  }
+  rain(list, t) {
+    return list.map((d) => {
+      const fall = (d.land + d.top) / d.v;
+      const T = fall + 0.42 + d.gap;
+      const tau = (t + d.off) % T;
+      const out = { x: d.x, h: d.h, land: d.land, y: -400, lo: 0, rx: d.x, rw: 0, so: 0, dx: 0, dy: 0 };
+      if (tau < fall) { out.y = (d.v * tau - d.h - d.top).toFixed(0); out.lo = d.o; }
+      else if (tau < fall + 0.42) {
+        const s = (tau - fall) / 0.42;
+        out.rw = (3 + 20 * s).toFixed(1); out.rx = (d.x - (3 + 20 * s) / 2).toFixed(1);
+        out.so = ((1 - s) * 0.95).toFixed(2); out.dx = (3 + 11 * s).toFixed(1); out.dy = (-12 * Math.sin(Math.PI * s) + 4 * s).toFixed(1);
+      }
+      return out;
+    });
+  }
+  renderVals() {
+    const st = this.state;
+    const dark = st.theme === null ? this.sysDark : st.theme === 'night';
+    const c = dark
+      ? { ground: '#141619', raised: '#1e2125', stone: '#2a2e33', hair: '#33373c', silver: '#b4b9be', ink: '#e6e2da', muted: '#9ca0a6' }
+      : { ground: '#e8e2d6', raised: '#dbd3c4', stone: '#cfc7b7', hair: '#c4bcad', silver: '#6b7075', ink: '#1a1b1d', muted: '#54575b' };
+    const th = st.th;
+    const L = th ? {
+      kicker: 'เกี่ยวกับเรา — PattEcks! / กรุงเทพ',
+      h1: 'แตกต่าง', h2: 'ที่ไม่ตะโกน',
+      intro: 'PattEcks! เริ่มจากความต้องการเดียว คือความแตกต่างที่ไม่ต้องตะโกนบอกใคร เสื้อผ้าที่ใส่ได้ทุกวัน แต่ยังมีบางอย่างที่เป็นของตัวเอง',
+      rulesLabel: 'สิ่งที่เรายึดไว้',
+      faceLabel: 'ไม่มีหน้าตา', faceTitle: 'ไม่มีหน้า', maskCap: 'ไม่มีผู้ก่อตั้งให้เห็น',
+      face1: 'ที่นี่ไม่มีรูปผู้ก่อตั้ง และจะไม่มี PattEcks! ตั้งใจไม่มีหน้าตา ให้เสื้อผ้าเป็นสิ่งแรกที่คุณเจอ',
+      face2: 'แล้วคนที่ใส่จะกลายเป็นหน้าตาของแบรนด์เอง',
+      cityLabel: 'เมืองร้อน', degNote: 'ชี้ค้างไว้ ให้ฝนช่วยคลายร้อน', cityTitle: 'เมืองร้อน ตู้เสื้อผ้าสีมืด',
+      city: 'กรุงเทพร้อนเกิน 30 องศาเกือบทั้งปี แต่เรายังอยากแต่งตัวโทนมืด ผ้าจึงต้องทำงานแทน ลินินกอซที่โปร่งให้ลมผ่าน กับยีนส์ดิบที่นุ่มขึ้นตามการใช้ชีวิต',
+      streetCap: 'ใส่ออกไปใช้ชีวิตจริง',
+      matLabel: 'วัสดุ', matHint: 'กดป้ายเพื่อพลิก', material: 'วัสดุ', flip: 'พลิกดูว่าทำไม', flipBack: 'พลิกกลับ', flipAria: 'พลิกป้ายเพื่ออ่านว่าทำไมเลือกผ้านี้', why: 'ทำไมผ้านี้', back: 'ด้านหลัง', care: 'ดูแล', note: 'หมายเหตุ',
+      ctaTitle: 'ดรอป 01 — ลินินกับยีนส์', cta: 'ดูคอลเลกชัน', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ'
+    } : {
+      kicker: 'About — PattEcks! / Bangkok',
+      h1: 'Different,', h2: 'not loud.',
+      intro: 'PattEcks! started from one want: to be different without shouting about it. Clothes you can wear every day that still keep something of their own.',
+      rulesLabel: 'What we hold to',
+      faceLabel: 'No face', faceTitle: 'No face.', maskCap: 'No founder in the frame',
+      face1: 'There is no founder photo here, and there will not be one. PattEcks! has no face on purpose, so the clothes are the first thing you meet.',
+      face2: 'Whoever wears them becomes the face.',
+      cityLabel: 'Hot city', degNote: 'Hold the pointer here to let it rain', cityTitle: 'A hot city. A dark wardrobe.',
+      city: 'Bangkok stays above 30°C for most of the year. We still want to dress dark, so the cloth has to do the work: open linen gauze that lets the air through, and raw denim that softens as you live in it.',
+      streetCap: 'Worn out, not posed',
+      matLabel: 'Materials', matHint: 'Tap a label to flip it', material: 'Material', flip: 'Flip for why', flipBack: 'Flip back', flipAria: 'Flip the label to read why we chose this cloth', why: 'Why this cloth', back: 'back', care: 'Care', note: 'Note',
+      ctaTitle: 'Drop 01 — Linen and denim', cta: 'See the collection', tagline: 'Everyday. Timeless. Never plain.'
+    };
+    const rules = th ? [
+      { no: '01', line: 'แตกต่างที่ไม่ตะโกน', sub: 'ไม่มีโลโก้ใหญ่กลางอก ความต่างอยู่ที่ทรงและเนื้อผ้า' },
+      { no: '02', line: 'แตกต่างแต่ไม่แตกแยก', sub: 'ยังเข้ากับเสื้อผ้าที่คุณมีอยู่แล้ว ไม่ต้องเปลี่ยนทั้งตู้' },
+      { no: '03', line: 'แตกต่างแต่ไม่แปลกต่าง', sub: 'กลิ่นอาร์ไคฟ์ อีโม กรันจ์ ที่ใส่ออกไปใช้ชีวิตปกติได้' }
+    ] : [
+      { no: '01', line: 'Different, without shouting.', sub: 'No big logo across the chest. The difference is in the cut and the cloth.' },
+      { no: '02', line: 'Different, not divided.', sub: 'It still sits with what you already own. No need to start your wardrobe again.' },
+      { no: '03', line: 'Different, not strange.', sub: 'Archive, emo and grunge, made to wear on an ordinary day.' }
+    ];
+    const mats = th ? [
+      { name: 'ลินินกอซ', f1: 'ทอโปร่ง', f2: 'เบา', f3: 'ระบายอากาศในที่ร้อน', why: 'ผ้ากอซทอหลวม ลมจึงผ่านได้ ยับง่ายและนั่นเป็นส่วนหนึ่งของมัน', care: '[วิธีดูแล]', note: 'ยิ่งใส่ยิ่งนุ่ม' },
+      { name: 'ยีนส์ดิบ slub', f1: 'ไม่ผ่านการซัก', f2: 'เส้นด้าย slub', f3: 'ผิวไม่เรียบโดยตั้งใจ', why: 'เส้นด้าย slub ทำให้ผิวผ้าไม่เรียบ ไม่มียีนส์สองตัวที่ซีดเหมือนกัน', care: '[วิธีดูแล]', note: 'สีครามอาจติดก่อนซักครั้งแรก' }
+    ] : [
+      { name: 'Linen gauze', f1: 'Open weave', f2: 'Light', f3: 'Breathes in heat', why: 'Gauze is woven loose, so the air moves through it. It creases, and that is part of it.', care: '[Care instructions]', note: 'Softens the more you wear it' },
+      { name: 'Raw slub denim', f1: 'Unwashed', f2: 'Slub yarn', f3: 'Uneven by design', why: 'Slub yarn leaves the surface uneven, so no two pairs fade the same way.', care: '[Care instructions]', note: 'Indigo may transfer before the first wash' }
+    ];
+    // The temperature drops while it rains on it, then slowly climbs back.
+    const since = st.cooledAt == null ? 99 : st.t - st.cooledAt;
+    const deg = st.cool ? Math.max(29, Math.round(34 - since * 2)) : st.cooledAt == null ? 34 : Math.min(34, Math.round((st.leftAt || 34) + since * 1.2));
+    const heroList = this.reduced ? this.hero.filter((d, i) => i % 3 === 0) : this.hero;
+    return {
+      c, L,
+      rules,
+      m0: { ...mats[0], on: st.flip0, deg: st.flip0 ? 180 : 0, flip: () => this.setState({ flip0: !st.flip0 }) },
+      m1: { ...mats[1], on: st.flip1, deg: st.flip1 ? 180 : 0, flip: () => this.setState({ flip1: !st.flip1 }) },
+      logo: dark ? 'assets/wordmark-white.png' : 'assets/wordmark-ink.png',
+      themeLabel: dark ? 'Linen' : 'Leather',
+      t: th ? { collection: 'คอลเลกชัน', archive: 'อาร์ไคฟ์', about: 'เกี่ยวกับเรา' } : { collection: 'Collection', archive: 'Archive', about: 'About us' },
+      thCls: th ? 'is-th' : '',
+      langLabel: th ? 'EN' : 'TH',
+      navFont: '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif',
+      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"Akira Expanded", "SOV MuekMod", "Arial Black", sans-serif',
+      heroSize: th ? 150 : 132,
+      ruleSize: th ? 40 : 30,
+      faceSize: th ? 110 : 96,
+      deg,
+      degColor: st.cool ? c.ink : '#890000',
+      heroDrops: this.rain(this.placeHero(heroList), st.t),
+      degDrops: st.cool ? this.rain(this.degRain, st.t) : [],
+      tx: (() => {
+        // Background texture, drawn in code (no images): linen weave, wet concrete or film grain.
+        const kind = this.props.texture || 'linen';
+        const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
+        const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
+        const tl = this.state.tiles || {};
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
+        if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
+        return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
+      })(),
+      coolOn: () => this.setState({ cool: true, cooledAt: this.state.t }),
+      coolOff: () => { const s2 = this.state.t - (this.state.cooledAt || this.state.t); this.setState({ cool: false, leftAt: Math.max(29, Math.round(34 - s2 * 2)), cooledAt: this.state.t }); },
+      move: (e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        // The dot moves on the mouse event itself, so it never trails the hand.
+        if (!this.dotEl) this.dotEl = e.currentTarget.querySelector('.ab-dot');
+        if (this.dotEl) this.dotEl.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+      },
+      toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
+      toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); setTimeout(() => this.measure(), 120); }
+    };
+  }
+}
+
+return Component;
+}, {"texture": "linen", "textureStrength": 1});
+</script>
+</body>
+</html>

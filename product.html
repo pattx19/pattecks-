@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PattEcks! — Product</title>
+<meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:title" content="PattEcks! — Product">
+<meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:image" content="assets/henley.jpg">
+<link rel="icon" href="assets/wordmark-ink.png">
+<style>
+
+@font-face{font-family:"Akira Expanded";src:url("assets/akira-expanded.woff") format("woff");font-weight:800;font-display:swap}
+@font-face{font-family:"Bootzy TM";src:url("assets/bootzy.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-regular.woff") format("woff");font-weight:400;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:700;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0E00-0E7F;size-adjust:138%}
+.tx-bg > div{transition:opacity .9s ease}
+.is-th *{letter-spacing:.01em !important}
+body{margin:0;font-family:"Bootzy TM","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
+a{color:inherit;text-decoration:none}
+::selection{background:#890000;color:#f1ebe2}
+.pd-root{cursor:none}
+.pd-root a,.pd-root button,.pd-root input{cursor:none}
+.pd-nav a{position:relative}
+.pd-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--silver,#b4b9be);transition:right .4s ease}
+.pd-nav a:hover::after{right:0}
+.pd-shot img{transition:transform .9s ease}
+.pd-shot:hover img{transform:scale(1.02)}
+.pd-size{transition:background .25s ease,color .25s ease}
+.pd-btn{transition:background .3s ease}
+.pd-btn:hover{background:#a30d0d}
+.pd-acc{transition:background .3s ease}
+.pd-acc:hover{background:var(--raised,#1e2125)}
+.pd-next img{transition:transform .9s ease}
+.pd-next:hover img{transform:scale(1.04)}
+.pd-input:focus,.pd-root a:focus-visible,.pd-root button:focus-visible{outline:2px solid var(--silver,#b4b9be);outline-offset:2px}
+@media (max-width:900px){.pd-cols{flex-direction:column}.pd-info{position:static !important}.pd-big{font-size:32px !important}}
+
+</style>
+<script src="assets/gsap.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="pd-root {{ thCls }}" style="--silver: {{ c.silver }}; --raised: {{ c.raised }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
+
+  <div class="tx-bg" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.weave }}; background-size: 510px 510px; opacity: {{ tx.weave }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.concrete }}; background-size: 510px 510px; opacity: {{ tx.concrete }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.grain }}; background-size: 510px 510px; opacity: {{ tx.grain }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.leather }}; background-size: 510px 510px; opacity: {{ tx.leather }};"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 55% at 45% 22%, rgba(255,255,255,0.05), rgba(255,255,255,0)); opacity: {{ tx.sheen }};"></div>
+  </div>
+
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
+    <a href="index.html" aria-label="PattEcks! home"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
+    <nav class="pd-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-family: {{ navFont }};">
+      <a href="index.html#collection">{{ t.collection }}</a>
+      <a href="index.html#archive">{{ t.archive }}</a>
+      <a href="about.html">{{ t.about }}</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+      <a href="https://www.instagram.com/" style="margin-right: 12px;">Instagram</a>
+      <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
+      <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
+    </div>
+  </header>
+
+  <div style="padding: 8px 48px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">
+    <span><a href="index.html#collection">{{ t.collection }}</a> / Drop 01 / {{ p.no }}</span>
+    <span style="display: flex; gap: 24px;">
+      <button type="button" onClick="{{ prev }}" style="background: none; border: 0; padding: 0; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; min-height: 24px;">{{ L.prev }}</button>
+      <span>{{ p.no }} / 02</span>
+      <button type="button" onClick="{{ next }}" style="background: none; border: 0; padding: 0; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; min-height: 24px;">{{ L.next }}</button>
+    </span>
+  </div>
+
+  <div class="pd-cols" style="display: flex; gap: 48px; align-items: flex-start; padding: 0 48px 96px;">
+
+    <div style="flex: 7 1 0; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+      <figure style="margin: 0; position: relative; overflow: hidden; aspect-ratio: {{ p.ratio }}; background: {{ c.stone }};" onMouseMove="{{ lens }}" onMouseEnter="{{ lensOn }}" onMouseLeave="{{ lensOff }}">
+        <img src="{{ p.main }}" alt="{{ p.mainAlt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <sc-if value="{{ lensShow }}" hint-placeholder-val="{{ false }}">
+          <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 200px; height: 200px; border-radius: 50%; border: 1px solid {{ c.silver }}; box-sizing: border-box; pointer-events: none; transform: translate({{ lensX }}px, {{ lensY }}px); background-image: url({{ p.main }}); background-repeat: no-repeat; background-size: {{ lensBgW }}px {{ lensBgH }}px; background-position: {{ lensBgX }}px {{ lensBgY }}px;"></div>
+        </sc-if>
+        <sc-if value="{{ p.isNew }}" hint-placeholder-val="{{ true }}">
+          <span style="position: absolute; top: 16px; left: 16px; background: #890000; color: #f1ebe2; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px;">New drop</span>
+        </sc-if>
+        <figcaption style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #f1ebe2;"><span>{{ L.hoverZoom }}</span><span>{{ p.mainTag }}</span></figcaption>
+      </figure>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+        <sc-for list="{{ p.shots }}" as="s" hint-placeholder-count="2">
+          <figure class="pd-shot" style="margin: 0; position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: {{ c.stone }};">
+            <sc-if value="{{ s.src }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ s.src }}" alt="{{ s.alt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            </sc-if>
+            <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }};">{{ s.alt }}</span>
+            </sc-if>
+            <figcaption style="position: absolute; left: 12px; bottom: 12px; right: 12px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ s.capColor }};"><span>{{ s.label }}</span><span>{{ s.tag }}</span></figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+
+    <aside class="pd-info" style="flex: 5 1 0; min-width: 0; position: sticky; top: 24px; display: flex; flex-direction: column; gap: 28px;">
+      <div style="position: relative;" onMouseEnter="{{ wetOn }}" onMouseLeave="{{ wetOff }}">
+        <span style="display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; margin-bottom: 12px;">{{ p.no }} — Drop 01</span>
+        <h1 class="pd-big" style="margin: 0; font-size: 48px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
+        <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none;">
+          <sc-for list="{{ nameDrops }}" as="d" hint-placeholder-count="0">
+            <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
+            <span style="position: absolute; left: {{ d.rx }}px; top: {{ d.land }}px; width: {{ d.rw }}px; height: 1px; background: #890000; opacity: {{ d.so }};"></span>
+            <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate({{ d.dx }}px, {{ d.dy }}px);"></span>
+            <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
+          </sc-for>
+        </span>
+        <span style="display: block; margin-top: 16px; font-size: 15px; letter-spacing: .12em;">THB [PRICE]</span>
+      </div>
+
+      <p style="margin: 0; font-size: 17px; line-height: 26px; color: {{ c.muted }}; max-width: 44ch;">{{ p.desc }}</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;"><span>{{ L.size }}</span><span style="color: {{ c.muted }};">{{ L.sizeTbc }}</span></div>
+        <div role="group" aria-label="Size" style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <sc-for list="{{ sizes }}" as="z" hint-placeholder-count="4">
+            <button type="button" class="pd-size" onClick="{{ z.pick }}" aria-pressed="{{ z.on }}" style="min-width: 56px; min-height: 48px; padding: 0 16px; border-radius: 3px; border: 1px solid {{ c.silver }}; background: {{ z.bg }}; color: {{ z.fg }}; font: inherit; font-size: 13px; letter-spacing: .12em;">{{ z.label }}</button>
+          </sc-for>
+        </div>
+        <span style="font-size: 13px; letter-spacing: .04em; color: {{ c.muted }};">{{ p.fit }}</span>
+      </div>
+
+      <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ join }}" style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="pd-email" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.notifyLabel }}</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input id="pd-email" class="pd-input" type="email" required="" placeholder="you@email.com" style="flex: 1 1 200px; min-width: 0; min-height: 52px; padding: 0 16px; background: {{ c.ground }}; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; font-size: 17px;">
+            <button class="pd-btn" type="submit" style="min-height: 52px; padding: 0 28px; background: #890000; color: #f1ebe2; border: 0; font: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.notify }}</button>
+          </div>
+        </form>
+      </sc-if>
+      <sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 0; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.onList }} {{ p.name }}{{ sizeNote }}</p>
+      </sc-if>
+      <a href="https://www.instagram.com/" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 4px; align-self: flex-start;">{{ L.askIg }}</a>
+
+      <div style="border-top: 1px solid {{ c.hair }};">
+        <sc-for list="{{ sections }}" as="a" hint-placeholder-count="3">
+          <div style="border-bottom: 1px solid {{ c.hair }};">
+            <button type="button" class="pd-acc" onClick="{{ a.toggle }}" aria-expanded="{{ a.open }}" style="width: 100%; min-height: 56px; display: flex; justify-content: space-between; align-items: center; padding: 0 4px; background: none; border: 0; color: {{ c.ink }}; font: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+              <span>{{ a.title }}</span><span aria-hidden="true" style="display: inline-block; transition: transform .3s ease; transform: rotate({{ a.rot }}deg);">+</span>
+            </button>
+            <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding: 4px 4px 24px; display: grid; grid-template-columns: 110px 1fr; gap: 10px 16px; font-size: 13px; letter-spacing: .06em;">
+                <sc-for list="{{ a.rows }}" as="r" hint-placeholder-count="3">
+                  <span style="color: {{ c.muted }}; text-transform: uppercase; letter-spacing: .12em;">{{ r.k }}</span><span>{{ r.v }}</span>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </aside>
+  </div>
+
+  <section style="padding: 0 48px 96px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid {{ c.hair }}; padding-top: 24px; margin-bottom: 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+      <h2 style="margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 24px; letter-spacing: 0;">{{ L.also }}</h2>
+      <span style="color: {{ c.muted }};">{{ o.no }} / 02</span>
+    </div>
+    <button type="button" class="pd-next" onClick="{{ next }}" style="display: flex; gap: 24px; align-items: stretch; width: 100%; padding: 0; background: none; border: 0; color: inherit; font: inherit; text-align: left;">
+      <span style="flex: none; width: 240px; aspect-ratio: 3 / 4; overflow: hidden; background: {{ c.stone }}; display: block;"><img src="{{ o.main }}" alt="{{ o.mainAlt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></span>
+      <span style="display: flex; flex-direction: column; justify-content: space-between; padding: 8px 0;">
+        <span style="font-size: 32px; letter-spacing: -.01em;">{{ o.name }}</span>
+        <span style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">{{ o.fabricLine }}</span>
+        <span style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 4px; align-self: flex-start;">{{ L.view }} {{ o.no }}</span>
+      </span>
+    </button>
+  </section>
+
+  <footer style="padding: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">
+    <span>PattEcks! — Bangkok</span><span>Instagram @[HANDLE]</span><span>{{ L.tagline }}</span>
+  </footer>
+
+  <div class="pd-dot" aria-hidden="true" style="position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; border: 1px solid {{ c.silver }}; box-sizing: border-box; pointer-events: none; z-index: 10; opacity: {{ dotO }}; will-change: transform;"></div>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+DC.mount(document.getElementById('tpl'), document.getElementById('app'), function (DCLogic) {
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const mq = (q) => !!(window.matchMedia && window.matchMedia(q).matches);
+    this.sysDark = mq('(prefers-color-scheme: dark)');
+    this.reduced = mq('(prefers-reduced-motion: reduce)');
+    this.state = { i: 0, size: null, open: 'fabric', theme: null, th: false, joined: false, t: 0, lens: false, lx: 0, ly: 0, lw: 1, lh: 1, wet: false };
+    // Language and theme are shared by every page through this browser's storage.
+    try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
+    this.products = [
+      {
+        no: '01', name: 'Linen Gauze Henley', ratio: '3 / 4', weave: 'gauze', isNew: true,
+        main: 'assets/henley.jpg', mainAlt: 'Reference: white gauze henley laid flat on raw concrete', mainTag: 'Reference',
+        desc: 'A long-sleeve henley in open linen gauze. Cropped and cut close, with the placket set on a tilt. Made to be worn every day in Bangkok heat.',
+        descTh: 'เฮนลีย์แขนยาวผ้าลินินกอซ ทรงครอปตัดเข้าตัว กระดุมคอเอียง ทำมาให้ใส่ได้ทุกวันในอากาศร้อนของกรุงเทพ',
+        fit: 'Cropped and cut close to the body. Not oversized.',
+        fitTh: 'ทรงครอป ตัดเข้าตัว ไม่ใช่ทรงหลวม',
+        fabricLine: '100% linen gauze / cropped / tilted placket',
+        shots: [
+          { src: 'assets/sheer-linen.jpg', alt: 'Reference: linen held to the light', label: 'Fabric — held to the light', tag: 'Reference', light: true },
+          { src: 'assets/neck-label.jpg', alt: 'Reference: neck label detail', label: 'Detail — neck label', tag: 'Reference', light: true }
+        ],
+        fabric: [{ k: 'Fabric', v: '100% linen, gauze weave' }, { k: 'Feel', v: 'Open, light, breathes in heat' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Dry', v: '[Drying instructions]' }]
+      },
+      {
+        no: '02', name: 'Raw Slub Denim', ratio: '4 / 5', weave: 'slub', isNew: true,
+        main: 'assets/denim.jpg', mainAlt: 'Raw slub denim jeans laid flat on concrete', mainTag: '',
+        desc: 'Unwashed raw denim with a slub yarn that leaves the surface uneven by design. It fades to the person who wears it.',
+        descTh: 'ยีนส์ดิบไม่ผ่านการซัก เส้นด้าย slub ทำให้ผิวผ้าไม่เรียบโดยตั้งใจ สีจะซีดตามคนที่ใส่',
+        fit: 'Straight leg. [Rise and leg opening to confirm]',
+        fitTh: 'ขาตรง [เอวและปลายขารอยืนยัน]',
+        fabricLine: 'Raw slub denim / unwashed',
+        shots: [
+          { src: '', alt: 'Slub texture close-up — photo coming', label: 'Fabric — slub texture', tag: '', light: false },
+          { src: '', alt: 'Pocket and hardware detail — photo coming', label: 'Detail — pocket', tag: '', light: false }
+        ],
+        fabric: [{ k: 'Fabric', v: 'Raw slub denim, unwashed' }, { k: 'Weight', v: '[oz to confirm]' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Note', v: 'Indigo may transfer before the first wash' }]
+      }
+    ];
+    this.sizeList = ['S', 'M', 'L', 'XL'];
+    // Rain on the product name: lands on the cap line (about 8px into the 48px heading, 24px below the label).
+    this.drops = [];
+    for (let i = 0; i < 10; i++) this.drops.push({ x: 6 + ((i * 47) % 380), land: 36, top: 80, h: 18 + (i * 7) % 22, v: 720 + (i % 3) * 150, off: i * 0.19, gap: 0.1 + (i % 3) * 0.2, o: 0.85 });
+    this.running = false;
+  }
+  componentDidMount() {
+    this.syncPrefs();
+    this.onStore = () => this.syncPrefs();
+    window.addEventListener('storage', this.onStore);
+    this.start();
+    this.bakeTiles();
+  }
+
+  bakeTiles() {
+    // Draw each code texture ONCE into a small seamless tile, then the page just repeats the picture.
+    // The tile is drawn 3x3 with the noise stitched, and only the centre is kept, so edges match.
+    const T = 510, W = 3 * T;
+    const turb = (a, r) => `<feTurbulence ${a} stitchTiles="stitch" x="0" y="0" width="${T}" height="${T}" result="${r}0"/><feTile in="${r}0" x="0" y="0" width="${W}" height="${W}" result="${r}"/>`;
+    const fl = (inner) => `<filter id="f" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${W}" color-interpolation-filters="sRGB">${inner}</filter>`;
+    const lit = 'azimuth="235" elevation="48"';
+    const src = {
+      leather: [fl(turb('type="fractalNoise" baseFrequency="0.1" numOctaves="4" seed="9"', 'pebble') + turb('type="turbulence" baseFrequency="0.012 0.02" numOctaves="3" seed="21"', 'crease') + `<feComposite in="pebble" in2="crease" operator="arithmetic" k1="0" k2="0.75" k3="0.45" k4="-0.1" result="h"/><feDiffuseLighting in="h" surfaceScale="2.2" diffuseConstant="1" lighting-color="#ffffff" result="lit"><feDistantLight ${lit}/></feDiffuseLighting><feSpecularLighting in="h" surfaceScale="2.2" specularConstant="0.3" specularExponent="30" lighting-color="#ffffff" result="spec"><feDistantLight ${lit}/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="spec2"/><feColorMatrix in="lit" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="shade"/><feMerge><feMergeNode in="shade"/><feMergeNode in="spec2"/></feMerge>`), `<rect width="${W}" height="${W}" fill="#000" filter="url(#f)"/>`],
+      grain: [fl(turb('type="fractalNoise" baseFrequency="0.9" numOctaves="2"', 'g') + '<feColorMatrix in="g" type="saturate" values="0"/>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      concrete: [fl(turb('type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="5" seed="11"', 'c') + '<feColorMatrix in="c" type="saturate" values="0"/><feComponentTransfer><feFuncR type="gamma" exponent="1.8"/><feFuncG type="gamma" exponent="1.8"/><feFuncB type="gamma" exponent="1.8"/></feComponentTransfer>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      weave: [fl(turb('type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="4"', 'n') + '<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>') + '<pattern id="p" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 1.5H6M0 4.5H6" stroke="#1a1b1d" stroke-width="0.8" opacity="0.7" fill="none"/><path d="M1.5 0V6M4.5 0V6" stroke="#1a1b1d" stroke-width="0.6" opacity="0.45" fill="none"/></pattern>', `<rect width="${W}" height="${W}" fill="url(#p)" filter="url(#f)"/>`],
+    };
+    const one = (name) => new Promise((done) => {
+      const [defs, body] = src[name];
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${W}"><defs>${defs}</defs>${body}</svg>`;
+      const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const cv = document.createElement('canvas'); cv.width = T; cv.height = T;
+          cv.getContext('2d').drawImage(img, T, T, T, T, 0, 0, T, T);
+          cv.toBlob((b) => done(b ? URL.createObjectURL(b) : null), 'image/png');
+        } catch (e) { done(null); }
+      };
+      img.onerror = () => done(null);
+      img.src = url;
+    });
+    const order = ['leather', 'weave', 'grain', 'concrete'];
+    const next = (i) => {
+      if (this.stopped || i >= order.length) return;
+      one(order[i]).then((u) => {
+        if (this.stopped) return;
+        if (u) this.setState({ tiles: { ...(this.state.tiles || {}), [order[i]]: u } });
+        setTimeout(() => next(i + 1), 60);
+      });
+    };
+    setTimeout(() => next(0), 200);
+  }
+  syncPrefs() {
+    // Every page reads the same saved language and theme, so a switch on one page shows on the others.
+    try {
+      const th = localStorage.getItem('pe-lang') === 'th';
+      const tm = localStorage.getItem('pe-theme');
+      const theme = tm === 'night' || tm === 'linen' ? tm : null;
+      if (th !== this.state.th || theme !== this.state.theme) this.setState({ th, theme });
+      // Open on the product that was clicked on the Home page (or named in the link, e.g. #denim).
+      const pick = localStorage.getItem('pe-product') || '';
+      const hash = (window.location && window.location.hash || '').replace('#', '');
+      const tok = pick + '|' + hash;
+      if (tok !== this.lastPick) {
+        this.lastPick = tok;
+        const name = pick ? pick.split(':')[0] : hash;
+        const i = name === 'denim' ? 1 : name === 'henley' ? 0 : -1;
+        if (i >= 0 && i !== this.state.i) this.setState({ i, size: null, joined: false });
+      }
+    } catch (e) {}
+  }
+  componentWillUnmount() { this.stopped = true; try { Object.values(this.state.tiles || {}).forEach((u) => URL.revokeObjectURL(u)); } catch (e) {} if (this.tick && window.gsap) window.gsap.ticker.remove(this.tick); if (this.raf) cancelAnimationFrame(this.raf); }
+  start() {
+    if (this.running) return;
+    this.running = true;
+    let last = performance.now();
+    const step = () => {
+      const now = performance.now();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      this.syncN = (this.syncN || 0) + 1;
+      if (this.syncN % 20 === 0) this.syncPrefs();
+      this.setState({ t: this.state.t + dt * (this.reduced ? 0.3 : 1) });
+    };
+    if (window.gsap) { this.tick = step; window.gsap.ticker.fps(30); window.gsap.ticker.add(this.tick); }
+    else { const f = () => { if (this.stopped) return; step(); this.raf = requestAnimationFrame(f); }; this.raf = requestAnimationFrame(f); }
+  }
+  rain(list, t) {
+    return list.map((d) => {
+      const fall = (d.land + d.top) / d.v;
+      const T = fall + 0.42 + d.gap;
+      const tau = (t + d.off) % T;
+      const out = { x: d.x, h: d.h, land: d.land, y: -400, lo: 0, rx: d.x, rw: 0, so: 0, dx: 0, dy: 0 };
+      if (tau < fall) { out.y = (d.v * tau - d.h - d.top).toFixed(0); out.lo = d.o; }
+      else if (tau < fall + 0.42) {
+        const s = (tau - fall) / 0.42;
+        out.rw = (3 + 20 * s).toFixed(1); out.rx = (d.x - (3 + 20 * s) / 2).toFixed(1);
+        out.so = ((1 - s) * 0.95).toFixed(2); out.dx = (3 + 11 * s).toFixed(1); out.dy = (-12 * Math.sin(Math.PI * s) + 4 * s).toFixed(1);
+      }
+      return out;
+    });
+  }
+  renderVals() {
+    const st = this.state;
+    const dark = st.theme === null ? this.sysDark : st.theme === 'night';
+    const c = dark
+      ? { ground: '#141619', raised: '#1e2125', stone: '#2a2e33', hair: '#33373c', silver: '#b4b9be', ink: '#e6e2da', muted: '#9ca0a6' }
+      : { ground: '#e8e2d6', raised: '#dbd3c4', stone: '#cfc7b7', hair: '#c4bcad', silver: '#6b7075', ink: '#1a1b1d', muted: '#54575b' };
+    const th = st.th;
+    const p = this.products[st.i];
+    const o = this.products[(st.i + 1) % this.products.length];
+    const Z = 2.6;
+    const L = th
+      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: 'รอยืนยันไซซ์', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
+      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: 'Sizes to confirm', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
+    const sec = [
+      { id: 'fabric', title: th ? 'เนื้อผ้าและการดูแล' : 'Fabric and care', rows: p.fabric },
+      { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }, { k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }, { k: th ? 'นายแบบ' : 'Model', v: th ? 'สูง [ส่วนสูง] ซม. ใส่ไซซ์ [ไซซ์]' : '[Height] cm wears [Size]' }] },
+      { id: 'ship', title: th ? 'การจัดส่ง' : 'Shipping', rows: [{ k: th ? 'ในไทย' : 'Thailand', v: th ? '[ขนส่งและระยะเวลา]' : '[Courier and delivery time]' }, { k: th ? 'ต่างประเทศ' : 'Abroad', v: th ? '[รอยืนยัน]' : '[To confirm]' }, { k: th ? 'คืนสินค้า' : 'Returns', v: th ? '[นโยบายรอยืนยัน]' : '[Policy to confirm]' }] }
+    ];
+    return {
+      c,
+      L,
+      p: { ...p, desc: th ? p.descTh : p.desc, fit: th ? p.fitTh : p.fit, shots: p.shots.map((s) => ({ ...s, empty: !s.src, capColor: s.src ? '#f1ebe2' : c.muted })) },
+      o,
+      logo: dark ? 'assets/wordmark-white.png' : 'assets/wordmark-ink.png',
+      themeLabel: dark ? 'Linen' : 'Leather',
+      t: th ? { collection: 'คอลเลกชัน', archive: 'อาร์ไคฟ์', about: 'เกี่ยวกับเรา' } : { collection: 'Collection', archive: 'Archive', about: 'About us' },
+      thCls: th ? 'is-th' : '',
+      langLabel: th ? 'EN' : 'TH',
+      navFont: th ? '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif' : '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif',
+      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"Akira Expanded", "SOV MuekMod", "Arial Black", sans-serif',
+      sizes: this.sizeList.map((s) => ({ label: s, on: st.size === s, bg: st.size === s ? c.ink : 'transparent', fg: st.size === s ? c.ground : c.ink, pick: () => this.setState({ size: st.size === s ? null : s }) })),
+      sizeNote: st.size ? ', size ' + st.size : '',
+      sections: sec.map((s) => ({ ...s, open: st.open === s.id, rot: st.open === s.id ? 45 : 0, toggle: () => this.setState({ open: st.open === s.id ? null : s.id }) })),
+      tx: (() => {
+        // Background texture, drawn in code (no images): linen weave, wet concrete or film grain.
+        const kind = this.props.texture || 'linen';
+        const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
+        const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
+        const tl = this.state.tiles || {};
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
+        if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
+        return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
+      })(),
+      nameDrops: st.wet ? this.rain(this.reduced ? this.drops.filter((d, k) => k % 2 === 0) : this.drops, st.t) : [],
+      lensShow: st.lens,
+      lensX: (st.lx - 100).toFixed(0),
+      lensY: (st.ly - 100).toFixed(0),
+      lensBgW: (st.lw * Z).toFixed(0),
+      lensBgH: (st.lh * Z).toFixed(0),
+      lensBgX: (-(st.lx * Z - 100)).toFixed(0),
+      lensBgY: (-(st.ly * Z - 100)).toFixed(0),
+      dotO: st.lens ? 0 : 1,
+      notJoined: !st.joined,
+      joined: st.joined,
+      move: (e) => {
+        this.start();
+        const r = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        // The dot moves on the mouse event itself, not on the 30fps animation clock, so it never trails the hand.
+        if (!this.dotEl) this.dotEl = e.currentTarget.querySelector('.pd-dot');
+        if (this.dotEl) this.dotEl.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+      },
+      lens: (e) => {
+        const b = e.currentTarget.getBoundingClientRect();
+        this.state.lx = e.clientX - b.left; this.state.ly = e.clientY - b.top;
+        this.state.lw = b.width; this.state.lh = b.height;
+      },
+      lensOn: () => this.setState({ lens: true }),
+      lensOff: () => this.setState({ lens: false }),
+      wetOn: () => this.setState({ wet: true }),
+      wetOff: () => this.setState({ wet: false }),
+      prev: () => this.setState({ i: (st.i + this.products.length - 1) % this.products.length, size: null, joined: false }),
+      next: () => this.setState({ i: (st.i + 1) % this.products.length, size: null, joined: false }),
+      toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
+      toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); },
+      join: (e) => { e.preventDefault(); this.setState({ joined: true }); }
+    };
+  }
+}
+
+return Component;
+}, {"texture": "linen", "textureStrength": 1});
+</script>
+</body>
+</html>

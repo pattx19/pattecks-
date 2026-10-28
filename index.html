@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PattEcks! — Drop 01</title>
+<meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:title" content="PattEcks! — Drop 01">
+<meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:image" content="assets/henley.jpg">
+<link rel="icon" href="assets/wordmark-ink.png">
+<style>
+
+@font-face{font-family:"Akira Expanded";src:url("assets/akira-expanded.woff") format("woff");font-weight:800;font-display:swap}
+@font-face{font-family:"Bootzy TM";src:url("assets/bootzy.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-regular.woff") format("woff");font-weight:400;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:700;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0E00-0E7F;size-adjust:138%}
+.tx-bg > div{transition:opacity .9s ease}
+.is-th *{letter-spacing:.01em !important}
+body{margin:0;font-family:"Bootzy TM","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
+a{color:inherit;text-decoration:none}
+::selection{background:#890000;color:#f1ebe2}
+.hm-root{cursor:none}
+.hm-root a,.hm-root button,.hm-root input{cursor:none}
+.hm-nav a{position:relative}
+.hm-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--silver,#b4b9be);transition:right .4s ease}
+.hm-nav a:hover::after{right:0}
+.hm-tile img{transition:filter .6s ease,transform .9s ease}
+.hm-tile:hover img{filter:brightness(1.06) contrast(1.05);transform:scale(1.03)}
+.hm-row{transition:background .3s ease,padding .3s ease}
+.hm-row:hover{background:var(--raised,#1e2125);padding-left:24px !important}
+.hm-btn{transition:background .3s ease}
+.hm-btn:hover{background:#a30d0d}
+.hm-input:focus,.hm-root a:focus-visible,.hm-root button:focus-visible{outline:2px solid var(--silver,#b4b9be);outline-offset:2px}
+.hm-strip::-webkit-scrollbar{display:none}
+.hm-cat > .hm-cell:not(:nth-child(3n)){border-right:1px solid var(--grid,#8a8f96)}
+.hm-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--ground,#e8e2d6) 0%,var(--ground,#e8e2d6) 30%,rgba(0,0,0,0) 72%),linear-gradient(0deg,var(--ground,#e8e2d6) 0%,rgba(0,0,0,0) 30%),linear-gradient(180deg,var(--ground,#e8e2d6) 0%,rgba(0,0,0,0) 14%),url("assets/angel.jpg") right center/auto 100% no-repeat}
+@media (max-width:600px){.hm-hero::before{background:linear-gradient(0deg,var(--ground,#e8e2d6) 0%,var(--ground,#e8e2d6) 30%,rgba(0,0,0,0) 62%),linear-gradient(180deg,var(--ground,#e8e2d6) 0%,rgba(0,0,0,0) 12%),url("assets/angel.jpg") 70% 0/auto 72% no-repeat}.hm-hero .hm-big{top:280px !important}}
+.bl-flow .hm-drip{display:none !important}
+.hm-rv-img{display:none;width:44px;height:44px;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.45))}
+.hm-rv-shine{display:none;position:absolute;inset:3px;border-radius:50%;overflow:hidden;pointer-events:none}
+.hm-rv-shine::before{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:45%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85) 50%,rgba(255,255,255,0));transform:translateX(-160%) rotate(22deg)}
+.rv-metal .hm-rivet .hm-rv-shine{display:block}
+.rv-metal .hm-rivet .hm-rv-shine::before{animation:hm-shine-band 6.8s cubic-bezier(.45,0,.2,1) infinite;animation-delay:inherit}
+@keyframes hm-shine-band{0%{transform:translateX(-160%) rotate(22deg)}18%{transform:translateX(330%) rotate(22deg)}100%{transform:translateX(330%) rotate(22deg)}}
+@media (prefers-reduced-motion:reduce){.rv-metal .hm-rivet .hm-rv-shine::before{animation:hm-shine-band 14s ease-in-out infinite;animation-delay:inherit;opacity:.5}}
+.rv-metal .hm-rivet .hm-rv-img{display:block}
+.rv-metal .hm-rivet svg{display:none !important}
+.hm-rivet{position:absolute;width:44px;height:44px;z-index:4;pointer-events:none}
+.hm-plate{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;color:var(--muted,#9ca0a6)}
+.hm-pd{display:none;width:5px;height:5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#6b7075 70%);box-shadow:inset 0 0 0 .5px rgba(0,0,0,.5)}
+.hm-strip{user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.hm-strip img{pointer-events:none;-webkit-user-drag:none}
+@media (max-width:820px){.hm-big{font-size:40px !important}.hm-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;grid-auto-rows:110vw !important}.hm-grid > *{grid-column:span 2 !important;grid-row:auto !important}.hm-row{grid-template-columns:40px 1fr !important}.hm-hide{display:none}.hm-cat{grid-template-columns:minmax(0,1fr) !important}.hm-cell{border-right:0 !important}}
+@media (max-width:600px){
+.hm-head{padding:16px 24px !important;gap:10px !important;flex-wrap:nowrap !important}
+.hm-logo img{height:30px !important}
+.hm-nav,.hm-ig{display:none !important}
+.hm-menu-btn{display:inline-flex !important}
+.hm-tools{gap:8px !important}
+.hm-tools button{padding:0 10px !important}
+.hm-hero{height:460px !important}
+.hm-meta{left:24px !important;right:24px !important;top:20px !important;flex-wrap:wrap;gap:6px 16px !important}
+.hm-big{left:24px !important;right:24px !important;top:170px !important;font-size:40px !important}
+.hm-tag{left:24px !important;right:24px !important;bottom:24px !important}
+.hm-strip figure{width:160px !important}
+.hm-strip figure > div{height:240px !important}
+#collection{padding:56px 24px 32px !important}
+.hm-cell{padding:28px 22px 32px 0 !important;border-right:1px solid var(--grid,#8a8f96) !important}
+.hm-cell .hm-tile{height:300px !important}
+.hm-rivet[style*="top: -22px"]{display:none}
+.hm-idx{padding:48px 24px 64px !important}
+.hm-row span[style*="font-size: 32px"]{font-size:24px !important}
+#about{padding:48px 24px !important}
+.hm-foot{padding:24px !important;flex-direction:column}
+.hm-foot button{align-self:flex-start;text-align:left}
+a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
+.hm-dot{display:none !important}
+.hm-root,.hm-root a,.hm-root button,.hm-root input{cursor:auto !important}
+}
+@media (hover:none){.hm-dot{display:none !important}.hm-root,.hm-root a,.hm-root button,.hm-root input{cursor:auto !important}}
+.hm-mnav a{display:flex;align-items:center;min-height:56px}
+
+</style>
+<script src="assets/gsap.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div class="hm-root {{ thCls }} {{ rvCls }} {{ blCls }}" style="--ground: {{ c.ground }}; --raised: {{ c.raised }}; --stone: {{ c.stone }}; --hair: {{ c.hair }}; --silver: {{ c.silver }}; --ink: {{ c.ink }}; --muted: {{ c.muted }}; --grid: {{ c.grid }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
+
+  <svg aria-hidden="true" width="0" height="0" style="position: absolute; width: 0; height: 0;">
+    <defs>
+      <linearGradient id="rv-metal0" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA0 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.240" stop-color="#e6e9ec"></stop><stop offset="0.370" stop-color="#a4aab0"></stop><stop offset="0.440" stop-color="#4c5157"></stop><stop offset="0.520" stop-color="#9ba1a7"></stop><stop offset="0.680" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face0" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF0 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.420" stop-color="#e4e8eb"></stop><stop offset="0.550" stop-color="#b0b5bb"></stop><stop offset="0.620" stop-color="#5a6066"></stop><stop offset="0.700" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal1" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA1 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.314" stop-color="#e6e9ec"></stop><stop offset="0.444" stop-color="#a4aab0"></stop><stop offset="0.514" stop-color="#4c5157"></stop><stop offset="0.594" stop-color="#9ba1a7"></stop><stop offset="0.754" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face1" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF1 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.458" stop-color="#e4e8eb"></stop><stop offset="0.588" stop-color="#b0b5bb"></stop><stop offset="0.658" stop-color="#5a6066"></stop><stop offset="0.738" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal2" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA2 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.268" stop-color="#e6e9ec"></stop><stop offset="0.398" stop-color="#a4aab0"></stop><stop offset="0.468" stop-color="#4c5157"></stop><stop offset="0.548" stop-color="#9ba1a7"></stop><stop offset="0.708" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face2" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF2 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.496" stop-color="#e4e8eb"></stop><stop offset="0.626" stop-color="#b0b5bb"></stop><stop offset="0.696" stop-color="#5a6066"></stop><stop offset="0.776" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal3" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA3 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.342" stop-color="#e6e9ec"></stop><stop offset="0.472" stop-color="#a4aab0"></stop><stop offset="0.542" stop-color="#4c5157"></stop><stop offset="0.622" stop-color="#9ba1a7"></stop><stop offset="0.782" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face3" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF3 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.435" stop-color="#e4e8eb"></stop><stop offset="0.565" stop-color="#b0b5bb"></stop><stop offset="0.635" stop-color="#5a6066"></stop><stop offset="0.715" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal4" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA4 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.297" stop-color="#e6e9ec"></stop><stop offset="0.427" stop-color="#a4aab0"></stop><stop offset="0.497" stop-color="#4c5157"></stop><stop offset="0.577" stop-color="#9ba1a7"></stop><stop offset="0.737" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face4" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF4 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.473" stop-color="#e4e8eb"></stop><stop offset="0.603" stop-color="#b0b5bb"></stop><stop offset="0.673" stop-color="#5a6066"></stop><stop offset="0.753" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal5" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA5 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.251" stop-color="#e6e9ec"></stop><stop offset="0.381" stop-color="#a4aab0"></stop><stop offset="0.451" stop-color="#4c5157"></stop><stop offset="0.531" stop-color="#9ba1a7"></stop><stop offset="0.691" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face5" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF5 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.511" stop-color="#e4e8eb"></stop><stop offset="0.641" stop-color="#b0b5bb"></stop><stop offset="0.711" stop-color="#5a6066"></stop><stop offset="0.791" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal6" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA6 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.325" stop-color="#e6e9ec"></stop><stop offset="0.455" stop-color="#a4aab0"></stop><stop offset="0.525" stop-color="#4c5157"></stop><stop offset="0.605" stop-color="#9ba1a7"></stop><stop offset="0.765" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face6" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF6 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.449" stop-color="#e4e8eb"></stop><stop offset="0.579" stop-color="#b0b5bb"></stop><stop offset="0.649" stop-color="#5a6066"></stop><stop offset="0.729" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <linearGradient id="rv-metal7" x1="0" y1="0" x2="0" y2="1" gradientTransform="rotate({{ rvA7 }} 0.5 0.5)"><stop offset="0" stop-color="#ffffff"></stop><stop offset="0.279" stop-color="#e6e9ec"></stop><stop offset="0.409" stop-color="#a4aab0"></stop><stop offset="0.479" stop-color="#4c5157"></stop><stop offset="0.559" stop-color="#9ba1a7"></stop><stop offset="0.719" stop-color="#e2e5e8"></stop><stop offset="0.96" stop-color="#f6f7f8"></stop><stop offset="1" stop-color="#aeb3b9"></stop></linearGradient>
+      <linearGradient id="rv-face7" x1="0" y1="0" x2="0.35" y2="1" gradientTransform="rotate({{ rvF7 }} 0.5 0.5)"><stop offset="0" stop-color="#fdfdfe"></stop><stop offset="0.487" stop-color="#e4e8eb"></stop><stop offset="0.617" stop-color="#b0b5bb"></stop><stop offset="0.687" stop-color="#5a6066"></stop><stop offset="0.767" stop-color="#a3a9af"></stop><stop offset="0.96" stop-color="#eceff1"></stop><stop offset="1" stop-color="#b5bac0"></stop></linearGradient>
+      <radialGradient id="rv-gloss" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff" stop-opacity="0.95"></stop><stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop></radialGradient>
+      <filter id="rv-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="0.5"></feGaussianBlur></filter>
+      <filter id="rv-scratch" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035 1.1" numOctaves="2" seed="3"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix><feComponentTransfer><feFuncA type="table" tableValues="0 0.9"></feFuncA></feComponentTransfer></filter>
+      <filter id="rv-dent" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.4"></feGaussianBlur></filter>
+      <clipPath id="rv-clip"><circle cx="20" cy="20" r="16.6"></circle></clipPath>
+    </defs>
+  </svg>
+  <div class="tx-bg" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.weave }}; background-size: 510px 510px; opacity: {{ tx.weave }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.concrete }}; background-size: 510px 510px; opacity: {{ tx.concrete }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.grain }}; background-size: 510px 510px; opacity: {{ tx.grain }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.leather }}; background-size: 510px 510px; opacity: {{ tx.leather }};"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 55% at 45% 22%, rgba(255,255,255,0.05), rgba(255,255,255,0)); opacity: {{ tx.sheen }};"></div>
+  </div>
+
+  <header class="hm-head" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
+    <a href="#top" class="hm-logo" aria-label="PattEcks! home"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
+    <nav class="hm-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-family: {{ navFont }};">
+      <a href="#collection">{{ t.collection }}</a>
+      <a href="#archive">{{ t.archive }}</a>
+      <a href="about.html">{{ t.about }}</a>
+    </nav>
+    <div class="hm-tools" style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+      <a class="hm-ig" href="https://www.instagram.com/" style="margin-right: 12px;">Instagram</a>
+      <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
+      <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
+      <button type="button" class="hm-menu-btn" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-controls="hm-mnav" style="display: none; align-items: center; min-height: 44px; padding: 0 12px; background: {{ c.ink }}; border: 1px solid {{ c.ink }}; color: {{ c.ground }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ menuLabel }}</button>
+    </div>
+  </header>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav id="hm-mnav" class="hm-mnav" aria-label="Menu" style="position: relative; z-index: 5; display: flex; flex-direction: column; padding: 0 24px 24px; background: {{ c.ground }}; border-bottom: 1px solid {{ c.hair }}; font-family: {{ displayFont }}; font-weight: 800; font-size: 26px; text-transform: uppercase;">
+      <a href="#collection" onClick="{{ closeMenu }}" style="border-bottom: 1px solid {{ c.hair }};">{{ t.collection }}</a>
+      <a href="#archive" onClick="{{ closeMenu }}" style="border-bottom: 1px solid {{ c.hair }};">{{ t.archive }}</a>
+      <a href="about.html" style="border-bottom: 1px solid {{ c.hair }};">{{ t.about }}</a>
+      <a href="https://www.instagram.com/" style="font-family: {{ navFont }}; font-weight: 400; font-size: 13px; letter-spacing: .12em;">Instagram</a>
+    </nav>
+  </sc-if>
+
+  <section id="top" class="hm-hero" style="position: relative; height: 560px; overflow: hidden;">
+    <h1 class="hm-big" style="position: absolute; left: 48px; right: 48px; top: 300px; margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 88px; line-height: .95; text-transform: uppercase; letter-spacing: 0; z-index: 1;">
+      <span class="hm-line1" style="display: table;">{{ t.line1 }}</span>
+      <span class="hm-line2" style="display: table;">{{ t.line2 }}</span>
+    </h1>
+    <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; z-index: 2;">
+      <sc-for list="{{ heroDrops }}" as="d" hint-placeholder-count="0">
+        <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
+        <span style="position: absolute; left: {{ d.rx }}px; top: {{ d.land }}px; width: {{ d.rw }}px; height: 1px; background: #890000; opacity: {{ d.so }};"></span>
+        <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate({{ d.dx }}px, {{ d.dy }}px);"></span>
+        <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
+      </sc-for>
+    </div>
+  </section>
+
+  <section aria-label="Runway" style="border-top: 1px solid {{ c.hair }}; border-bottom: 1px solid {{ c.hair }}; padding: 4px 0;">
+    <div class="hm-strip" style="overflow: hidden; scrollbar-width: none;" onMouseEnter="{{ pause }}" onMouseLeave="{{ leaveStrip }}" onMouseDown="{{ grabStrip }}" onMouseMove="{{ dragStrip }}" onMouseUp="{{ dropStrip }}" onTouchStart="{{ grabStrip }}" onTouchMove="{{ dragStrip }}" onTouchEnd="{{ dropStrip }}">
+      <div style="display: flex; gap: 4px; width: max-content; transform: translateX({{ drift }}px);">
+        <sc-for list="{{ looks }}" as="l" hint-placeholder-count="10">
+          <figure class="hm-tile" style="margin: 0; flex: none; width: 220px; display: flex; flex-direction: column; gap: 6px;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+            <div style="height: 330px; overflow: hidden; background: {{ c.stone }};"><img src="{{ l.src }}" alt="{{ l.alt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <figcaption style="display: flex; justify-content: space-between; padding: 0 4px 4px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }};"><span>{{ l.no }}</span><span>Reference</span></figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="collection" style="padding: 96px 48px 48px;">
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; max-width: 900px;">
+      <span style="font-size: 15px; letter-spacing: .06em;">{{ t.catKicker }}</span>
+      <h2 style="margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 34px; line-height: 1.1; text-transform: uppercase; letter-spacing: 0;">{{ t.catTitle }}</h2>
+      <span style="font-size: 13px; letter-spacing: .06em; color: {{ c.muted }};">{{ t.catSub }}</span>
+    </div>
+    <div class="hm-cat" style="position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid {{ c.grid }};">
+      <span aria-hidden="true" style="display: none; position: absolute; top: -1px; left: {{ gl.hx }}%; width: 180px; height: 1px; background: linear-gradient(90deg, transparent, #ffffff, transparent); pointer-events: none; z-index: 5;"></span>
+      <span aria-hidden="true" style="display: none; position: absolute; left: 33.333%; top: {{ gl.v1 }}%; width: 1px; height: 200px; margin-left: -1px; background: linear-gradient(180deg, transparent, #ffffff, transparent); pointer-events: none; z-index: 5;"></span>
+      <span aria-hidden="true" style="display: none; position: absolute; left: 66.666%; top: {{ gl.v2 }}%; width: 1px; height: 200px; margin-left: -1px; background: linear-gradient(180deg, transparent, #ffffff, transparent); pointer-events: none; z-index: 5;"></span>
+
+      <article class="hm-cell" onMouseEnter="{{ ce0 }}" onMouseLeave="{{ cl0 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+        <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+          <a href="product.html#henley" onClick="{{ goH }}" aria-label="View Linen Gauze Henley" style="display: block; width: 100%; height: 100%;"><img src="assets/henley.jpg" alt="Reference: white gauze henley laid flat on raw concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
+          <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp0 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Akira Expanded', 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'Bootzy TM', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
+        </figure>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Linen Gauze Henley</h3></div>
+        <span class="hm-plate"><span class="hm-pd"></span><span>PE-01 / 2026 / THB [PRICE]</span><span class="hm-pd"></span></span>
+        <span style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase;">100% linen gauze / cropped / tilted placket</span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.henleyDesc }}</p>
+        <a href="product.html#henley" onClick="{{ goH }}" style="font-size: 12px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 3px; align-self: flex-start;">{{ t.view }}</a>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 0.00s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal0)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(0 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face0)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><ellipse cx="20" cy="9.6" rx="1.4" ry="0.9" fill="#0c0d0f"></ellipse><path d="M12.6 18.6q2.6-1.8 5 0q-2.5 1.2-5 0z M22.4 18.6q2.5-1.8 5 0q-2.5 1.2-5 0z" fill="#0c0d0f"></path><ellipse cx="15" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><ellipse cx="25" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><path d="M17.2 27.4q2.8 1.6 5.6 0q-2.8 1.4-5.6 0z" fill="#0c0d0f"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; top: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 0.85s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal1)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(47 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face1)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><circle cx="15" cy="18.4" r="2.6" fill="#0c0d0f"></circle><circle cx="25" cy="18.4" r="2.6" fill="#0c0d0f"></circle><circle cx="15" cy="18.4" r="3.6" fill="none" stroke="#0c0d0f" stroke-width="0.6" opacity="0.6"></circle><circle cx="25" cy="18.4" r="3.6" fill="none" stroke="#0c0d0f" stroke-width="0.6" opacity="0.6"></circle><path d="M11 13.4q4-3.2 8 0M21 13.4q4-3.2 8 0" fill="none" stroke="#0c0d0f" stroke-width="1.6" stroke-linecap="round"></path><ellipse cx="20" cy="27.6" rx="1.7" ry="1.4" fill="#a30000"></ellipse></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d0o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d0sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d0sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d0w }}px; height: {{ d0len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d0len }}%; width: {{ d0tip }}px; height: {{ d0tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d0len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d0pool }}px; height: {{ d0poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+
+      <article class="hm-cell" onMouseEnter="{{ ce1 }}" onMouseLeave="{{ cl1 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+        <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+          <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp1 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Akira Expanded', 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'Bootzy TM', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
+          <a href="product.html#denim" onClick="{{ goD }}" aria-label="View Raw Slub Denim" style="display: block; width: 100%; height: 100%;"><img src="assets/denim.jpg" alt="Raw slub denim jeans laid flat on concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
+        </figure>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Raw Slub Denim</h3></div>
+        <span class="hm-plate"><span class="hm-pd"></span><span>PE-02 / 2026 / THB [PRICE]</span><span class="hm-pd"></span></span>
+        <span style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase;">Raw slub denim / straight leg / unwashed</span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.denimDesc }}</p>
+        <a href="product.html#denim" onClick="{{ goD }}" style="font-size: 12px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 3px; align-self: flex-start;">{{ t.view }}</a>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 1.70s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal2)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(94 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face2)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><path d="M12.6 17.4q2.5 2.2 5 0.4q-2.4 0.4-5-0.4z M22.4 17.8q2.5 1.8 5-0.4q-2.6 0.8-5 0.4z" fill="#0c0d0f"></path><path d="M12.8 13.6l4.6 1.4M27.2 13.6l-4.6 1.4" fill="none" stroke="#0c0d0f" stroke-width="0.8" stroke-linecap="round"></path><path d="M17 28.6q3-1.4 6 0" fill="none" stroke="#0c0d0f" stroke-width="1" stroke-linecap="round"></path><path d="M25.6 20.2q-1.9 3.4 0 5q1.9-1.6 0-5z" fill="#a30000"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; top: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 2.55s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal3)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(141 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face3)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><path d="M12.6 18.2q2.5-2.6 5 0q-2.5-1-5 0z M22.4 18.2q2.5-2.6 5 0q-2.5-1-5 0z" fill="#0c0d0f"></path><path d="M14 10.6q6-1.8 12 0M15 12.4q5-1.4 10 0" fill="none" stroke="#0c0d0f" stroke-width="0.6" opacity="0.7"></path><path d="M15.4 25.6q4.6 3.6 9.2 0q-4.6 1.6-9.2 0z" fill="#0c0d0f"></path><path d="M16 30.4l0.6 1.4M20 31l0 1.6M24 30.4l-0.6 1.4" fill="none" stroke="#0c0d0f" stroke-width="0.6" opacity="0.7"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d1o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d1sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d1sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d1w }}px; height: {{ d1len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d1len }}%; width: {{ d1tip }}px; height: {{ d1tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d1len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d1pool }}px; height: {{ d1poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+
+      <article class="hm-cell" onMouseEnter="{{ ce2 }}" onMouseLeave="{{ cl2 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+      <button type="button" onClick="{{ flipLabel }}" aria-pressed="{{ flipped }}" aria-label="Flip the label for care and fit" style="position: relative; display: block; width: 100%; height: 340px; padding: 0; margin: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; perspective: 1400px;">
+        <span style="position: absolute; inset: 0; display: block; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); transform: rotateY({{ flipDeg }}deg);">
+          <span style="position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: {{ c.ground }}; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+            <span aria-hidden="true" style="position: absolute; top: -1px; left: 24px; width: 10px; height: 3px; background: #890000;"></span>
+            <span style="display: flex; justify-content: space-between; gap: 16px;"><span>PattEcks! / Drop 01</span><span style="color: {{ c.muted }};">No. 01</span></span>
+            <span style="display: flex; flex-direction: column; gap: 10px; color: {{ c.muted }};">
+              <span>100% linen / gauze weave</span>
+              <span>Cut close / cropped / tilted placket</span>
+              <span>Made for heat / Bangkok</span>
+            </span>
+            <span style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;">
+              <span style="font-family: 'SOV MuekMod', 'Courier New', monospace; font-size: 18px; letter-spacing: 0; text-transform: none;">ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ</span>
+              <span style="font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px;">Flip for care and fit</span>
+            </span>
+          </span>
+          <span style="position: absolute; inset: 0; box-sizing: border-box; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); background: {{ c.raised }}; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+            <span style="display: flex; justify-content: space-between; gap: 16px;"><span>Care and fit</span><span style="color: {{ c.muted }};">No. 01 — back</span></span>
+            <span style="display: grid; grid-template-columns: 96px 1fr; gap: 10px 16px;">
+              <span style="color: {{ c.muted }};">Wash</span><span>[Care instructions]</span>
+              <span style="color: {{ c.muted }};">Dry</span><span>[Drying instructions]</span>
+              <span style="color: {{ c.muted }};">Fit</span><span>Cropped / cut close</span>
+              <span style="color: {{ c.muted }};">Size</span><span>Measurements coming with the first run</span>
+              <span style="color: {{ c.muted }};">Model</span><span>[Height] cm wears [Size]</span>
+            </span>
+            <span style="align-self: flex-end; font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px;">Flip back</span>
+          </span>
+        </span>
+      </button>
+        <h3 style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Care label</h3>
+        <span class="hm-plate"><span class="hm-pd"></span><span>No. 01 — front and back</span><span class="hm-pd"></span></span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.labelDesc }}</p>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d2o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d2sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d2sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d2w }}px; height: {{ d2len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d2len }}%; width: {{ d2tip }}px; height: {{ d2tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d2len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d2pool }}px; height: {{ d2poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+
+      <article class="hm-cell" onMouseEnter="{{ ce3 }}" onMouseLeave="{{ cl3 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+        <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+          <img src="assets/sheer-linen.jpg" alt="Reference: sheer linen tops on hangers" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        </figure>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Fabric study 01</h3>
+        <span class="hm-plate"><span class="hm-pd"></span><span>Linen held to the light — Reference</span><span class="hm-pd"></span></span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s1 }}</p>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 3.40s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal4)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(8 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face4)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><path d="M12.4 16.6l5 1.6l-0.4 1.6q-2.8 0.2-4.6-3.2z M27.6 16.6l-5 1.6l0.4 1.6q2.8 0.2 4.6-3.2z" fill="#0c0d0f"></path><path d="M11.6 13.4l6 2.2M28.4 13.4l-6 2.2" fill="none" stroke="#0c0d0f" stroke-width="1.2" stroke-linecap="round"></path><path d="M15.4 25.8q4.6-2 9.2 0l-1 3.2q-3.6 1.4-7.2 0z" fill="#0c0d0f"></path><path d="M17.4 26.2v1.4M20 25.8v1.6M22.6 26.2v1.4" stroke="#c9ccd0" stroke-width="0.7"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d3o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d3sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d3sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d3w }}px; height: {{ d3len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d3len }}%; width: {{ d3tip }}px; height: {{ d3tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d3len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d3pool }}px; height: {{ d3poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+      <article class="hm-cell" onMouseEnter="{{ ce4 }}" onMouseLeave="{{ cl4 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+        <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+          <img src="assets/neck-label.jpg" alt="Reference: embroidered neck label on waffle knit" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        </figure>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Detail 01</h3>
+        <span class="hm-plate"><span class="hm-pd"></span><span>Neck label — Reference</span><span class="hm-pd"></span></span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s2 }}</p>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 4.25s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal5)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(55 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face5)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><circle cx="15.4" cy="18.6" r="1.9" fill="#0c0d0f"></circle><circle cx="24.6" cy="18.6" r="1.9" fill="#0c0d0f"></circle><path d="M17 28h6" fill="none" stroke="#0c0d0f" stroke-width="1.1" stroke-linecap="round"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d4o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d4sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d4sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d4w }}px; height: {{ d4len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d4len }}%; width: {{ d4tip }}px; height: {{ d4tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d4len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d4pool }}px; height: {{ d4poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+      <article class="hm-cell" onMouseEnter="{{ ce5 }}" onMouseLeave="{{ cl5 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+        <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+          <img src="assets/street.jpg" alt="Reference: street-cast editorial in layered long sleeves" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        </figure>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 04</h3>
+        <span class="hm-plate"><span class="hm-pd"></span><span>Street casting — Reference</span><span class="hm-pd"></span></span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s3 }}</p>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d5o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d5sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d5sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d5w }}px; height: {{ d5len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d5len }}%; width: {{ d5tip }}px; height: {{ d5tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d5len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d5pool }}px; height: {{ d5poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+      <article class="hm-cell" onMouseEnter="{{ ce6 }}" onMouseLeave="{{ cl6 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
+        <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
+          <img src="assets/silver-mask.jpg" alt="Reference: polished silver mask with a tear" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        </figure>
+        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 05</h3>
+        <span class="hm-plate"><span class="hm-pd"></span><span>Silver and the tear — Reference</span><span class="hm-pd"></span></span>
+        <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s4 }}</p>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 5.10s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal6)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(102 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face6)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><ellipse cx="20" cy="9.6" rx="1.4" ry="0.9" fill="#0c0d0f"></ellipse><path d="M12.6 18.6q2.6-1.8 5 0q-2.5 1.2-5 0z M22.4 18.6q2.5-1.8 5 0q-2.5 1.2-5 0z" fill="#0c0d0f"></path><ellipse cx="15" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><ellipse cx="25" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><path d="M17.2 27.4q2.8 1.6 5.6 0q-2.8 1.4-5.6 0z" fill="#0c0d0f"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d6o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d6sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d6sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d6w }}px; height: {{ d6len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d6len }}%; width: {{ d6tip }}px; height: {{ d6tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d6len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d6pool }}px; height: {{ d6poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </article>
+
+      <a id="archive" href="#archive" class="hm-cell" onMouseEnter="{{ ce7 }}" onMouseLeave="{{ cl7 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; min-height: 260px;">
+        <span style="font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">Archive 00</span>
+        <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: 26px; line-height: 1.1; text-transform: uppercase;">Behind the scenes</span>
+        <span style="font-size: 12px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 3px; align-self: flex-start;">{{ t.openArchive }}</span>
+        <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 5.95s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal7)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(149 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face7)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><circle cx="15" cy="18.4" r="2.6" fill="#0c0d0f"></circle><circle cx="25" cy="18.4" r="2.6" fill="#0c0d0f"></circle><circle cx="15" cy="18.4" r="3.6" fill="none" stroke="#0c0d0f" stroke-width="0.6" opacity="0.6"></circle><circle cx="25" cy="18.4" r="3.6" fill="none" stroke="#0c0d0f" stroke-width="0.6" opacity="0.6"></circle><path d="M11 13.4q4-3.2 8 0M21 13.4q4-3.2 8 0" fill="none" stroke="#0c0d0f" stroke-width="1.6" stroke-linecap="round"></path><ellipse cx="20" cy="27.6" rx="1.7" ry="1.4" fill="#a30000"></ellipse></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d7o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d7sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d7sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d7w }}px; height: {{ d7len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d7len }}%; width: {{ d7tip }}px; height: {{ d7tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d7len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d7pool }}px; height: {{ d7poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </a>
+      <a href="#about" class="hm-cell" onMouseEnter="{{ ce8 }}" onMouseLeave="{{ cl8 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; min-height: 260px;">
+        <span style="font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">Drop 01 — [DATE]</span>
+        <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: 26px; line-height: 1.1; text-transform: uppercase;">{{ t.notifyTitle }}</span>
+        <span style="align-self: flex-start; background: #890000; color: #f1ebe2; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 10px 16px;">Notify me</span>
+        <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d8o }};">
+          <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d8sp }};"></span>
+          <span style="position: absolute; left: 10px; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: #a30000; opacity: {{ d8sp }};"></span>
+          <span style="position: absolute; left: 50%; top: 0; width: {{ d8w }}px; height: {{ d8len }}%; transform: translateX(-50%); background-color: #a30000; background-image: radial-gradient(rgba(60,0,0,0.55) 0.8px, transparent 1.3px), linear-gradient(90deg, #4a0000 0%, #8f0000 22%, #c8160e 46%, #e0372a 52%, #a30000 70%, #4a0000 100%); background-size: 5px 5px, 100% 100%; border-radius: 40% 40% 6px 6px / 2% 2% 6px 6px; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d8len }}%; width: {{ d8tip }}px; height: {{ d8tipH }}px; transform: translate(-50%, -55%); background: radial-gradient(circle at 36% 62%, #ff6a58 0 9%, #d01e14 24%, #a30000 52%, #4a0000 100%); border-radius: 50% 50% 50% 50% / 34% 34% 66% 66%; box-shadow: 3px 3px 0 {{ ink }};"></span>
+          <span style="position: absolute; left: 50%; top: {{ d8len }}%; width: 3px; height: 5px; transform: translate(-130%, -75%); background: #ff5a4a; border-radius: 50%; opacity: .85;"></span>
+          <svg viewBox="0 0 100 22" preserveAspectRatio="none" style="position: absolute; left: 50%; bottom: -8px; width: {{ d8pool }}px; height: {{ d8poolH }}px; transform: translateX(-50%); overflow: visible;"><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="{{ ink }}" transform="translate(2.5 3)"></path><path d="M4 13C1 9 7 6 16 7C22 3 34 5 42 4C52 1 64 4 72 5C84 3 97 7 96 12C99 16 90 19 80 18C70 21 58 18 48 19C36 21 26 18 18 19C9 20 3 17 4 13Z" fill="#a30000"></path><path d="M10 13C12 17 30 17 44 16C58 17 76 17 90 14C86 18 70 19 56 19C40 20 22 19 10 13Z" fill="#4a0000" opacity="0.7"></path><ellipse cx="34" cy="9.5" rx="13" ry="2" fill="#ff6a58" opacity="0.75"></ellipse><ellipse cx="62" cy="8.4" rx="5" ry="1.2" fill="#ffffff" opacity="0.45"></ellipse></svg>
+        </span>
+      </a>
+      <svg class="hm-flow" aria-hidden="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; opacity: {{ flowO }};">
+        <sc-for list="{{ flowSegs }}" as="g" hint-placeholder-count="0">
+          <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="#000000" stroke-opacity="0.28" stroke-width="{{ g.ws }}" stroke-linecap="round" stroke-dasharray="{{ g.dash }}" transform="translate(1.5 1.5)"></line>
+          <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="#8f0000" stroke-width="{{ g.w }}" stroke-linecap="round" stroke-dasharray="{{ g.dash }}"></line>
+          <line x1="{{ g.x1 }}" y1="{{ g.y1 }}" x2="{{ g.x2 }}" y2="{{ g.y2 }}" stroke="#e0372a" stroke-opacity="0.55" stroke-width="{{ g.wh }}" stroke-linecap="round" stroke-dasharray="{{ g.dash }}" transform="translate({{ g.hx }} {{ g.hy }})"></line>
+        </sc-for>
+        <sc-for list="{{ flowStains }}" as="q" hint-placeholder-count="0">
+          <ellipse cx="{{ q.x }}" cy="{{ q.y }}" rx="{{ q.rx }}" ry="{{ q.ry }}" fill="#8f0000" fill-opacity="0.9" transform="{{ q.tr }}"></ellipse>
+        </sc-for>
+        <sc-for list="{{ flowHangs }}" as="hg" hint-placeholder-count="0">
+          <path d="{{ hg.neck }}" fill="#8f0000"></path>
+          <sc-if value="{{ hg.hasDrop }}" hint-placeholder-val="{{ false }}"><path d="{{ hg.drop }}" fill="#8f0000" fill-opacity="{{ hg.dropO }}"></path></sc-if>
+          <circle cx="{{ hg.gx }}" cy="{{ hg.gy }}" r="{{ hg.gr }}" fill="#ff7a68" fill-opacity="0.75"></circle>
+        </sc-for>
+        <sc-for list="{{ flowBeads }}" as="b" hint-placeholder-count="0">
+          <ellipse cx="{{ b.x }}" cy="{{ b.y }}" rx="{{ b.rx }}" ry="{{ b.ry }}" fill="#8f0000"></ellipse>
+          <ellipse cx="{{ b.hx }}" cy="{{ b.hy }}" rx="{{ b.hr }}" ry="{{ b.hr }}" fill="#ff7a68" fill-opacity="0.8"></ellipse>
+        </sc-for>
+      </svg>
+    </div>
+  </section>
+
+  <section class="hm-idx" style="padding: 72px 48px 96px;">
+    <h2 style="margin: 0 0 16px; font-family: {{ displayFont }}; font-weight: 800; font-size: 28px; text-transform: uppercase;">Index</h2>
+    <div style="border-top: 1px solid {{ c.hair }};">
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+        <a href="{{ r.href }}" onClick="{{ r.go }}" class="hm-row" style="position: relative; display: grid; grid-template-columns: 80px 2fr 2fr 1fr; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid {{ c.hair }};" onMouseEnter="{{ r.show }}" onMouseLeave="{{ hide }}">
+          <span style="font-size: 13px; letter-spacing: .12em; color: {{ c.muted }};">{{ r.no }}</span>
+          <span style="font-size: 32px; line-height: 1.05; letter-spacing: -.01em;">{{ r.name }}</span>
+          <span class="hm-hide" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">{{ r.fabric }}</span>
+          <span class="hm-hide" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; text-align: right;">{{ r.price }}</span>
+          <sc-if value="{{ r.wet }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none;">
+              <sc-for list="{{ rowDrops }}" as="d" hint-placeholder-count="0">
+                <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
+                <span style="position: absolute; left: {{ d.rx }}px; top: {{ d.land }}px; width: {{ d.rw }}px; height: 1px; background: #890000; opacity: {{ d.so }};"></span>
+                <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate({{ d.dx }}px, {{ d.dy }}px);"></span>
+                <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
+              </sc-for>
+            </span>
+          </sc-if>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="about" style="padding: 72px 48px; background: {{ c.raised }}; display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; align-items: center;">
+    <div style="flex: 1 1 360px; min-width: 0;">
+      <h2 style="margin: 0 0 12px; font-family: {{ displayFont }}; font-weight: 800; font-size: 40px; text-transform: uppercase;">{{ t.notifyTitle }}</h2>
+      <p style="margin: 0; font-size: 17px; line-height: 26px; color: {{ c.muted }};">{{ t.notifyBody }}</p>
+    </div>
+    <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ join }}" style="flex: 1 1 420px; min-width: 0; display: flex; gap: 8px; flex-wrap: wrap;">
+        <label for="hm-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email</label>
+        <input id="hm-email" class="hm-input" type="email" required="" placeholder="you@email.com" style="flex: 1 1 240px; min-width: 0; min-height: 52px; padding: 0 16px; background: {{ c.ground }}; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; font-size: 17px;">
+        <button class="hm-btn" type="submit" style="min-height: 52px; padding: 0 28px; background: #890000; color: #f1ebe2; border: 0; font: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">Notify me</button>
+      </form>
+    </sc-if>
+    <sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
+      <p style="flex: 1 1 420px; margin: 0; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">You are on the list. See you at the next drop.</p>
+    </sc-if>
+  </section>
+
+  <footer class="hm-foot" style="padding: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">
+    <span>Instagram @[HANDLE]</span>
+  </footer>
+
+  <sc-if value="{{ hasPreview }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 240px; height: 300px; transform: translate({{ pvX }}px, {{ pvY }}px) rotate(-3deg); pointer-events: none; z-index: 8; background: {{ c.stone }}; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+      <sc-if value="{{ pvImg }}" hint-placeholder-val="{{ true }}"><img src="{{ pvSrc }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></sc-if>
+      <sc-if value="{{ pvEmpty }}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }}; padding: 16px; text-align: center;">Photo coming with the first run</span></sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showIntro }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 100vh; z-index: 20; pointer-events: none;">
+      <div style="position: absolute; inset: 0; background: {{ c.ground }}; clip-path: inset({{ scanY }}% 0 0 0); display: flex; align-items: center; justify-content: center;">
+        <img src="{{ logo }}" alt="" style="height: 96px; width: auto; display: block; opacity: {{ logoO }};">
+        <span style="position: absolute; left: 48px; bottom: 40px; display: flex; gap: 32px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};"><span>PattEcks! / Drop 01</span><span>Scanning {{ scanPct }}%</span></span>
+      </div>
+      <div style="position: absolute; left: 0; right: 0; top: {{ scanY }}%; height: 1px; background: {{ c.silver }}; opacity: {{ lineO }};"></div>
+      <div style="position: absolute; left: 0; right: 0; top: {{ scanY }}%; height: 28px; margin-top: -28px; background: {{ c.silver }}; opacity: {{ bandO }};"></div>
+    </div>
+  </sc-if>
+
+  <div class="hm-dot" aria-hidden="true" style="position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; border: 1px solid {{ c.silver }}; box-sizing: border-box; background: rgba(180,185,190,0); pointer-events: none; z-index: 10; will-change: transform;"></div>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+DC.mount(document.getElementById('tpl'), document.getElementById('app'), function (DCLogic) {
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const mq = (q) => !!(window.matchMedia && window.matchMedia(q).matches);
+    this.sysDark = mq('(prefers-color-scheme: dark)');
+    // Phones: a narrow screen or a finger instead of a mouse.
+    this.touch = mq('(hover: none)');
+    this.small = (window.innerWidth || 1440) <= 600;
+    this.reduced = mq('(prefers-reduced-motion: reduce)');
+    this.state = { x: -100, y: -100, big: false, th: false, theme: null, hover: null, joined: false, lx: -400, ly: -400, lr: 0, t: 0, drift: 0, intro: 0, flipped: false };
+    // Language and theme are shared by every page through this browser's storage.
+    try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
+    const imgs = [
+      ['assets/henley.jpg', 'Reference: gauze henley flat-lay'],
+      ['assets/sheer-linen.jpg', 'Reference: sheer linen tops'],
+      ['assets/silver-mask.jpg', 'Reference: silver mask'],
+      ['assets/street.jpg', 'Reference: street editorial'],
+      ['assets/neck-label.jpg', 'Reference: neck label detail']
+    ];
+    this.looks = [];
+    for (let i = 0; i < 12; i++) { const m = imgs[i % 6 === 5 ? 0 : i % 6]; this.looks.push({ src: m[0], alt: m[1], no: 'Look ' + String((i % 6) + 1).padStart(2, '0') }); }
+    // Hero rain lands on the top of the headline: line 1 (x < 610px) at 312px, line 2 at 396px.
+    // Rain on the look frame: falls about 150px and lands on its top edge.
+    this.frameRain = [];
+    for (let i = 0; i < 7; i++) this.frameRain.push({ x: 14 + ((i * 89) % 272), land: 0, top: 150, h: 22 + (i * 11) % 26, v: 760 + (i % 3) * 140, off: i * 0.33, gap: 0.2 + (i % 3) * 0.3, o: 0.85 });
+    this.frameLooks = [
+      { src: 'assets/henley.jpg', alt: 'Reference: gauze henley flat-lay', name: 'Linen Gauze Henley', tag: 'Reference' },
+      { src: 'assets/denim.jpg', alt: 'Raw slub denim laid flat', name: 'Raw Slub Denim', tag: '' },
+      { src: 'assets/street.jpg', alt: 'Reference: street editorial', name: 'Street look', tag: 'Reference' },
+      { src: 'assets/sheer-linen.jpg', alt: 'Reference: sheer linen tops', name: 'Linen to the light', tag: 'Reference' }
+    ];
+    this.hero = [];
+    for (let i = 0; i < 34; i++) {
+      const x = 52 + ((i * 137) % 1030);
+      const frac = (i * 0.6180339) % 1;
+      this.hero.push({ x, frac, land: x < 610 ? 312 : 396, top: 0, h: 30 + (i * 13) % 50, v: 900 + ((i * 7) % 6) * 120, off: (i * 0.37) % 3, gap: 0.2 + (i % 4) * 0.25, o: 0.55 + ((i * 5) % 5) / 10 });
+    }
+    // Index rain lands on the product name (text top about 30px into the row).
+    this.rowRain = [];
+    for (let i = 0; i < 9; i++) {
+      this.rowRain.push({ x: 112 + ((i * 53) % 360), land: 30, top: 70, h: 18 + (i * 7) % 22, v: 700 + (i % 3) * 140, off: i * 0.21, gap: 0.1 + (i % 3) * 0.15, o: 0.8 });
+    }
+    const rowsData = [
+      { id: 'h', no: '01', name: 'Linen Gauze Henley', fabric: '100% linen gauze / cropped', price: 'THB [PRICE]', href: 'product.html#henley', src: 'assets/henley.jpg' },
+      { id: 'd', no: '02', name: 'Raw Slub Denim', fabric: 'Raw slub denim / unwashed', price: 'THB [PRICE]', href: 'product.html#denim', src: 'assets/denim.jpg' },
+      { id: 'a', no: '00', name: 'Archive — Behind the scenes', fabric: 'Moodboard and fittings', price: 'View', href: '#archive', src: 'assets/neck-label.jpg' }
+    ];
+    this.rowsData = rowsData.map((r) => ({ ...r, show: () => this.setState({ hover: r.id }) }));
+    // Hover times for the nine catalog cells: when the blood drip started and when it began to fade.
+    this.cells = [0, 1, 2, 3, 4, 5, 6, 7, 8].map(() => ({ s: null, land: null }));
+    this.pending = null;
+    this.hoverI = null;
+    this.speed = 1;
+    this.target = 1;
+    this.running = false;
+  }
+  componentDidMount() {
+    this.syncPrefs();
+    this.onStore = () => this.syncPrefs();
+    window.addEventListener('storage', this.onStore);
+    this.start();
+    this.bakeTiles();
+    this.watchCells();
+  }
+  watchCells() {
+    // On a phone there is no hover, so a cell bleeds when it scrolls into the middle of the screen.
+    if (!(this.small || this.touch) || !window.IntersectionObserver) return;
+    setTimeout(() => {
+      try {
+        const cells = Array.from(document.querySelectorAll('.hm-cat > .hm-cell'));
+        this.io = new IntersectionObserver((es) => {
+          es.forEach((e) => {
+            const i = cells.indexOf(e.target);
+            if (i < 0) return;
+            const h = this.catVals(this.state.t, false);
+            if (e.isIntersecting) h['ce' + i](); else h['cl' + i]();
+          });
+        }, { threshold: 0.6 });
+        cells.forEach((el) => this.io.observe(el));
+      } catch (e) {}
+    }, 600);
+  }
+
+  bakeTiles() {
+    // Draw each code texture ONCE into a small seamless tile, then the page just repeats the picture.
+    // The tile is drawn 3x3 with the noise stitched, and only the centre is kept, so edges match.
+    const T = 510, W = 3 * T;
+    const turb = (a, r) => `<feTurbulence ${a} stitchTiles="stitch" x="0" y="0" width="${T}" height="${T}" result="${r}0"/><feTile in="${r}0" x="0" y="0" width="${W}" height="${W}" result="${r}"/>`;
+    const fl = (inner) => `<filter id="f" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${W}" color-interpolation-filters="sRGB">${inner}</filter>`;
+    const lit = 'azimuth="235" elevation="48"';
+    const src = {
+      leather: [fl(turb('type="fractalNoise" baseFrequency="0.1" numOctaves="4" seed="9"', 'pebble') + turb('type="turbulence" baseFrequency="0.012 0.02" numOctaves="3" seed="21"', 'crease') + `<feComposite in="pebble" in2="crease" operator="arithmetic" k1="0" k2="0.75" k3="0.45" k4="-0.1" result="h"/><feDiffuseLighting in="h" surfaceScale="2.2" diffuseConstant="1" lighting-color="#ffffff" result="lit"><feDistantLight ${lit}/></feDiffuseLighting><feSpecularLighting in="h" surfaceScale="2.2" specularConstant="0.3" specularExponent="30" lighting-color="#ffffff" result="spec"><feDistantLight ${lit}/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="spec2"/><feColorMatrix in="lit" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="shade"/><feMerge><feMergeNode in="shade"/><feMergeNode in="spec2"/></feMerge>`), `<rect width="${W}" height="${W}" fill="#000" filter="url(#f)"/>`],
+      grain: [fl(turb('type="fractalNoise" baseFrequency="0.9" numOctaves="2"', 'g') + '<feColorMatrix in="g" type="saturate" values="0"/>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      concrete: [fl(turb('type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="5" seed="11"', 'c') + '<feColorMatrix in="c" type="saturate" values="0"/><feComponentTransfer><feFuncR type="gamma" exponent="1.8"/><feFuncG type="gamma" exponent="1.8"/><feFuncB type="gamma" exponent="1.8"/></feComponentTransfer>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      weave: [fl(turb('type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="4"', 'n') + '<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>') + '<pattern id="p" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 1.5H6M0 4.5H6" stroke="#1a1b1d" stroke-width="0.8" opacity="0.7" fill="none"/><path d="M1.5 0V6M4.5 0V6" stroke="#1a1b1d" stroke-width="0.6" opacity="0.45" fill="none"/></pattern>', `<rect width="${W}" height="${W}" fill="url(#p)" filter="url(#f)"/>`],
+    };
+    const one = (name) => new Promise((done) => {
+      const [defs, body] = src[name];
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${W}"><defs>${defs}</defs>${body}</svg>`;
+      const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const cv = document.createElement('canvas'); cv.width = T; cv.height = T;
+          cv.getContext('2d').drawImage(img, T, T, T, T, 0, 0, T, T);
+          cv.toBlob((b) => done(b ? URL.createObjectURL(b) : null), 'image/png');
+        } catch (e) { done(null); }
+      };
+      img.onerror = () => done(null);
+      img.src = url;
+    });
+    const order = ['leather', 'weave', 'grain', 'concrete'];
+    const next = (i) => {
+      if (this.stopped || i >= order.length) return;
+      one(order[i]).then((u) => {
+        if (this.stopped) return;
+        if (u) this.setState({ tiles: { ...(this.state.tiles || {}), [order[i]]: u } });
+        setTimeout(() => next(i + 1), 60);
+      });
+    };
+    setTimeout(() => next(0), 200);
+  }
+  syncPrefs() {
+    // Every page reads the same saved language and theme, so a switch on one page shows on the others.
+    try {
+      const th = localStorage.getItem('pe-lang') === 'th';
+      const tm = localStorage.getItem('pe-theme');
+      const theme = tm === 'night' || tm === 'linen' ? tm : null;
+      if (th !== this.state.th || theme !== this.state.theme) this.setState({ th, theme });
+    } catch (e) {}
+  }
+  componentWillUnmount() { this.stopped = true; if (this.io) this.io.disconnect(); try { Object.values(this.state.tiles || {}).forEach((u) => URL.revokeObjectURL(u)); } catch (e) {} if (this.tick && window.gsap) window.gsap.ticker.remove(this.tick); if (this.raf) cancelAnimationFrame(this.raf); }
+  start() {
+    if (this.running) return;
+    this.running = true;
+    const loop = () => 6 * ((this.small ? 160 : 220) + 4); // six looks then the strip repeats
+    let last = performance.now();
+    const step = () => {
+      const now = performance.now();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      this.speed += (this.target - this.speed) * Math.min(1, dt * 3);
+      let drift = this.state.drift;
+      if (!this.drag) {
+        if (!this.reduced) drift -= 36 * this.speed * dt;
+        if (Math.abs(this.vel || 0) > 2) { drift += this.vel * dt; this.vel *= Math.exp(-dt * 3.5); } else { this.vel = 0; }
+      }
+      drift = ((drift % loop()) - loop()) % loop();
+      this.syncN = (this.syncN || 0) + 1;
+      if (this.syncN % 20 === 0) { this.syncPrefs(); this.measure(); this.small = (window.innerWidth || 1440) <= 600; }
+      this.setState({ t: this.state.t + dt * (this.reduced ? 0.3 : 1), drift, intro: Math.min(9, this.state.intro + dt) });
+    };
+    if (window.gsap) { this.tick = step; window.gsap.ticker.fps(30); window.gsap.ticker.add(this.tick); }
+    else { const f = () => { if (this.stopped) return; step(); this.raf = requestAnimationFrame(f); }; this.raf = requestAnimationFrame(f); }
+  }
+  introVals(T) {
+    // 0.6s hold on the wordmark, then a 1.3s silver scan line sweeps down and reveals the page.
+    const show = this.running && !this.reduced && T < 1.9;
+    const p = Math.max(0, Math.min(1, (T - 0.6) / 1.3));
+    const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    return {
+      showIntro: show,
+      scanY: (e * 100).toFixed(2),
+      scanPct: Math.min(100, Math.round((T / 1.9) * 100)),
+      logoO: Math.min(1, T / 0.4).toFixed(2),
+      lineO: T < 0.6 ? 0 : 1,
+      bandO: T < 0.6 ? 0 : (0.12 * (1 - p)).toFixed(3)
+    };
+  }
+  measure() {
+    // Find where the headline letters really are, so the rain lands on them in either language and at any width.
+    try {
+      const hero = document.querySelector('.hm-hero');
+      const els = [document.querySelector('.hm-line1'), document.querySelector('.hm-line2')];
+      if (!hero || !els[0] || !els[1]) return;
+      const hb = hero.getBoundingClientRect();
+      const fs = parseFloat(getComputedStyle(els[0]).fontSize) || 88;
+      const cap = this.state.th ? 0.3 : 0.12;
+      this.lines = els.map((el) => { const r = el.getBoundingClientRect(); return { l: r.left - hb.left, r: r.right - hb.left, top: Math.round(r.top - hb.top + fs * cap) }; });
+    } catch (e) {}
+  }
+  placeHero(list) {
+    const L = this.lines;
+    if (!L || !L.length) return list;
+    const minL = Math.min(L[0].l, L[1].l), maxR = Math.max(L[0].r, L[1].r);
+    const out = [];
+    list.forEach((d) => {
+      const x = Math.round(minL + 6 + d.frac * (maxR - minL - 12));
+      const line = L.find((ln) => x >= ln.l + 4 && x <= ln.r - 4);
+      if (line) out.push({ ...d, x, land: line.top });
+    });
+    return out;
+  }
+  frameVals(t) {
+    const n = this.frameLooks.length, P = 4.5;
+    const k = Math.floor(t / P), ph = t - k * P, idx = k % n, prev = (k + n - 1) % n;
+    return {
+      frameImgs: this.frameLooks.map((f, i) => ({ src: f.src, alt: f.alt, o: i === idx ? Math.min(1, ph / 0.9).toFixed(3) : (i === prev && ph < 0.9 ? 1 : 0), z: i === idx ? 2 : (i === prev ? 1 : 0), s: i === idx ? (1.06 - 0.06 * ph / P).toFixed(4) : 1 })),
+      frameLabel: 'Look ' + String(idx + 1).padStart(2, '0') + ' — ' + this.frameLooks[idx].name,
+      frameTag: this.frameLooks[idx].tag,
+      frameBars: this.frameLooks.map((f, i) => ({ f: i < idx ? 1 : (i === idx ? (ph / P).toFixed(3) : 0) }))
+    };
+  }
+
+  // ---- Blood that runs along the catalog grid lines, like water finding its channels ----
+  // Down a vertical line by gravity; at a crossing it splits (part keeps falling, part runs
+  // sideways along the horizontal line); a sideways run turns down at the next vertical line.
+  // Each run carries a volume that the line uses up, so the blood thins out and stops as a bead.
+  readGrid() {
+    const cat = document.querySelector('.hm-cat');
+    if (!cat) return null;
+    const cb = cat.getBoundingClientRect();
+    const cells = Array.from(cat.querySelectorAll(':scope > .hm-cell'));
+    const V = [], H = [];
+    cells.forEach((el) => {
+      const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
+      const x0 = r.left - cb.left, x1 = r.right - cb.left, y0 = r.top - cb.top, y1 = r.bottom - cb.top;
+      if (parseFloat(cs.borderRightWidth) > 0) V.push({ x: x1 - 0.5, a: y0, b: y1 });
+      if (parseFloat(cs.borderBottomWidth) > 0) H.push({ y: y1 - 0.5, a: x0, b: x1 });
+    });
+    // join the bottom edges of one row into one long line
+    H.sort((p, q) => p.y - q.y || p.a - q.a);
+    const HL = [];
+    H.forEach((h) => { const l = HL.find((k) => Math.abs(k.y - h.y) < 2 && h.a <= k.b + 2 && h.b >= k.a - 2); if (l) { l.a = Math.min(l.a, h.a); l.b = Math.max(l.b, h.b); } else HL.push({ ...h }); });
+    return { cells: cells.map((el) => { const r = el.getBoundingClientRect(); return { x0: r.left - cb.left, x1: r.right - cb.left, y0: r.top - cb.top, y1: r.bottom - cb.top }; }), V, H: HL };
+  }
+  startFlow(i) {
+    if (this.flow && !this.flow.done) return; // one flow at a time
+    const G = this.readGrid();
+    if (!G || !G.cells[i]) return;
+    const c = G.cells[i];
+    // start at the top of the vertical line nearest this cell, in the same row
+    const vs = G.V.filter((v) => v.a <= c.y0 + 2 && v.b >= c.y0 + 2);
+    if (!vs.length) return;
+    const v = vs.sort((p, q) => Math.min(Math.abs(p.x - c.x1), Math.abs(p.x - c.x0)) - Math.min(Math.abs(q.x - c.x1), Math.abs(q.x - c.x0)))[0];
+    const rowH = c.y1 - c.y0, colW = c.x1 - c.x0;
+    const segs = [], hangs = [];
+    const VDOWN = 340, VSIDE = 150; // px per second
+    const wOf = (vol) => Math.max(1.6, Math.min(4, 1.3 + vol / 650));
+    const down = (x, y, vol, t0, depth) => {
+      const seg = G.V.find((q) => Math.abs(q.x - x) < 2 && q.a <= y + 2 && q.b > y + 4);
+      if (!seg || vol < 8 || depth > 12) return;
+      const L = seg.b - y, run = Math.min(L, vol), dur = run / VDOWN;
+      segs.push({ x1: x, y1: y, x2: x, y2: y + run, t0, dur, w: wOf(vol), end: run < L, vert: true });
+      if (run < L) return;
+      const t1 = t0 + dur, left = vol - L, yb = seg.b;
+      const below = G.V.find((q) => Math.abs(q.x - x) < 2 && Math.abs(q.a - yb) < 3);
+      const line = G.H.find((h) => Math.abs(h.y - yb) < 3);
+      if (below && line) { down(x, yb, left * 0.4, t1, depth + 1); side(x, yb, -1, left * 0.3, t1 + 0.05, depth + 1, line); side(x, yb, 1, left * 0.3, t1 + 0.05, depth + 1, line); }
+      else if (below) down(x, yb, left, t1, depth + 1);
+      else if (line) { side(x, yb, -1, left * 0.5, t1, depth + 1, line); side(x, yb, 1, left * 0.5, t1, depth + 1, line); }
+    };
+    const side = (x, y, dir, vol, t0, depth, line) => {
+      if (vol < 8 || depth > 12) return;
+      // the next vertical line hanging below this horizontal, in the direction of travel
+      const xs = G.V.filter((q) => Math.abs(q.a - y) < 3 && (dir > 0 ? q.x > x + 4 : q.x < x - 4)).map((q) => q.x).sort((p, q) => dir * (p - q));
+      const target = xs.length ? xs[0] : (dir > 0 ? line.b : line.a);
+      const L = Math.abs(target - x), run = Math.min(L, vol), dur = run / VSIDE;
+      segs.push({ x1: x, y1: y, x2: x + dir * run, y2: y, t0, dur, w: wOf(vol) * 0.85, end: run < L, vert: false });
+      if (run < L) return;
+      if (xs.length) down(target, y, vol - L, t0 + dur, depth + 1);
+      else hangs.push({ x: target, y, t0: t0 + dur, w: wOf(vol) * 0.85, vol: vol - L }); // gathers at the edge and drops off
+    };
+    down(v.x, c.y0, 2.4 * rowH + 2 * colW, this.state.t, 0);
+    // splatter only where the blood hits a rivet: a small burst of dots around the crossing
+    let seed = 7 + i * 31;
+    const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const seen = {};
+    segs.forEach((g) => {
+      g.stains = [];
+      if (g.end) return;
+      const key = Math.round(g.x2) + ',' + Math.round(g.y2);
+      if (seen[key] || hangs.some((h) => Math.abs(h.x - g.x2) < 2 && Math.abs(h.y - g.y2) < 2)) return;
+      seen[key] = 1;
+      const n = 4 + Math.floor(rnd() * 4);
+      for (let k = 0; k < n; k++) {
+        const ang = rnd() * Math.PI * 2, dist = 24 + rnd() * 16;
+        const r = 0.8 + rnd() * rnd() * 2;
+        g.stains.push({ at: 1, x: g.x2 + Math.cos(ang) * dist, y: g.y2 + Math.sin(ang) * dist, r, s: 1 + rnd() * 0.8, ang: (ang * 180 / Math.PI).toFixed(0) });
+      }
+    });
+    const finish = Math.max(segs.reduce((m, g) => Math.max(m, g.t0 + g.dur), this.state.t), hangs.reduce((m, h) => Math.max(m, h.t0 + 2.6), 0));
+    this.flow = { segs, hangs, finish, done: false };
+  }
+  flowVals(t) {
+    const F = this.flow;
+    if (!F || !F.segs.length) return { flowSegs: [], flowBeads: [], flowStains: [], flowHangs: [], flowO: 0 };
+    const now = this.reduced ? F.finish + 0.01 : t;
+    const HOLD = 2.6, FADE = 1.4;
+    const o = Math.max(0, Math.min(1, 1 - (now - F.finish - HOLD) / FADE));
+    if (o <= 0) { F.done = true; this.flow = null; return { flowSegs: [], flowBeads: [], flowStains: [], flowHangs: [], flowO: 0 }; }
+    const segs = [], beads = [], stains = [], hangs = [];
+    F.segs.forEach((g) => {
+      if (now < g.t0) return;
+      let p = Math.min(1, (now - g.t0) / Math.max(0.001, g.dur));
+      p = g.vert ? Math.pow(p, 1.25) : (g.end ? 1 - Math.pow(1 - p, 2) : p); // falls speed up; a run that is ending slows down
+      const L = Math.hypot(g.x2 - g.x1, g.y2 - g.y1), drawn = L * p;
+      g.stains.forEach((q) => { if (q.at <= p) stains.push({ x: q.x.toFixed(1), y: q.y.toFixed(1), rx: (q.r * q.s).toFixed(2), ry: q.r.toFixed(2), tr: 'rotate(' + q.ang + ' ' + q.x.toFixed(1) + ' ' + q.y.toFixed(1) + ')' }); });
+      const hx = g.vert ? -g.w * 0.25 : 0, hy = g.vert ? 0 : -g.w * 0.25;
+      segs.push({ x1: g.x1.toFixed(1), y1: g.y1.toFixed(1), x2: g.x2.toFixed(1), y2: g.y2.toFixed(1), w: g.w.toFixed(2), ws: (g.w + 0.6).toFixed(2), wh: (g.w * 0.35).toFixed(2), hx: hx.toFixed(2), hy: hy.toFixed(2), dash: drawn.toFixed(1) + ' 99999' });
+      // the wet front: a bead while it moves, and a heavier drop where it stops
+      if (p < 1 || g.end) {
+        const fx = g.x1 + (g.x2 - g.x1) * p, fy = g.y1 + (g.y2 - g.y1) * p;
+        const r = g.w * (p < 1 ? 1.05 : 1.7);
+        beads.push({ x: fx.toFixed(1), y: (fy + (g.vert ? r * 0.25 : 0)).toFixed(1), rx: r.toFixed(2), ry: (g.vert ? r * 1.3 : r).toFixed(2), hx: (fx - r * 0.3).toFixed(1), hy: (fy - r * 0.2).toFixed(1), hr: (r * 0.32).toFixed(2) });
+      }
+    });
+    // A drop hanging off the edge of the grid: it swells, stretches into a teardrop on a thin neck,
+    // then lets go and falls away, leaving a small bead behind.
+    (F.hangs || []).forEach((h) => {
+      const a = now - h.t0;
+      if (a < 0) return;
+      const big = Math.min(1, 0.55 + h.vol / 900);
+      const R = (h.w * 1.3 + 2.2) * big;
+      const SWELL = 0.7, STRETCH = 1.1, FALL = 0.55;
+      const out = { neck: '', drop: '', o: 1 };
+      const tear = (L, r, nw) => {
+        const x = h.x, y = h.y, cy = y + L;
+        return 'M' + (x - nw).toFixed(2) + ' ' + y.toFixed(2) + ' C' + (x - nw).toFixed(2) + ' ' + (y + L * 0.45).toFixed(2) + ' ' + (x - r).toFixed(2) + ' ' + (cy - r * 1.1).toFixed(2) + ' ' + (x - r).toFixed(2) + ' ' + cy.toFixed(2) +
+          ' A' + r.toFixed(2) + ' ' + r.toFixed(2) + ' 0 1 0 ' + (x + r).toFixed(2) + ' ' + cy.toFixed(2) +
+          ' C' + (x + r).toFixed(2) + ' ' + (cy - r * 1.1).toFixed(2) + ' ' + (x + nw).toFixed(2) + ' ' + (y + L * 0.45).toFixed(2) + ' ' + (x + nw).toFixed(2) + ' ' + y.toFixed(2) + ' Z';
+      };
+      let hx = h.x, hy = h.y, hr = 0;
+      if (a < SWELL) { const k = 1 - Math.pow(1 - a / SWELL, 2); const r = R * (0.35 + 0.55 * k); out.neck = tear(r * 0.9, r, h.w * 0.5); hy = h.y + r * 0.9; hr = r; }
+      else if (a < SWELL + STRETCH) { const k = (a - SWELL) / STRETCH, e = k * k; const r = R * (0.9 + 0.15 * e); const L = r * 0.9 + 4 + 16 * e; out.neck = tear(L, r, h.w * (0.5 - 0.3 * e)); hy = h.y + L; hr = r; }
+      else {
+        const k = Math.min(1, (a - SWELL - STRETCH) / FALL);
+        const r = R * 1.05, L0 = r * 0.9 + 20;
+        out.neck = tear(h.w * 1.1 + 1, h.w * 1.1, h.w * 0.35); // what stays on the edge
+        const dy = L0 + 380 * k * k;
+        out.drop = 'M' + h.x.toFixed(2) + ' ' + (h.y + dy - r * 2.1).toFixed(2) + ' C' + (h.x - r * 0.25).toFixed(2) + ' ' + (h.y + dy - r * 1.2).toFixed(2) + ' ' + (h.x - r).toFixed(2) + ' ' + (h.y + dy - r * 0.6).toFixed(2) + ' ' + (h.x - r).toFixed(2) + ' ' + (h.y + dy).toFixed(2) + ' A' + r.toFixed(2) + ' ' + r.toFixed(2) + ' 0 1 0 ' + (h.x + r).toFixed(2) + ' ' + (h.y + dy).toFixed(2) + ' C' + (h.x + r).toFixed(2) + ' ' + (h.y + dy - r * 0.6).toFixed(2) + ' ' + (h.x + r * 0.25).toFixed(2) + ' ' + (h.y + dy - r * 1.2).toFixed(2) + ' ' + h.x.toFixed(2) + ' ' + (h.y + dy - r * 2.1).toFixed(2) + ' Z';
+        out.o = (1 - k).toFixed(2);
+        hy = h.y + dy; hr = r;
+      }
+      hangs.push({ neck: out.neck, drop: out.drop, dropO: out.o, hasDrop: !!out.drop, gx: (hx - hr * 0.35).toFixed(1), gy: (hy - hr * 0.25).toFixed(1), gr: (hr * 0.28).toFixed(2) });
+    });
+    return { flowSegs: segs, flowBeads: beads, flowStains: stains, flowHangs: hangs, flowO: o.toFixed(3) };
+  }
+  catVals(t, dark) {
+    // Comic blood: the drip is redrawn at 12 frames a second so it moves in small, laggy steps.
+    const ts = this.reduced ? t : Math.floor(t * 12) / 12;
+    const out = { ink: dark ? '#000000' : '#1a1b1d' };
+    const FALL = 3.6;
+    const falling = () => this.cells.some((c) => c.s !== null && !c.land);
+    this.cells.forEach((c, i) => {
+      let len = 0, pool = 0, o = 0, sp = 0, w = 5, tip = 0, tipH = 0, stamp = 1;
+      if (c.s !== null) {
+        const age = Math.max(0, ts - c.s);
+        const p = this.reduced ? 1 : Math.min(1, age / FALL);
+        const hes = p < 1 ? 0.035 * Math.sin(p * 21) : 0;
+        len = Math.max(0, Math.min(100, 100 * (Math.pow(p, 1.8) + hes)));
+        if (p >= 1 && !c.land) c.land = ts;
+        const q = c.land ? (this.reduced ? 1 : Math.min(1, (ts - c.land) / 3.2)) : 0;
+        // The pool keeps spreading slowly and calmly as the stream feeds it.
+        pool = c.land ? 10 + (this.small ? 48 : 88) * (1 - Math.pow(1 - q, 1.6)) : 0;
+        sp = 1;
+        w = 5 + 1.4 * Math.sin(ts * 9 + i);
+        tip = 11 + 2 * Math.sin(ts * 6 + i * 2);
+        tipH = tip * 1.35;
+        if (c.land) { tip = 0; tipH = 0; } // the drop has joined the pool
+        // After it hits the floor the pool stays a moment, then dries away.
+        o = c.land ? Math.max(0, 1 - (t - c.land - 4.4) / 1.2) : 1;
+        if (o <= 0) { c.s = null; c.land = null; o = 0; len = 0; pool = 0; sp = 0; }
+        const k = Math.min(1, age / 0.3);
+        stamp = this.reduced ? 1 : 1 + 0.55 * Math.pow(1 - k, 2);
+      }
+      out['d' + i + 'len'] = len.toFixed(1);
+      out['d' + i + 'pool'] = pool.toFixed(0);
+      out['d' + i + 'poolH'] = (6 + pool * 0.1).toFixed(1);
+      out['d' + i + 'o'] = o.toFixed(2);
+      out['d' + i + 'sp'] = sp;
+      out['d' + i + 'w'] = w.toFixed(1);
+      out['d' + i + 'tip'] = tip.toFixed(1);
+      out['d' + i + 'tipH'] = tipH.toFixed(1);
+      if (i < 2) out['stamp' + i] = stamp.toFixed(3);
+      out['ce' + i] = () => {
+        if ((this.props.blood || 'flow') === 'flow') this.startFlow(i);
+        this.hoverI = i;
+        if (this.cells[i].s !== null) return;
+        // Only one drip falls at a time: a new one waits until the current drip hits the floor.
+        if (falling()) { this.pending = i; return; }
+        this.cells[i] = { s: this.state.t, land: null };
+      };
+      out['cl' + i] = () => { if (this.hoverI === i) this.hoverI = null; if (this.pending === i) this.pending = null; };
+    });
+    if (this.pending != null && !falling() && this.hoverI === this.pending) {
+      const n = this.pending;
+      this.pending = null;
+      if (this.cells[n].s === null) this.cells[n] = { s: t, land: null };
+    }
+    const ph = (t % 6) / 6;
+    out.gl = { hx: (-15 + 125 * ph).toFixed(2), v1: (-25 + 140 * ((ph + 0.35) % 1)).toFixed(2), v2: (-25 + 140 * ((ph + 0.7) % 1)).toFixed(2) };
+    const W = 1440, H = 3600;
+    // Each rivet keeps its own fixed reflection (no animation, so the page stays smooth).
+    for (let r = 0; r < 8; r++) {
+      out['rvA' + r] = (-24 + r * 11 + 16 * Math.sin(r * 1.7)).toFixed(1);
+      out['rvF' + r] = (14 - r * 7 + 12 * Math.sin(r * 1.7 + 2)).toFixed(1);
+    }
+    out.rvfx = (0.25 + 0.5 * Math.max(0, Math.min(1, this.state.x / W))).toFixed(3);
+    out.rvfy = (0.25 + 0.5 * Math.max(0, Math.min(1, this.state.y / H))).toFixed(3);
+    out.rvx = (22 + 56 * Math.max(0, Math.min(1, this.state.x / W))).toFixed(1);
+    out.rvy = (22 + 56 * Math.max(0, Math.min(1, this.state.y / H))).toFixed(1);
+    out.chromeX = (100 * Math.max(0, Math.min(1, this.state.x / W))).toFixed(1);
+    return out;
+  }
+  rain(list, t) {
+    return list.map((d) => {
+      const fall = (d.land + d.top) / d.v;
+      const T = fall + 0.42 + d.gap;
+      const tau = (t + d.off) % T;
+      const out = { x: d.x, h: d.h, land: d.land, y: -400, lo: 0, rx: d.x, rw: 0, so: 0, dx: 0, dy: 0 };
+      if (tau < fall) {
+        out.y = (d.v * tau - d.h - d.top).toFixed(0);
+        out.lo = d.o;
+      } else if (tau < fall + 0.42) {
+        const s = (tau - fall) / 0.42;
+        out.rw = (3 + 20 * s).toFixed(1);
+        out.rx = (d.x - (3 + 20 * s) / 2).toFixed(1);
+        out.so = ((1 - s) * 0.95).toFixed(2);
+        out.dx = (3 + 11 * s).toFixed(1);
+        out.dy = (-12 * Math.sin(Math.PI * s) + 4 * s).toFixed(1);
+      }
+      return out;
+    });
+  }
+  renderVals() {
+    const st = this.state;
+    const dark = st.theme === null ? this.sysDark : st.theme === 'night';
+    const c = dark
+      ? { ground: '#141619', raised: '#1e2125', stone: '#2a2e33', hair: '#33373c', silver: '#b4b9be', ink: '#e6e2da', muted: '#9ca0a6', grid: '#8a8f96' }
+      : { ground: '#e8e2d6', raised: '#dbd3c4', stone: '#cfc7b7', hair: '#c4bcad', silver: '#6b7075', ink: '#1a1b1d', muted: '#54575b', grid: '#c4bcad' };
+    const th = st.th;
+    const en = { collection: 'Collection', archive: 'Archive', about: 'About us', line1: 'Drop 01', line2: 'Linen — Denim', tagline: 'Everyday. Timeless. Never plain.', notifyTitle: 'Next drop', notifyBody: 'One email when it lands. Nothing else.', catKicker: 'Catalog_01', catTitle: 'Drop 01: linen and raw denim for the heat.', catSub: 'Two pieces, with the studies and references behind them.', henleyDesc: 'A long-sleeve henley in open linen gauze. Cropped and cut close, with the placket set on a tilt.', denimDesc: 'Unwashed raw denim with a slub yarn that leaves the surface uneven by design. It fades to the person who wears it.', labelDesc: 'The label sewn into every piece. Tap it to turn it over for care and fit.', view: 'View piece', openArchive: 'Open the archive', s1: 'Linen gauze is open enough to let light through. It breathes in a hot city.', s2: 'An embroidered neck label, studied for our own sewn-in label.', s3: 'How the lookbook is cast and shot: on the street, layered, long sleeves.', s4: 'Where the drip in the wordmark comes from, and the brand silver.' };
+    const tth = { collection: 'คอลเลกชัน', archive: 'อาร์ไคฟ์', about: 'เกี่ยวกับเรา', line1: 'ดรอป 01', line2: 'ลินิน — เดนิม', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ', notifyTitle: 'ดรอปถัดไป', notifyBody: 'อีเมลเดียวตอนของมา ไม่มีอย่างอื่น', catKicker: 'แคตตาล็อก_01', catTitle: 'ดรอป 01: ลินินและยีนส์ดิบสำหรับอากาศร้อน', catSub: 'สองชิ้น พร้อมงานศึกษาและภาพอ้างอิงเบื้องหลัง', henleyDesc: 'เฮนลีย์แขนยาวผ้าลินินกอซ ทรงครอปตัดเข้าตัว กระดุมคอเอียง', denimDesc: 'ยีนส์ดิบไม่ผ่านการซัก เส้นด้าย slub ทำให้ผิวผ้าไม่เรียบโดยตั้งใจ สีจะซีดตามคนที่ใส่', labelDesc: 'ป้ายที่เย็บติดทุกชิ้น กดเพื่อพลิกดูวิธีดูแลและไซซ์', view: 'ดูสินค้า', openArchive: 'เปิดอาร์ไคฟ์', s1: 'ลินินกอซบางพอให้แสงลอดผ่าน ระบายลมในเมืองร้อน', s2: 'ไอเดียป้ายคอเสื้อแบบปัก สำหรับป้ายที่จะเย็บติดเสื้อจริง', s3: 'แนวการถ่ายลุคบุ๊ก: บนถนน ใส่เป็นชั้น แขนยาว', s4: 'ที่มาของหยดในโลโก้ และสีเงินของแบรนด์' };
+    const heroList = this.reduced ? this.hero.filter((d, i) => i % 3 === 0) : this.small ? this.hero.filter((d, i) => i % 2 === 0) : this.hero;
+    const rowList = this.reduced ? this.rowRain.filter((d, i) => i % 2 === 0) : this.rowRain;
+    const hov = this.rowsData.find((r) => r.id === st.hover);
+    const pv = hov && !this.small && !this.touch ? (hov.src || 'empty') : null;
+    const big = st.big;
+    return {
+      c,
+      logo: dark ? 'assets/wordmark-white.png' : 'assets/wordmark-ink.png',
+      themeLabel: dark ? 'Linen' : 'Leather',
+      t: th ? tth : en,
+      thCls: th ? 'is-th' : '',
+      // Rivet look: the new brushed-metal disc, or the earlier mask faces (kept, switch back in Tweaks).
+      rvCls: (this.props.rivet || 'metal') === 'metal' ? 'rv-metal' : 'rv-mask',
+      langLabel: th ? 'EN' : 'TH',
+      navFont: th ? '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif' : '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif',
+      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"Akira Expanded", "SOV MuekMod", "Arial Black", sans-serif',
+      tx: (() => {
+        // Background texture, drawn in code (no images): linen weave, wet concrete or film grain.
+        const kind = this.props.texture || 'linen';
+        const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
+        const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
+        const tl = this.state.tiles || {};
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
+        if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
+        return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
+      })(),
+      ...this.catVals(st.t, dark),
+      ...this.flowVals(st.t),
+      blCls: (this.props.blood || 'flow') === 'flow' ? 'bl-flow' : '',
+      heroDrops: this.rain(this.placeHero(heroList), st.t),
+      rowDrops: hov ? this.rain(rowList, st.t) : [],
+      rows: this.rowsData.map((r) => ({ ...r, wet: r.id === st.hover, go: () => { try { if (r.id === 'h' || r.id === 'd') localStorage.setItem('pe-product', (r.id === 'h' ? 'henley:' : 'denim:') + Date.now()); } catch (e) {} } })),
+      looks: this.looks,
+      drift: st.drift.toFixed(1),
+      stripOverflow: this.reduced ? 'auto' : 'hidden',
+      lx: st.lx, ly: st.ly, lr: st.lr,
+      ...this.introVals(st.intro),
+      flipped: !!st.flipped,
+      flipDeg: st.flipped ? 180 : 0,
+      flipLabel: () => this.setState({ flipped: !st.flipped }),
+      replayIntro: () => { if (!this.reduced) this.setState({ intro: 0 }); },
+      menuOpen: !!st.menu,
+      menuLabel: st.menu ? (th ? 'ปิด' : 'Close') : (th ? 'เมนู' : 'Menu'),
+      toggleMenu: () => this.setState({ menu: !st.menu }),
+      closeMenu: () => this.setState({ menu: false }),
+      hasPreview: !!pv,
+      pvImg: !!pv && pv !== 'empty',
+      pvEmpty: pv === 'empty',
+      pvSrc: pv && pv !== 'empty' ? pv : '',
+      pvX: st.x + 28,
+      pvY: st.y - 150,
+      dot: big ? 72 : 14,
+      dotFill: big ? 'rgba(180,185,190,0.14)' : 'transparent',
+      dotX: st.x - (big ? 36 : 7),
+      dotY: st.y - (big ? 36 : 7),
+      notJoined: !st.joined,
+      joined: st.joined,
+      move: (e) => {
+        this.start();
+        const r = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        this.state.x = x;
+        this.state.y = y;
+        // The dot moves on the mouse event itself, not on the 30fps animation clock, so it never trails the hand.
+        if (!this.dotEl) this.dotEl = e.currentTarget.querySelector('.hm-dot');
+        if (this.dotEl) this.dotEl.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+      },
+      light: (e) => {
+        const b = e.currentTarget.getBoundingClientRect();
+        this.state.lx = e.clientX - b.left;
+        this.state.ly = e.clientY - b.top;
+        this.state.lr = 220;
+      },
+      dark: () => { this.state.lr = 0; this.setState({ big: false }); },
+      pause: () => { this.target = 0; },
+      resume: () => { this.target = 1; },
+      grabStrip: (e) => {
+        this.start();
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        if (!e.touches) e.preventDefault();
+        this.drag = { x, d: this.state.drift, lx: x, lt: performance.now() };
+        this.vel = 0;
+      },
+      dragStrip: (e) => {
+        if (!this.drag) return;
+        const x = e.touches ? e.touches[0].clientX : e.clientX;
+        const now = performance.now();
+        this.state.drift = this.drag.d + (x - this.drag.x);
+        const dts = (now - this.drag.lt) / 1000;
+        if (dts > 0) this.vel = 0.7 * this.vel + 0.3 * ((x - this.drag.lx) / dts);
+        this.drag.lx = x;
+        this.drag.lt = now;
+      },
+      dropStrip: () => { this.drag = null; },
+      leaveStrip: () => { this.drag = null; this.target = 1; },
+      // Clicking a product remembers which one, so the product page opens on it.
+      goH: () => { try { localStorage.setItem('pe-product', 'henley:' + Date.now()); } catch (e) {} },
+      goD: () => { try { localStorage.setItem('pe-product', 'denim:' + Date.now()); } catch (e) {} },
+      grow: () => { if (this.dotEl && window.gsap) window.gsap.to(this.dotEl, { width: 72, height: 72, left: -36, top: -36, backgroundColor: 'rgba(180,185,190,0.14)', duration: 0.3, ease: 'power2.out', overwrite: 'auto' }); },
+      shrink: () => { if (this.dotEl && window.gsap) window.gsap.to(this.dotEl, { width: 14, height: 14, left: -7, top: -7, backgroundColor: 'rgba(180,185,190,0)', duration: 0.3, ease: 'power2.out', overwrite: 'auto' }); },
+      hide: () => this.setState({ hover: null }),
+      toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
+      toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); },
+      join: (e) => { e.preventDefault(); this.setState({ joined: true }); }
+    };
+  }
+}
+
+return Component;
+}, {"texture": "linen", "textureStrength": 1, "rivet": "metal", "blood": "flow"});
+</script>
+</body>
+</html>
