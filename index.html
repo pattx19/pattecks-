@@ -9,16 +9,28 @@
 <meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
 <meta property="og:image" content="assets/henley.jpg">
 <link rel="icon" href="assets/wordmark-ink.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&amp;family=Krona+One&amp;display=swap" rel="stylesheet">
 <style>
 
-@font-face{font-family:"Akira Expanded";src:url("assets/akira-expanded.woff") format("woff");font-weight:800;font-display:swap}
-@font-face{font-family:"Bootzy TM";src:url("assets/bootzy.woff2") format("woff2");font-weight:400;font-display:swap}
+*{font-synthesis-weight:none}
+.fx-worn{-webkit-mask-image:var(--worn,none);mask-image:var(--worn,none);-webkit-mask-size:300px 300px;mask-size:300px 300px}
+.fx-ink{text-shadow:0 0 .6px currentColor,.3px .4px 1.8px color-mix(in srgb,currentColor 45%,transparent)}
+.fx-drip{position:relative;display:inline-block}
+.fx-drip i{position:absolute;top:74%;width:3px;height:16px;margin-left:-1.5px;border-radius:0 0 3px 3px;background:#890000;transform-origin:top;transform:scaleY(0);animation:fx-drip 6s cubic-bezier(.5,0,.75,0) infinite;pointer-events:none}
+.fx-drip i::after{content:"";position:absolute;left:50%;bottom:-3px;width:6px;height:7px;margin-left:-3px;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;background:#890000}
+.fx-drip i:nth-child(1){left:14%;animation-delay:.4s}
+.fx-drip i:nth-child(2){left:47%;height:24px;animation-delay:2.1s}
+.fx-drip i:nth-child(3){left:83%;height:12px;animation-delay:3.6s}
+@keyframes fx-drip{0%{transform:scaleY(0);opacity:1}55%{transform:scaleY(1);opacity:1}85%{transform:scaleY(1.08);opacity:1}100%{transform:scaleY(1.08);opacity:0}}
+@media (prefers-reduced-motion:reduce){.fx-drip i{animation:none;transform:scaleY(1)}}
 @font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-regular.woff") format("woff");font-weight:400;font-display:swap;size-adjust:125%}
 @font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:700;font-display:swap;size-adjust:125%}
 @font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0E00-0E7F;size-adjust:138%}
 .tx-bg > div{transition:opacity .9s ease}
 .is-th *{letter-spacing:.01em !important}
-body{margin:0;font-family:"Bootzy TM","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
+body{margin:0;font-family:"Jim Nightshade","SOV UI","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
 a{color:inherit;text-decoration:none}
 ::selection{background:#890000;color:#f1ebe2}
 .hm-nav a{position:relative}
@@ -89,7 +101,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 <div id="app"></div>
 <template id="tpl">
 
-<div class="hm-root {{ thCls }} {{ rvCls }} {{ blCls }}" style="--ground: {{ c.ground }}; --raised: {{ c.raised }}; --stone: {{ c.stone }}; --hair: {{ c.hair }}; --silver: {{ c.silver }}; --ink: {{ c.ink }}; --muted: {{ c.muted }}; --grid: {{ c.grid }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
+<div class="hm-root {{ thCls }} {{ rvCls }} {{ blCls }}" style="--worn: {{ tx.img.worn }}; --ground: {{ c.ground }}; --raised: {{ c.raised }}; --stone: {{ c.stone }}; --hair: {{ c.hair }}; --silver: {{ c.silver }}; --ink: {{ c.ink }}; --muted: {{ c.muted }}; --grid: {{ c.grid }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
 
   <svg aria-hidden="true" width="0" height="0" style="position: absolute; width: 0; height: 0;">
     <defs>
@@ -148,7 +160,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
   </sc-if>
 
   <section id="top" class="hm-hero" style="position: relative; height: 560px; overflow: hidden;">
-    <h1 class="hm-big" style="position: absolute; left: 48px; right: 48px; top: 300px; margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 88px; line-height: .95; text-transform: uppercase; letter-spacing: 0; z-index: 1;">
+    <h1 class="hm-big fx-worn" style="position: absolute; left: 48px; right: 48px; top: 300px; margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 88px; line-height: .95; text-transform: uppercase; letter-spacing: 0; z-index: 1;">
       <span class="hm-line1" style="display: table;">{{ t.line1 }}</span>
       <span class="hm-line2" style="display: table;">{{ t.line2 }}</span>
     </h1>
@@ -189,9 +201,9 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       <article class="hm-cell" onMouseEnter="{{ ce0 }}" onMouseLeave="{{ cl0 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <a href="product.html#henley" onClick="{{ goH }}" aria-label="View Linen Gauze Henley" style="display: block; width: 100%; height: 100%;"><img src="assets/henley.jpg" alt="Reference: white gauze henley laid flat on raw concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
-          <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp0 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Akira Expanded', 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'Bootzy TM', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
+          <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp0 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Krona One', 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'Jim Nightshade', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
         </figure>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Linen Gauze Henley</h3></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 class="fx-ink" style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Linen Gauze Henley</h3></div>
         <span class="hm-plate"><span class="hm-pd"></span><span>PE-01 / 2026 / THB [PRICE]</span><span class="hm-pd"></span></span>
         <span style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase;">100% linen gauze / cropped / tilted placket</span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.henleyDesc }}</p>
@@ -210,10 +222,10 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 
       <article class="hm-cell" onMouseEnter="{{ ce1 }}" onMouseLeave="{{ cl1 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp1 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Akira Expanded', 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'Bootzy TM', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
+          <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp1 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'Krona One', 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'Jim Nightshade', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
           <a href="product.html#denim" onClick="{{ goD }}" aria-label="View Raw Slub Denim" style="display: block; width: 100%; height: 100%;"><img src="assets/denim.jpg" alt="Raw slub denim jeans laid flat on concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
         </figure>
-        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Raw Slub Denim</h3></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 class="fx-ink" style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Raw Slub Denim</h3></div>
         <span class="hm-plate"><span class="hm-pd"></span><span>PE-02 / 2026 / THB [PRICE]</span><span class="hm-pd"></span></span>
         <span style="font-size: 12px; letter-spacing: .1em; text-transform: uppercase;">Raw slub denim / straight leg / unwashed</span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.denimDesc }}</p>
@@ -259,7 +271,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
           </span>
         </span>
       </button>
-        <h3 style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Care label</h3>
+        <h3 class="fx-ink" style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Care label</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>No. 01 — front and back</span><span class="hm-pd"></span></span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.labelDesc }}</p>
         <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d2o }};">
@@ -277,7 +289,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <img src="assets/sheer-linen.jpg" alt="Reference: sheer linen tops on hangers" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
-        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Fabric study 01</h3>
+        <h3 class="fx-ink" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Fabric study 01</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Linen held to the light — Reference</span><span class="hm-pd"></span></span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s1 }}</p>
         <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 3.40s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal4)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(8 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face4)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><path d="M12.4 16.6l5 1.6l-0.4 1.6q-2.8 0.2-4.6-3.2z M27.6 16.6l-5 1.6l0.4 1.6q2.8 0.2 4.6-3.2z" fill="#0c0d0f"></path><path d="M11.6 13.4l6 2.2M28.4 13.4l-6 2.2" fill="none" stroke="#0c0d0f" stroke-width="1.2" stroke-linecap="round"></path><path d="M15.4 25.8q4.6-2 9.2 0l-1 3.2q-3.6 1.4-7.2 0z" fill="#0c0d0f"></path><path d="M17.4 26.2v1.4M20 25.8v1.6M22.6 26.2v1.4" stroke="#c9ccd0" stroke-width="0.7"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
@@ -294,7 +306,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <img src="assets/neck-label.jpg" alt="Reference: embroidered neck label on waffle knit" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
-        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Detail 01</h3>
+        <h3 class="fx-ink" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Detail 01</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Neck label — Reference</span><span class="hm-pd"></span></span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s2 }}</p>
         <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 4.25s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal5)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(55 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face5)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><circle cx="15.4" cy="18.6" r="1.9" fill="#0c0d0f"></circle><circle cx="24.6" cy="18.6" r="1.9" fill="#0c0d0f"></circle><path d="M17 28h6" fill="none" stroke="#0c0d0f" stroke-width="1.1" stroke-linecap="round"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
@@ -311,7 +323,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <img src="assets/street.jpg" alt="Reference: street-cast editorial in layered long sleeves" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
-        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 04</h3>
+        <h3 class="fx-ink" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 04</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Street casting — Reference</span><span class="hm-pd"></span></span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s3 }}</p>
         <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d5o }};">
@@ -328,7 +340,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <img src="assets/silver-mask.jpg" alt="Reference: polished silver mask with a tear" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
-        <h3 style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 05</h3>
+        <h3 class="fx-ink" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 05</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Silver and the tear — Reference</span><span class="hm-pd"></span></span>
         <p style="margin: 0; font-size: 14px; line-height: 22px; color: {{ c.muted }};">{{ t.s4 }}</p>
         <span class="hm-rivet" aria-hidden="true" style="right: -22px; bottom: -22px;"><img class="hm-rv-img" src="assets/rivet.png" alt="" width="44" height="44"><span class="hm-rv-shine" style="animation-delay: 5.10s;"></span><svg viewBox="-4 -4 48 48" width="44" height="44" style="display: block; overflow: visible;"><circle cx="20.6" cy="21.6" r="18.8" fill="#000000" opacity="0.5" filter="url(#rv-dent)"></circle><circle cx="20" cy="20" r="18.4" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="0.8"></circle><circle cx="20" cy="20" r="16.6" fill="url(#rv-metal6)"></circle><g clip-path="url(#rv-clip)"><rect x="-6" y="-6" width="52" height="52" fill="#9aa0a6" filter="url(#rv-scratch)" opacity="0.38" transform="rotate(102 20 20)" style="mix-blend-mode: overlay;"></rect></g><circle cx="20" cy="20" r="16.6" fill="none" stroke="rgba(0,0,0,0.65)" stroke-width="0.9"></circle><circle cx="20" cy="20" r="15.3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"></circle><ellipse cx="20.7" cy="21" rx="10.6" ry="13.2" fill="#000000" opacity="0.45" filter="url(#rv-dent)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="url(#rv-face6)"></ellipse><ellipse cx="20" cy="20.2" rx="10.4" ry="13" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="0.6"></ellipse><ellipse cx="19.8" cy="19.8" rx="9.7" ry="12.3" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="0.45"></ellipse><g transform="translate(0 0.4)"><ellipse cx="20" cy="9.6" rx="1.4" ry="0.9" fill="#0c0d0f"></ellipse><path d="M12.6 18.6q2.6-1.8 5 0q-2.5 1.2-5 0z M22.4 18.6q2.5-1.8 5 0q-2.5 1.2-5 0z" fill="#0c0d0f"></path><ellipse cx="15" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><ellipse cx="25" cy="12.6" rx="1.3" ry="0.8" fill="#0c0d0f" opacity="0.7"></ellipse><path d="M17.2 27.4q2.8 1.6 5.6 0q-2.8 1.4-5.6 0z" fill="#0c0d0f"></path></g><path d="M5.4 17.4A14.8 14.8 0 0 1 28.6 6.2A16.2 16.2 0 0 0 5.4 17.4z" fill="#ffffff" opacity="0.55"></path><ellipse cx="14.2" cy="10.6" rx="5.2" ry="2.1" fill="url(#rv-gloss)" transform="rotate(-34 14.2 10.6)"></ellipse><circle cx="12.4" cy="11.4" r="1.1" fill="#ffffff" filter="url(#rv-soft)"></circle><circle cx="27.4" cy="29.8" r="0.8" fill="#ffffff" opacity="0.85" filter="url(#rv-soft)"></circle><path d="M31.6 26A14.6 14.6 0 0 1 22 34.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"></path></svg></span>
@@ -358,7 +370,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       </a>
       <a href="#about" class="hm-cell" onMouseEnter="{{ ce8 }}" onMouseLeave="{{ cl8 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; min-height: 260px;">
         <span style="font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">Drop 01 — [DATE]</span>
-        <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: 26px; line-height: 1.1; text-transform: uppercase;">{{ t.notifyTitle }}</span>
+        <span style="font-family: {{ displayFont }}; font-weight: 800; font-size: 26px; line-height: 1.1; text-transform: uppercase;"><span class="fx-drip">{{ t.notifyTitle }}<i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></span></span>
         <span style="align-self: flex-start; background: #890000; color: #f1ebe2; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; padding: 10px 16px;">Notify me</span>
         <span class="hm-drip" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -7px; width: 14px; pointer-events: none; z-index: 3; opacity: {{ d8o }};">
           <span style="position: absolute; left: 1px; top: 3px; width: 5px; height: 5px; border-radius: 50%; background: #a30000; opacity: {{ d8sp }};"></span>
@@ -400,7 +412,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
         <a href="{{ r.href }}" onClick="{{ r.go }}" class="hm-row" style="position: relative; display: grid; grid-template-columns: 80px 2fr 2fr 1fr; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid {{ c.hair }};" onMouseEnter="{{ r.show }}" onMouseLeave="{{ hide }}">
           <span style="font-size: 13px; letter-spacing: .12em; color: {{ c.muted }};">{{ r.no }}</span>
-          <span style="font-size: 32px; line-height: 1.05; letter-spacing: -.01em;">{{ r.name }}</span>
+          <span class="fx-ink" style="font-size: 32px; line-height: 1.05; letter-spacing: -.01em;">{{ r.name }}</span>
           <span class="hm-hide" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">{{ r.fabric }}</span>
           <span class="hm-hide" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; text-align: right;">{{ r.price }}</span>
           <sc-if value="{{ r.wet }}" hint-placeholder-val="{{ false }}">
@@ -420,7 +432,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 
   <section id="about" style="padding: 72px 48px; background: {{ c.raised }}; display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; align-items: center;">
     <div style="flex: 1 1 360px; min-width: 0;">
-      <h2 style="margin: 0 0 12px; font-family: {{ displayFont }}; font-weight: 800; font-size: 40px; text-transform: uppercase;">{{ t.notifyTitle }}</h2>
+      <h2 style="margin: 0 0 12px; font-family: {{ displayFont }}; font-weight: 800; font-size: 40px; text-transform: uppercase;"><span class="fx-drip">{{ t.notifyTitle }}<i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i></span></h2>
       <p style="margin: 0; font-size: 17px; line-height: 26px; color: {{ c.muted }};">{{ t.notifyBody }}</p>
     </div>
     <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
@@ -560,6 +572,7 @@ class Component extends DCLogic {
       leather: [fl(turb('type="fractalNoise" baseFrequency="0.1" numOctaves="4" seed="9"', 'pebble') + turb('type="turbulence" baseFrequency="0.012 0.02" numOctaves="3" seed="21"', 'crease') + `<feComposite in="pebble" in2="crease" operator="arithmetic" k1="0" k2="0.75" k3="0.45" k4="-0.1" result="h"/><feDiffuseLighting in="h" surfaceScale="2.2" diffuseConstant="1" lighting-color="#ffffff" result="lit"><feDistantLight ${lit}/></feDiffuseLighting><feSpecularLighting in="h" surfaceScale="2.2" specularConstant="0.3" specularExponent="30" lighting-color="#ffffff" result="spec"><feDistantLight ${lit}/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="spec2"/><feColorMatrix in="lit" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="shade"/><feMerge><feMergeNode in="shade"/><feMergeNode in="spec2"/></feMerge>`), `<rect width="${W}" height="${W}" fill="#000" filter="url(#f)"/>`],
       grain: [fl(turb('type="fractalNoise" baseFrequency="0.9" numOctaves="2"', 'g') + '<feColorMatrix in="g" type="saturate" values="0"/>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
       concrete: [fl(turb('type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="5" seed="11"', 'c') + '<feColorMatrix in="c" type="saturate" values="0"/><feComponentTransfer><feFuncR type="gamma" exponent="1.8"/><feFuncG type="gamma" exponent="1.8"/><feFuncB type="gamma" exponent="1.8"/></feComponentTransfer>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      worn: [fl(turb('type="fractalNoise" baseFrequency="0.16" numOctaves="4" seed="5"', 'w') + '<feColorMatrix in="w" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -16 0 0 0 11.4"/>'), `<rect width="${W}" height="${W}" fill="#fff" filter="url(#f)"/>`],
       weave: [fl(turb('type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="4"', 'n') + '<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>') + '<pattern id="p" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 1.5H6M0 4.5H6" stroke="#1a1b1d" stroke-width="0.8" opacity="0.7" fill="none"/><path d="M1.5 0V6M4.5 0V6" stroke="#1a1b1d" stroke-width="0.6" opacity="0.45" fill="none"/></pattern>', `<rect width="${W}" height="${W}" fill="url(#p)" filter="url(#f)"/>`],
     };
     const one = (name) => new Promise((done) => {
@@ -577,7 +590,7 @@ class Component extends DCLogic {
       img.onerror = () => done(null);
       img.src = url;
     });
-    const order = ['leather', 'weave', 'grain', 'concrete'];
+    const order = ['leather', 'weave', 'worn', 'grain', 'concrete'];
     const next = (i) => {
       if (this.stopped || i >= order.length) return;
       one(order[i]).then((u) => {
@@ -921,15 +934,15 @@ class Component extends DCLogic {
       // Rivet look: the new brushed-metal disc, or the earlier mask faces (kept, switch back in Tweaks).
       rvCls: (this.props.rivet || 'metal') === 'metal' ? 'rv-metal' : 'rv-mask',
       langLabel: th ? 'EN' : 'TH',
-      navFont: th ? '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif' : '"Bootzy TM", "SOV UI", "Helvetica Neue", Arial, sans-serif',
-      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"Akira Expanded", "SOV MuekMod", "Arial Black", sans-serif',
+      navFont: th ? '"Jim Nightshade", "SOV UI", "Helvetica Neue", Arial, sans-serif' : '"Jim Nightshade", "SOV UI", "Helvetica Neue", Arial, sans-serif',
+      displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"Krona One", "SOV MuekMod", "Arial Black", sans-serif',
       tx: (() => {
         // Background texture, drawn in code (no images): linen weave, wet concrete or film grain.
         const kind = this.props.texture || 'linen';
         const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
         const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
         const tl = this.state.tiles || {};
-        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none', worn: tl.worn ? `url(${tl.worn})` : 'none' };
         if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
         return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
       })(),
