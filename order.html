@@ -220,7 +220,7 @@ class Component extends DCLogic {
       accountName: 'นาย ปฐพี เอี่ยมนาม',
       qrImage: 'assets/promptpay-qr.png',               // uploaded image of your PromptPay QR; empty shows a placeholder
       shipDate: '[DATE]',
-      orderUrl: ''               // the Google Apps Script web app URL that saves orders to your Google Sheet
+      orderUrl: 'https://script.google.com/macros/s/AKfycbzgyXFH7VDWqB70RJRGKzfq6YbnQnRMaXsDG0ms0yCOUnFrQE8l8jGFG8d_AH9-9AhxsA/exec'               // the Google Apps Script web app URL that saves orders to your Google Sheet
     };
     this.state = { theme: null, th: false, t: 0, sel: {}, qty: {}, err: {}, lines: [], f: { name: '', phone: '', email: '', ig: '', addr: '', note: '' }, slip: null, consent: false, sending: false, error: '', done: null };
     this.state.lines = this.readCart();
