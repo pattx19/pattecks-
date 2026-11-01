@@ -49,6 +49,14 @@ a{color:inherit;text-decoration:none}
 @media (prefers-reduced-motion:reduce){.rv-metal .hm-rivet .hm-rv-shine::before{animation:hm-shine-band 14s ease-in-out infinite;animation-delay:inherit;opacity:.5}}
 .rv-metal .hm-rivet .hm-rv-img{display:block}
 .rv-metal .hm-rivet svg{display:none !important}
+/* UX polish: switch off in Tweaks (UX polish) to get the page exactly as before. */
+.ux-on .hm-nav a,.ux-on .hm-ig,.ux-on .hm-logo{display:inline-flex;align-items:center;min-height:44px}
+.ux-on .hm-tools button{min-width:44px}
+.ux-on .hm-cell a[style*="border-bottom"]{position:relative}
+.ux-on .hm-cell a[style*="border-bottom"]::before{content:"";position:absolute;left:-8px;right:-8px;top:-12px;bottom:-12px}
+.ux-on [style*="font-size: 11px"]{font-size:12.5px !important}
+.ux-on [style*="font-size: 10px"]{font-size:12px !important}
+.ux-on.ux-dark [style*="rotate(-9deg) scale"]{color:#ff5444 !important;border-color:#ff5444 !important}
 .hm-rv-mob{display:none !important}
 .hm-rivet{position:absolute;width:44px;height:44px;z-index:4;pointer-events:none}
 .hm-plate{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;color:var(--muted,#9ca0a6)}
@@ -93,7 +101,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 <div id="app"></div>
 <template id="tpl">
 
-<div class="hm-root {{ thCls }} {{ rvCls }} {{ blCls }}" style="--ground: {{ c.ground }}; --raised: {{ c.raised }}; --stone: {{ c.stone }}; --hair: {{ c.hair }}; --silver: {{ c.silver }}; --ink: {{ c.ink }}; --muted: {{ c.muted }}; --grid: {{ c.grid }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
+<div class="hm-root {{ thCls }} {{ rvCls }} {{ blCls }} {{ uxCls }}" style="--ground: {{ c.ground }}; --raised: {{ c.raised }}; --stone: {{ c.stone }}; --hair: {{ c.hair }}; --silver: {{ c.silver }}; --ink: {{ c.ink }}; --muted: {{ c.muted }}; --grid: {{ c.grid }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;" onMouseMove="{{ move }}">
 
   <svg aria-hidden="true" width="0" height="0" style="position: absolute; width: 0; height: 0;">
     <defs>
@@ -171,7 +179,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       <div style="display: flex; gap: 4px; width: max-content; transform: translateX({{ drift }}px);">
         <sc-for list="{{ looks }}" as="l" hint-placeholder-count="10">
           <figure class="hm-tile" style="margin: 0; flex: none; width: 220px; display: flex; flex-direction: column; gap: 6px;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-            <div style="height: 330px; overflow: hidden; background: {{ c.stone }};"><img src="{{ l.src }}" alt="{{ l.alt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+            <div style="height: 330px; overflow: hidden; background: {{ c.stone }};"><img loading="lazy" decoding="async" src="{{ l.src }}" alt="{{ l.alt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
             <figcaption style="display: flex; justify-content: space-between; padding: 0 4px 4px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }};"><span>{{ l.no }}</span><span>Reference</span></figcaption>
           </figure>
         </sc-for>
@@ -192,7 +200,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 
       <article class="hm-cell" onMouseEnter="{{ ce0 }}" onMouseLeave="{{ cl0 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <a href="product.html#henley" onClick="{{ goH }}" aria-label="View Linen Gauze Henley" style="display: block; width: 100%; height: 100%;"><img src="assets/henley.jpg" alt="Reference: white gauze henley laid flat on raw concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
+          <a href="product.html#henley" onClick="{{ goH }}" aria-label="View Linen Gauze Henley" style="display: block; width: 100%; height: 100%;"><img src="assets/henley.jpg" loading="lazy" decoding="async" alt="Reference: white gauze henley laid flat on raw concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
           <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp0 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'SOV MuekMod', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
         </figure>
         <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 class="pe-script" style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Linen Gauze Henley</h3></div>
@@ -215,7 +223,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       <article class="hm-cell" onMouseEnter="{{ ce1 }}" onMouseLeave="{{ cl1 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp1 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'SOV MuekMod', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
-          <a href="product.html#denim" onClick="{{ goD }}" aria-label="View Raw Slub Denim" style="display: block; width: 100%; height: 100%;"><img src="assets/denim.jpg" alt="Raw slub denim jeans laid flat on concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
+          <a href="product.html#denim" onClick="{{ goD }}" aria-label="View Raw Slub Denim" style="display: block; width: 100%; height: 100%;"><img src="assets/denim.jpg" loading="lazy" decoding="async" alt="Raw slub denim jeans laid flat on concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
         </figure>
         <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 class="pe-script" style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Raw Slub Denim</h3></div>
         <span class="hm-plate"><span class="hm-pd"></span><span>PE-02 / 2026 / THB [PRICE]</span><span class="hm-pd"></span></span>
@@ -279,7 +287,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 
       <article class="hm-cell" onMouseEnter="{{ ce3 }}" onMouseLeave="{{ cl3 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <img src="assets/sheer-linen.jpg" alt="Reference: sheer linen tops on hangers" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          <img src="assets/sheer-linen.jpg" loading="lazy" decoding="async" alt="Reference: sheer linen tops on hangers" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
         <h3 class="pe-script" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Fabric study 01</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Linen held to the light — Reference</span><span class="hm-pd"></span></span>
@@ -296,7 +304,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       </article>
       <article class="hm-cell" onMouseEnter="{{ ce4 }}" onMouseLeave="{{ cl4 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <img src="assets/neck-label.jpg" alt="Reference: embroidered neck label on waffle knit" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          <img src="assets/neck-label.jpg" loading="lazy" decoding="async" alt="Reference: embroidered neck label on waffle knit" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
         <h3 class="pe-script" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Detail 01</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Neck label — Reference</span><span class="hm-pd"></span></span>
@@ -313,7 +321,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       </article>
       <article class="hm-cell" onMouseEnter="{{ ce5 }}" onMouseLeave="{{ cl5 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <img src="assets/street.jpg" alt="Reference: street-cast editorial in layered long sleeves" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          <img src="assets/street.jpg" loading="lazy" decoding="async" alt="Reference: street-cast editorial in layered long sleeves" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
         <h3 class="pe-script" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 04</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Street casting — Reference</span><span class="hm-pd"></span></span>
@@ -330,7 +338,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 </article>
       <article class="hm-cell" onMouseEnter="{{ ce6 }}" onMouseLeave="{{ cl6 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 1px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 260px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <img src="assets/silver-mask.jpg" alt="Reference: polished silver mask with a tear" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+          <img src="assets/silver-mask.jpg" loading="lazy" decoding="async" alt="Reference: polished silver mask with a tear" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </figure>
         <h3 class="pe-script" style="margin: 0; font-size: 22px; font-weight: 400; letter-spacing: -.01em;">Look 05</h3>
         <span class="hm-plate"><span class="hm-pd"></span><span>Silver and the tear — Reference</span><span class="hm-pd"></span></span>
@@ -940,6 +948,8 @@ class Component extends DCLogic {
       ...this.catVals(st.t, dark),
       ...this.flowVals(st.t),
       blCls: (this.props.blood || 'flow') === 'flow' ? 'bl-flow' : '',
+      // UX polish (bigger tap areas, larger small text, brighter stamp in Leather). Tweaks can switch it off.
+      uxCls: this.props.uxPolish === false ? '' : ('ux-on' + (dark ? ' ux-dark' : '')),
       heroDrops: this.rain(this.placeHero(heroList), st.t),
       rowDrops: hov ? this.rain(rowList, st.t) : [],
       rows: this.rowsData.map((r) => ({ ...r, wet: r.id === st.hover, go: () => { try { if (r.id === 'h' || r.id === 'd') localStorage.setItem('pe-product', (r.id === 'h' ? 'henley:' : 'denim:') + Date.now()); } catch (e) {} } })),
