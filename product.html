@@ -136,18 +136,14 @@ a{color:inherit;text-decoration:none}
         <span style="font-size: 13px; letter-spacing: .04em; color: {{ c.muted }};">{{ p.fit }}</span>
       </div>
 
-      <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
-        <form onSubmit="{{ join }}" style="display: flex; flex-direction: column; gap: 8px;">
-          <label for="pd-email" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.notifyLabel }}</label>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <input id="pd-email" class="pd-input" type="email" required="" placeholder="you@email.com" style="flex: 1 1 200px; min-width: 0; min-height: 52px; padding: 0 16px; background: {{ c.ground }}; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; font-size: 17px;">
-            <button class="pd-btn" type="submit" style="min-height: 52px; padding: 0 28px; background: #890000; color: #f1ebe2; border: 0; font: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.notify }}</button>
-          </div>
-        </form>
-      </sc-if>
-      <sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
-        <p style="margin: 0; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.onList }} {{ p.name }}{{ sizeNote }}</p>
-      </sc-if>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <button type="button" class="pd-btn" onClick="{{ addCart }}" style="min-height: 56px; padding: 0 28px; background: {{ cartBg }}; color: #f1ebe2; border: 0; font: inherit; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;">{{ cartLabel }}</button>
+        <span role="status" style="font-size: 14px; min-height: 20px;">{{ cartMsg }}</span>
+        <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+          <a href="order.html" style="display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">{{ L.goCart }} ({{ cartCount }})</a>
+        </sc-if>
+        <span style="font-size: 13px; color: {{ c.muted }};">{{ L.preNote }}</span>
+      </div>
       <a href="https://www.instagram.com/" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 4px; align-self: flex-start;">{{ L.askIg }}</a>
 
       <div style="border-top: 1px solid {{ c.hair }};">
@@ -294,6 +290,8 @@ class Component extends DCLogic {
       const tm = localStorage.getItem('pe-theme');
       const theme = tm === 'night' || tm === 'linen' ? tm : null;
       if (th !== this.state.th || theme !== this.state.theme) this.setState({ th, theme });
+      const cn = (JSON.parse(localStorage.getItem('pe-cart') || '[]') || []).reduce((a, l) => a + (l.qty || 1), 0);
+      if (cn !== this.state.cartN) this.setState({ cartN: cn });
       // Open on the product that was clicked on the Home page (or named in the link, e.g. #denim).
       const pick = localStorage.getItem('pe-product') || '';
       const hash = (window.location && window.location.hash || '').replace('#', '');
@@ -348,8 +346,8 @@ class Component extends DCLogic {
     const o = this.products[(st.i + 1) % this.products.length];
     const Z = 2.6;
     const L = th
-      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: 'รอยืนยันไซซ์', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
-      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: 'Sizes to confirm', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
+      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: 'รอยืนยันไซซ์', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', add: 'เพิ่มลงตะกร้า', pickSize: 'เลือกไซซ์ก่อน', needSize: 'เลือกไซซ์ก่อนกดเพิ่มลงตะกร้า', added: 'เพิ่มแล้ว:', goCart: 'ไปที่ตะกร้า / พรีออเดอร์', preNote: 'พรีออเดอร์ ผลิตหลังปิดรับ', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
+      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: 'Sizes to confirm', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', add: 'Add to cart', pickSize: 'Select a size', needSize: 'Pick a size first.', added: 'Added:', goCart: 'Go to cart / pre-order', preNote: 'Pre-order. Made after orders close.', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
     const sec = [
       { id: 'fabric', title: th ? 'เนื้อผ้าและการดูแล' : 'Fabric and care', rows: p.fabric },
       { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }, { k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }, { k: th ? 'นายแบบ' : 'Model', v: th ? 'สูง [ส่วนสูง] ซม. ใส่ไซซ์ [ไซซ์]' : '[Height] cm wears [Size]' }] },
@@ -367,7 +365,7 @@ class Component extends DCLogic {
       langLabel: th ? 'EN' : 'TH',
       navFont: th ? '"SOV UI", "SOV MuekMod", "Helvetica Neue", Arial, sans-serif' : '"SOV UI", "SOV MuekMod", "Helvetica Neue", Arial, sans-serif',
       displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"SOV MuekMod", "Arial Black", sans-serif',
-      sizes: this.sizeList.map((s) => ({ label: s, on: st.size === s, bg: st.size === s ? c.ink : 'transparent', fg: st.size === s ? c.ground : c.ink, pick: () => this.setState({ size: st.size === s ? null : s }) })),
+      sizes: this.sizeList.map((s) => ({ label: s, on: st.size === s, bg: st.size === s ? c.ink : 'transparent', fg: st.size === s ? c.ground : c.ink, pick: () => this.setState({ size: st.size === s ? null : s, cartMsg: '' }) })),
       sizeNote: st.size ? ', size ' + st.size : '',
       sections: sec.map((s) => ({ ...s, open: st.open === s.id, rot: st.open === s.id ? 45 : 0, toggle: () => this.setState({ open: st.open === s.id ? null : s.id }) })),
       tx: (() => {
@@ -408,10 +406,27 @@ class Component extends DCLogic {
       lensOff: () => this.setState({ lens: false }),
       wetOn: () => this.setState({ wet: true }),
       wetOff: () => this.setState({ wet: false }),
-      prev: () => this.setState({ i: (st.i + this.products.length - 1) % this.products.length, size: null, joined: false }),
-      next: () => this.setState({ i: (st.i + 1) % this.products.length, size: null, joined: false }),
+      prev: () => this.setState({ i: (st.i + this.products.length - 1) % this.products.length, size: null, joined: false, cartMsg: '' }),
+      next: () => this.setState({ i: (st.i + 1) % this.products.length, size: null, joined: false, cartMsg: '' }),
       toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
       toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); },
+      // Add to cart: needs a size; the cart lives in this browser and the pre-order page reads it.
+      cartLabel: st.size ? L.add + ' — ' + st.size : L.pickSize,
+      cartBg: st.size ? '#890000' : 'rgba(137,0,0,0.45)',
+      cartMsg: st.cartMsg || '',
+      hasCart: (st.cartN || 0) > 0,
+      cartCount: st.cartN || 0,
+      addCart: () => {
+        const s = this.state;
+        if (!s.size) { this.setState({ cartMsg: L.needSize }); return; }
+        const id = s.i === 1 ? 'denim' : 'henley';
+        let lines = [];
+        try { lines = JSON.parse(localStorage.getItem('pe-cart') || '[]') || []; } catch (e) {}
+        const ex = lines.find((l) => l.id === id && l.size === s.size);
+        if (ex) ex.qty = Math.min(9, (ex.qty || 1) + 1); else lines.push({ id, size: s.size, qty: 1 });
+        try { localStorage.setItem('pe-cart', JSON.stringify(lines)); } catch (e) {}
+        this.setState({ cartMsg: L.added + ' ' + p.name + ' — ' + s.size, cartN: lines.reduce((a, l) => a + (l.qty || 1), 0) });
+      },
       join: (e) => { e.preventDefault(); this.setState({ joined: true }); }
     };
   }

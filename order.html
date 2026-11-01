@@ -32,6 +32,7 @@ a{color:inherit;text-decoration:none}
 .or-size{min-width:52px;min-height:48px;border:1px solid var(--silver,#6b7075);background:transparent;color:inherit;font:inherit;font-size:14px;letter-spacing:.1em;cursor:pointer}
 .or-size[aria-pressed="true"]{background:var(--ink,#1a1b1d);color:var(--ground,#e8e2d6);border-color:var(--ink,#1a1b1d)}
 .or-step{width:48px;min-height:48px;border:1px solid var(--silver,#6b7075);background:transparent;color:inherit;font:inherit;font-size:20px;cursor:pointer}
+@media (max-width:900px){.or-panel{padding:20px !important}}
 .or-lab{display:block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
 .is-th .or-lab{text-transform:none}
 @media (max-width:900px){.or-cols{flex-direction:column !important}.or-side{position:static !important;width:100% !important}.or-pad{padding-left:24px !important;padding-right:24px !important}.or-big{font-size:34px !important}.or-nav{display:none !important}}
@@ -71,10 +72,13 @@ a{color:inherit;text-decoration:none}
       <p style="margin: 0 0 48px; max-width: 60ch; font-size: 16px; line-height: 26px; color: {{ c.muted }};">{{ L.intro }}</p>
 
       <div class="or-cols" style="display: flex; gap: 48px; align-items: flex-start;">
-        <div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 48px;">
+        <div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 32px;">
 
-          <section aria-labelledby="or-s1">
-            <h2 id="or-s1" style="margin: 0 0 20px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">1 — {{ L.pick }}</h2>
+          <section class="or-panel" aria-labelledby="or-s1" style="background: {{ panelBg }}; border: 1px solid {{ c.silver }}; padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 16px; margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid {{ c.hair }};">
+              <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #890000; color: #f1ebe2; font-family: 'SOV MuekMod', monospace; font-weight: 700; font-size: 20px;">1</span>
+              <div style="display: flex; flex-direction: column; gap: 4px;"><h2 id="or-s1" style="margin: 0; font-size: 18px; letter-spacing: .1em; text-transform: uppercase;">{{ L.pick }}</h2><span style="font-size: 14px; color: {{ c.muted }};">{{ L.pickHint }}</span></div>
+            </div>
             <div style="display: flex; flex-direction: column; gap: 20px;">
               <sc-for list="{{ items }}" as="p" hint-placeholder-count="2">
                 <div style="display: flex; gap: 20px; align-items: flex-start; padding: 16px; border: 1px solid {{ p.border }};">
@@ -104,8 +108,11 @@ a{color:inherit;text-decoration:none}
             </div>
           </section>
 
-          <section aria-labelledby="or-s2">
-            <h2 id="or-s2" style="margin: 0 0 20px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">2 — {{ L.ship }}</h2>
+          <section class="or-panel" aria-labelledby="or-s2" style="background: {{ panelBg }}; border: 1px solid {{ c.silver }}; padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 16px; margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid {{ c.hair }};">
+              <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #890000; color: #f1ebe2; font-family: 'SOV MuekMod', monospace; font-weight: 700; font-size: 20px;">2</span>
+              <div style="display: flex; flex-direction: column; gap: 4px;"><h2 id="or-s2" style="margin: 0; font-size: 18px; letter-spacing: .1em; text-transform: uppercase;">{{ L.ship }}</h2><span style="font-size: 14px; color: {{ c.muted }};">{{ L.shipHint }}</span></div>
+            </div>
             <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px;">
               <div><label class="or-lab" for="or-name">{{ L.name }} *</label><input id="or-name" class="or-in" autocomplete="name" value="{{ f.name }}" onInput="{{ setName }}"></div>
               <div><label class="or-lab" for="or-phone">{{ L.phone }} *</label><input id="or-phone" class="or-in" type="tel" inputmode="tel" autocomplete="tel" value="{{ f.phone }}" onInput="{{ setPhone }}"></div>
@@ -116,8 +123,11 @@ a{color:inherit;text-decoration:none}
             </div>
           </section>
 
-          <section aria-labelledby="or-s3">
-            <h2 id="or-s3" style="margin: 0 0 20px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">3 — {{ L.pay }}</h2>
+          <section class="or-panel" aria-labelledby="or-s3" style="background: {{ panelBg }}; border: 1px solid {{ c.silver }}; padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 16px; margin: 0 0 24px; padding-bottom: 18px; border-bottom: 1px solid {{ c.hair }};">
+              <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #890000; color: #f1ebe2; font-family: 'SOV MuekMod', monospace; font-weight: 700; font-size: 20px;">3</span>
+              <div style="display: flex; flex-direction: column; gap: 4px;"><h2 id="or-s3" style="margin: 0; font-size: 18px; letter-spacing: .1em; text-transform: uppercase;">{{ L.pay }}</h2><span style="font-size: 14px; color: {{ c.muted }};">{{ L.payHint }}</span></div>
+            </div>
             <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
               <div style="flex: none; width: 220px; height: 220px; border: 1px dashed {{ c.silver }}; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; box-sizing: border-box; font-size: 13px; color: {{ c.muted }};">
                 <sc-if value="{{ hasQr }}" hint-placeholder-val="{{ false }}"><img src="{{ qrSrc }}" alt="PromptPay QR" style="width: 100%; height: 100%; object-fit: contain; background: #fff;"></sc-if>
@@ -209,6 +219,7 @@ class Component extends DCLogic {
       orderUrl: ''               // the Google Apps Script web app URL that saves orders to your Google Sheet
     };
     this.state = { theme: null, th: false, t: 0, sel: {}, qty: {}, err: {}, lines: [], f: { name: '', phone: '', email: '', ig: '', addr: '', note: '' }, slip: null, consent: false, sending: false, error: '', done: null };
+    this.state.lines = this.readCart();
     try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
     this.running = false;
   }
@@ -265,6 +276,7 @@ class Component extends DCLogic {
       const tm = localStorage.getItem('pe-theme');
       const theme = tm === 'night' || tm === 'linen' ? tm : null;
       if (th !== this.state.th || theme !== this.state.theme) this.setState({ th, theme });
+      if ((localStorage.getItem('pe-cart') || '[]') !== this.lastCart && !this.state.done) this.setState({ lines: this.readCart() });
     } catch (e) {}
   }
   componentWillUnmount() { this.stopped = true; try { Object.values(this.state.tiles || {}).forEach((u) => URL.revokeObjectURL(u)); } catch (e) {} if (this.tick && window.gsap) window.gsap.ticker.remove(this.tick); if (this.raf) cancelAnimationFrame(this.raf); }
@@ -282,6 +294,19 @@ class Component extends DCLogic {
     };
     if (window.gsap) { this.tick = step; window.gsap.ticker.fps(30); window.gsap.ticker.add(this.tick); }
     else { const f = () => { if (this.stopped) return; step(); this.raf = requestAnimationFrame(f); }; this.raf = requestAnimationFrame(f); }
+  }
+  readCart() {
+    // The cart is shared with the product page through this browser's storage.
+    try {
+      const raw = localStorage.getItem('pe-cart') || '[]';
+      this.lastCart = raw;
+      const ids = this.shop.products.map((p) => p.id);
+      return (JSON.parse(raw) || []).filter((l) => l && ids.includes(l.id) && this.shop.sizes.includes(l.size)).map((l) => ({ id: l.id, size: l.size, qty: Math.max(1, Math.min(9, l.qty | 0 || 1)) }));
+    } catch (e) { return []; }
+  }
+  setCart(lines) {
+    try { const raw = JSON.stringify(lines); localStorage.setItem('pe-cart', raw); this.lastCart = raw; } catch (e) {}
+    this.setState({ lines, error: '' });
   }
   money(n) { return n == null ? null : '฿' + Number(n).toLocaleString('en-US'); }
   totals() {
@@ -326,8 +351,8 @@ class Component extends DCLogic {
     const th = st.th;
     const L = th ? {
       kicker: 'พรีออเดอร์ — ดรอป 01', title: 'สั่งจอง', intro: 'สั่งและจ่ายวันนี้ เราผลิตตามจำนวนที่สั่ง แล้วจัดส่งประมาณ ' + S.shipDate + ' ทุกตัวเย็บจากล็อตเดียวกัน',
-      pick: 'เลือกชิ้น', size: 'ไซซ์', less: 'ลดจำนวน', more: 'เพิ่มจำนวน', add: 'ใส่ออเดอร์', needSize: 'เลือกไซซ์ก่อน',
-      ship: 'ที่อยู่จัดส่ง', name: 'ชื่อ-นามสกุล', phone: 'เบอร์โทร', email: 'อีเมล', addr: 'ที่อยู่จัดส่ง', note: 'หมายเหตุ',
+      pick: 'เลือกสินค้า', pickHint: 'เลือกไซซ์และจำนวน แล้วกดใส่ออเดอร์', shipHint: 'ใช้สำหรับจัดส่งและติดต่อเรื่องออเดอร์นี้', payHint: 'โอนตามยอดรวม แล้วแนบสลิป', size: 'ไซซ์', less: 'ลดจำนวน', more: 'เพิ่มจำนวน', add: 'ใส่ออเดอร์', needSize: 'เลือกไซซ์ก่อน',
+      ship: 'ข้อมูลจัดส่ง', name: 'ชื่อ-นามสกุล', phone: 'เบอร์โทร', email: 'อีเมล', addr: 'ที่อยู่จัดส่ง', note: 'หมายเหตุ',
       pay: 'ชำระเงิน', accName: 'ชื่อบัญชี', amount: 'ยอดโอน', payHow: 'สแกน QR หรือโอนเข้าพร้อมเพย์ด้วยยอดด้านบน แล้วแนบสลิป', slip: 'แนบสลิปโอนเงิน', slipAlt: 'สลิปที่แนบ',
       summary: 'สรุปออเดอร์', empty: 'ยังไม่มีสินค้า', remove: 'เอาออก', items: 'สินค้า', shipFee: 'ค่าส่ง', total: 'รวม',
       preNote: 'นี่คือพรีออเดอร์ สินค้าจะผลิตหลังปิดรับ ส่งประมาณ ' + S.shipDate,
@@ -337,7 +362,7 @@ class Component extends DCLogic {
       doneKicker: 'ได้รับพรีออเดอร์แล้ว', doneTitle: 'ขอบคุณ', doneBody: 'เราจะตรวจสลิปและยืนยันทางเบอร์โทรหรือ Instagram ภายใน 1–2 วัน', orderNo: 'เลขออเดอร์', doneNote: 'แคปหน้านี้เก็บไว้ได้เลย', back: 'กลับหน้าแรก'
     } : {
       kicker: 'Pre-order — Drop 01', title: 'Pre-order', intro: 'Order and pay today. We make what is ordered and ship around ' + S.shipDate + '. Every piece comes from the same run.',
-      pick: 'Pick your pieces', size: 'Size', less: 'One less', more: 'One more', add: 'Add to order', needSize: 'Pick a size first',
+      pick: 'Pick your pieces', pickHint: 'Choose a size and quantity, then add it to your order.', shipHint: 'Where we send it, and how we reach you about this order.', payHint: 'Pay the total, then attach the slip.', size: 'Size', less: 'One less', more: 'One more', add: 'Add to order', needSize: 'Pick a size first',
       ship: 'Shipping details', name: 'Full name', phone: 'Phone', email: 'Email', addr: 'Shipping address', note: 'Note',
       pay: 'Payment', accName: 'Account name', amount: 'Amount', payHow: 'Scan the QR or send the amount above by PromptPay, then attach the slip.', slip: 'Attach payment slip', slipAlt: 'Attached slip',
       summary: 'Your order', empty: 'Nothing added yet.', remove: 'Remove', items: 'Items', shipFee: 'Shipping', total: 'Total',
@@ -351,7 +376,7 @@ class Component extends DCLogic {
     const money = (n, ph) => (n == null ? ph : this.money(n));
     const setF = (k) => (e) => { const f = { ...this.state.f }; f[k] = e.target.value; this.state.f = f; };
     return {
-      c, L,
+      c, L, panelBg: dark ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.35)',
       logo: dark ? 'assets/wordmark-white.png' : 'assets/wordmark-ink.png',
       themeLabel: dark ? 'Linen' : 'Leather',
       t: th ? { collection: 'คอลเลกชัน', about: 'เกี่ยวกับเรา' } : { collection: 'Collection', about: 'About us' },
@@ -380,13 +405,13 @@ class Component extends DCLogic {
             const lines = this.state.lines.slice();
             const ex = lines.find((l) => l.id === p.id && l.size === sel);
             if (ex) ex.qty = Math.min(9, ex.qty + q); else lines.push({ id: p.id, size: sel, qty: q });
-            this.setState({ lines, error: '' });
+            this.setCart(lines);
           }
         };
       }),
       lines: st.lines.map((l, i) => {
         const p = S.products.find((q) => q.id === l.id) || { name: l.id, price: null };
-        return { label: p.name + ' · ' + l.size + ' × ' + l.qty, sub: money(p.price == null ? null : p.price * l.qty, '[PRICE]'), remove: () => this.setState({ lines: this.state.lines.filter((x, k) => k !== i) }) };
+        return { label: p.name + ' · ' + l.size + ' × ' + l.qty, sub: money(p.price == null ? null : p.price * l.qty, '[PRICE]'), remove: () => this.setCart(this.state.lines.filter((x, k) => k !== i)) };
       }),
       emptyCart: !st.lines.length,
       itemsText: st.lines.length ? money(T.items, '[PRICE]') : '—',
@@ -421,7 +446,7 @@ class Component extends DCLogic {
         this.setState({ sending: true, error: '' });
         // text/plain keeps the browser from a pre-flight check that Apps Script does not answer.
         fetch(S.orderUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })
-          .then(() => { this.setState({ sending: false, done: id }); try { window.scrollTo(0, 0); } catch (e) {} })
+          .then(() => { try { localStorage.removeItem('pe-cart'); this.lastCart = '[]'; } catch (e) {} this.setState({ sending: false, done: id }); try { window.scrollTo(0, 0); } catch (e) {} })
           .catch(() => this.setState({ sending: false, error: L.eSend }));
       },
       toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
