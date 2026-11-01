@@ -172,12 +172,11 @@ function sendCustomerEmail_(kind, o) {
       '</div></div>';
     const text = [(isReceipt ? T.receipt : T.confirm) + ' — PattEcks!', T.order + ': ' + o.orderId, '', lines.join('\n'), '',
       T.total + ': ' + baht(o.total), T.addr + ': ' + o.address].join('\n');
-    MailApp.sendEmail({
-      to: o.email,
-      subject: 'PattEcks! — ' + (isReceipt ? T.receipt : T.confirm) + ' ' + o.orderId,
-      body: text, htmlBody: html, name: 'PattEcks!',
-      replyTo: Session.getEffectiveUser().getEmail()
-    });
+    // GmailApp sends from your own Gmail (shows in Sent), which spam filters trust more than MailApp.
+    const subject = th
+      ? (isReceipt ? 'ใบเสร็จออเดอร์ ' : 'ยืนยันออเดอร์ ') + o.orderId + ' จาก PattEcks'
+      : (isReceipt ? 'Your receipt for order ' : 'Your PattEcks order ') + o.orderId;
+    GmailApp.sendEmail(o.email, subject, text, { htmlBody: html, name: 'PattEcks' });
   } catch (err) {}
 }
 
