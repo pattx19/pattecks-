@@ -13,7 +13,7 @@ Each pre-order from `order.html` becomes one row in a Google Sheet, and you get 
 5. Press **Deploy**, allow the permissions Google asks for (Sheets, Drive and sending email as you), and copy the **Web app URL** (it ends in `/exec`).
 6. Put that URL in the shop settings of the order page (`orderUrl`), or send it to Claude to do it.
 
-The "Orders" tab is created by the first order. Use the **Status** column to track each order (New → Paid → Shipped).
+The "Orders" tab is created by the first order. Then run **formatSheet** once (in Apps Script pick `formatSheet` next to Run, press Run), or use the **PattEcks → จัดหน้าชีตใหม่** menu in the sheet. Use the **สถานะ** dropdown to track each order: ใหม่ → จ่ายแล้ว → กำลังผลิต → ส่งแล้ว (or ยกเลิก).
 
 If you change `Code.gs` later, deploy again with **Manage deployments → Edit → New version**, so the URL stays the same.
 
