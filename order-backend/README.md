@@ -1,6 +1,6 @@
 # PattEcks! pre-orders → Google Sheets
 
-Each pre-order from `order.html` becomes one row in a Google Sheet. The payment slip is saved to a Google Drive folder called "PattEcks slips", and the row links to it.
+Each pre-order from `order.html` becomes one row in a Google Sheet, and you get an email for it. The payment slip is saved to a Google Drive folder called "PattEcks slips", and the row links to it.
 
 ## Set up (once, about 10 minutes)
 
@@ -10,7 +10,7 @@ Each pre-order from `order.html` becomes one row in a Google Sheet. The payment 
 4. **Deploy → New deployment**. Type: **Web app**.
    - Execute as: **Me**
    - Who has access: **Anyone**
-5. Press **Deploy**, allow the permissions Google asks for (Sheets and Drive), and copy the **Web app URL** (it ends in `/exec`).
+5. Press **Deploy**, allow the permissions Google asks for (Sheets, Drive and sending email as you), and copy the **Web app URL** (it ends in `/exec`).
 6. Put that URL in the shop settings of the order page (`orderUrl`), or send it to Claude to do it.
 
 The "Orders" tab is created by the first order. Use the **Status** column to track each order (New → Paid → Shipped).

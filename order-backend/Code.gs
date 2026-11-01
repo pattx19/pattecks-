@@ -18,12 +18,35 @@ function doPost(e) {
       new Date(), data.orderId, data.name, "'" + (data.phone || ''), data.email, data.instagram,
       data.address, items, data.itemsTotal, data.shipping, data.total, slipUrl, data.note, data.lang, 'New'
     ]);
+    notify_(data, items, slipUrl);
     return ContentService.createTextOutput(JSON.stringify({ ok: true, orderId: data.orderId })).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) })).setMimeType(ContentService.MimeType.JSON);
   } finally {
     lock.releaseLock();
   }
+}
+
+// Emails you (the Google account that owns this script) for every new order.
+function notify_(data, items, slipUrl) {
+  try {
+    const to = Session.getEffectiveUser().getEmail();
+    const body = [
+      'New pre-order ' + data.orderId,
+      '',
+      'Name: ' + data.name,
+      'Phone: ' + data.phone,
+      'Instagram: ' + (data.instagram || '-'),
+      'Address: ' + data.address,
+      '',
+      'Items:', items,
+      'Total: ' + (data.total == null ? '(price not set)' : data.total + ' THB'),
+      '',
+      'Slip: ' + (slipUrl || '-'),
+      'Sheet: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl()
+    ].join('\n');
+    MailApp.sendEmail(to, 'PattEcks! new pre-order ' + data.orderId, body);
+  } catch (e) {}
 }
 
 function getSheet_() {

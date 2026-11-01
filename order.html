@@ -133,12 +133,12 @@ a{color:inherit;text-decoration:none}
               <div style="display: flex; flex-direction: column; gap: 4px;"><h2 id="or-s3" style="margin: 0; font-size: 18px; letter-spacing: .1em; text-transform: uppercase;">{{ L.pay }}</h2><span style="font-size: 14px; color: {{ c.muted }};">{{ L.payHint }}</span></div>
             </div>
             <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
-              <div style="flex: none; width: 220px; height: 220px; border: 1px dashed {{ c.silver }}; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; box-sizing: border-box; font-size: 13px; color: {{ c.muted }};">
-                <sc-if value="{{ hasQr }}" hint-placeholder-val="{{ false }}"><img src="{{ qrSrc }}" alt="PromptPay QR" style="width: 100%; height: 100%; object-fit: contain; background: #fff;"></sc-if>
+              <div style="flex: none; width: 240px; min-height: 220px; border: 1px dashed {{ c.silver }}; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; box-sizing: border-box; font-size: 13px; color: {{ c.muted }};">
+                <sc-if value="{{ hasQr }}" hint-placeholder-val="{{ false }}"><img src="{{ qrSrc }}" alt="PromptPay QR" style="width: 100%; height: auto; display: block; background: #fff;"></sc-if>
                 <sc-if value="{{ noQr }}" hint-placeholder-val="{{ true }}"><span>[PromptPay QR]</span></sc-if>
               </div>
               <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 24px;">
-                <span>PromptPay: <b>{{ payId }}</b></span>
+                <span>{{ L.acct }}: <b>{{ payId }}</b></span>
                 <span>{{ L.accName }}: <b>{{ payName }}</b></span>
                 <span>{{ L.amount }}: <b>{{ totalText }}</b></span>
                 <span style="color: {{ c.muted }}; font-size: 14px;">{{ L.payHow }}</span>
@@ -216,9 +216,9 @@ class Component extends DCLogic {
       ],
       sizes: ['S', 'M', 'L', 'XL'],
       shipping: null,            // flat shipping fee in THB, or null for [SHIPPING]
-      promptPayId: '[PROMPTPAY NUMBER]',
-      accountName: '[ACCOUNT NAME]',
-      qrImage: '',               // uploaded image of your PromptPay QR; empty shows a placeholder
+      promptPayId: 'KBank xxx-x-x8519-x',
+      accountName: 'นาย ปฐพี เอี่ยมนาม',
+      qrImage: 'assets/promptpay-qr.png',               // uploaded image of your PromptPay QR; empty shows a placeholder
       shipDate: '[DATE]',
       orderUrl: ''               // the Google Apps Script web app URL that saves orders to your Google Sheet
     };
@@ -357,7 +357,7 @@ class Component extends DCLogic {
       kicker: 'พรีออเดอร์ — ดรอป 01', title: 'สั่งจอง', intro: 'สั่งและจ่ายวันนี้ เราผลิตตามจำนวนที่สั่ง แล้วจัดส่งประมาณ ' + S.shipDate + ' ทุกตัวเย็บจากล็อตเดียวกัน',
       pick: 'ตะกร้าของคุณ', pickHint: 'ตรวจไซซ์และจำนวนก่อนสั่ง', cartEmpty: 'ตะกร้ายังว่าง เลือกสินค้าและไซซ์จากหน้าสินค้าก่อน', shop: 'ไปเลือกสินค้า', addMore: 'เพิ่มสินค้าอื่น', shipHint: 'ใช้สำหรับจัดส่งและติดต่อเรื่องออเดอร์นี้', payHint: 'โอนตามยอดรวม แล้วแนบสลิป', size: 'ไซซ์', less: 'ลดจำนวน', more: 'เพิ่มจำนวน', add: 'ใส่ออเดอร์', needSize: 'เลือกไซซ์ก่อน',
       ship: 'ข้อมูลจัดส่ง', name: 'ชื่อ-นามสกุล', phone: 'เบอร์โทร', email: 'อีเมล', addr: 'ที่อยู่จัดส่ง', note: 'หมายเหตุ',
-      pay: 'ชำระเงิน', accName: 'ชื่อบัญชี', amount: 'ยอดโอน', payHow: 'สแกน QR หรือโอนเข้าพร้อมเพย์ด้วยยอดด้านบน แล้วแนบสลิป', slip: 'แนบสลิปโอนเงิน', slipAlt: 'สลิปที่แนบ',
+      pay: 'ชำระเงิน', acct: 'บัญชี', accName: 'ชื่อบัญชี', amount: 'ยอดโอน', payHow: 'สแกน QR หรือโอนเข้าพร้อมเพย์ด้วยยอดด้านบน แล้วแนบสลิป', slip: 'แนบสลิปโอนเงิน', slipAlt: 'สลิปที่แนบ',
       summary: 'สรุปออเดอร์', empty: 'ยังไม่มีสินค้า', remove: 'เอาออก', items: 'สินค้า', shipFee: 'ค่าส่ง', total: 'รวม',
       preNote: 'นี่คือพรีออเดอร์ สินค้าจะผลิตหลังปิดรับ ส่งประมาณ ' + S.shipDate,
       consent: 'ยินยอมให้ PattEcks! ใช้ชื่อ เบอร์ และที่อยู่นี้ เพื่อจัดการและจัดส่งออเดอร์นี้เท่านั้น',
@@ -368,7 +368,7 @@ class Component extends DCLogic {
       kicker: 'Pre-order — Drop 01', title: 'Pre-order', intro: 'Order and pay today. We make what is ordered and ship around ' + S.shipDate + '. Every piece comes from the same run.',
       pick: 'Your cart', pickHint: 'Check sizes and quantities before you order.', cartEmpty: 'Your cart is empty. Pick a piece and a size on the product page first.', shop: 'Shop Drop 01', addMore: 'Add another piece', shipHint: 'Where we send it, and how we reach you about this order.', payHint: 'Pay the total, then attach the slip.', size: 'Size', less: 'One less', more: 'One more', add: 'Add to order', needSize: 'Pick a size first',
       ship: 'Shipping details', name: 'Full name', phone: 'Phone', email: 'Email', addr: 'Shipping address', note: 'Note',
-      pay: 'Payment', accName: 'Account name', amount: 'Amount', payHow: 'Scan the QR or send the amount above by PromptPay, then attach the slip.', slip: 'Attach payment slip', slipAlt: 'Attached slip',
+      pay: 'Payment', acct: 'Account', accName: 'Account name', amount: 'Amount', payHow: 'Scan the QR or send the amount above by PromptPay, then attach the slip.', slip: 'Attach payment slip', slipAlt: 'Attached slip',
       summary: 'Your order', empty: 'Nothing added yet.', remove: 'Remove', items: 'Items', shipFee: 'Shipping', total: 'Total',
       preNote: 'This is a pre-order. Pieces are made after orders close and ship around ' + S.shipDate + '.',
       consent: 'PattEcks! may use this name, phone and address only to handle and ship this order.',
