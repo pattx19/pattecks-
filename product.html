@@ -38,7 +38,7 @@ a{color:inherit;text-decoration:none}
 .pd-next img{transition:transform .9s ease}
 .pd-next:hover img{transform:scale(1.04)}
 .pd-input:focus,.pd-root a:focus-visible,.pd-root button:focus-visible{outline:2px solid var(--silver,#b4b9be);outline-offset:2px}
-@media (max-width:900px){.pd-cols{flex-direction:column}.pd-info{position:static !important}.pd-big{font-size:32px !important}}
+@media (max-width:900px){.pd-cols{flex-direction:column}.pd-info{position:static !important}.pd-big{font-size:40px !important}}
 
 </style>
 <script src="assets/gsap.min.js"></script>
@@ -112,7 +112,7 @@ a{color:inherit;text-decoration:none}
     <aside class="pd-info" style="flex: 5 1 0; min-width: 0; position: sticky; top: 24px; display: flex; flex-direction: column; gap: 28px;">
       <div style="position: relative;" onMouseEnter="{{ wetOn }}" onMouseLeave="{{ wetOff }}">
         <span style="display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; margin-bottom: 12px;">{{ p.no }} — Drop 01</span>
-        <h1 class="pd-big pe-script" style="margin: 0; font-size: 48px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
+        <h1 class="pd-big pe-script" style="margin: 0; font-size: 60px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
         <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none;">
           <sc-for list="{{ nameDrops }}" as="d" hint-placeholder-count="0">
             <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
@@ -121,30 +121,30 @@ a{color:inherit;text-decoration:none}
             <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
           </sc-for>
         </span>
-        <span style="display: block; margin-top: 16px; font-size: 15px; letter-spacing: .12em;">THB [PRICE]</span>
+        <span style="display: block; margin-top: 18px; font-size: 30px; font-weight: 700; letter-spacing: .04em;">THB [PRICE]</span>
       </div>
 
-      <p style="margin: 0; font-size: 17px; line-height: 26px; color: {{ c.muted }}; max-width: 44ch;">{{ p.desc }}</p>
+      <p style="margin: 0; font-size: 16px; line-height: 26px; color: {{ c.muted }}; max-width: 44ch;">{{ p.desc }}</p>
 
       <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div style="display: flex; justify-content: space-between; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;"><span>{{ L.size }}</span><span style="color: {{ c.muted }};">{{ L.sizeTbc }}</span></div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;"><span style="font-size: 17px; font-weight: 700;">{{ L.size }}</span><span style="color: {{ c.muted }};">{{ L.sizeTbc }}</span></div>
         <div role="group" aria-label="Size" style="display: flex; gap: 8px; flex-wrap: wrap;">
           <sc-for list="{{ sizes }}" as="z" hint-placeholder-count="4">
-            <button type="button" class="pd-size" onClick="{{ z.pick }}" aria-pressed="{{ z.on }}" style="min-width: 56px; min-height: 48px; padding: 0 16px; border-radius: 3px; border: 1px solid {{ c.silver }}; background: {{ z.bg }}; color: {{ z.fg }}; font: inherit; font-size: 13px; letter-spacing: .12em;">{{ z.label }}</button>
+            <button type="button" class="pd-size" onClick="{{ z.pick }}" aria-pressed="{{ z.on }}" style="min-width: 64px; min-height: 56px; padding: 0 18px; border-radius: 3px; border: 1px solid {{ c.silver }}; background: {{ z.bg }}; color: {{ z.fg }}; font: inherit; font-size: 17px; font-weight: 700; letter-spacing: .08em;">{{ z.label }}</button>
           </sc-for>
         </div>
         <span style="font-size: 13px; letter-spacing: .04em; color: {{ c.muted }};">{{ p.fit }}</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <button type="button" class="pd-btn" onClick="{{ addCart }}" style="min-height: 56px; padding: 0 28px; background: {{ cartBg }}; color: #f1ebe2; border: 0; font: inherit; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;">{{ cartLabel }}</button>
-        <span role="status" style="font-size: 14px; min-height: 20px;">{{ cartMsg }}</span>
+        <button type="button" class="pd-btn" onClick="{{ addCart }}" style="min-height: 68px; padding: 0 28px; background: {{ cartBg }}; color: #f1ebe2; border: 0; font: inherit; font-size: 18px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;">{{ cartLabel }}</button>
+        <span role="status" style="font-size: 16px; font-weight: 700; min-height: 22px;">{{ cartMsg }}</span>
         <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
-          <a href="order.html" style="display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">{{ L.goCart }} ({{ cartCount }})</a>
+          <a href="order.html" style="display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; font-size: 16px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border-bottom: 2px solid #890000;">{{ L.goCart }} ({{ cartCount }})</a>
         </sc-if>
         <span style="font-size: 13px; color: {{ c.muted }};">{{ L.preNote }}</span>
       </div>
-      <a href="https://www.instagram.com/" style="font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 4px; align-self: flex-start;">{{ L.askIg }}</a>
+      <a href="https://www.instagram.com/" style="display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; align-self: flex-start;">{{ L.askIg }}</a>
 
       <div style="border-top: 1px solid {{ c.hair }};">
         <sc-for list="{{ sections }}" as="a" hint-placeholder-count="3">
