@@ -79,33 +79,37 @@ a{color:inherit;text-decoration:none}
               <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: #890000; color: #f1ebe2; font-family: 'SOV MuekMod', monospace; font-weight: 700; font-size: 20px;">1</span>
               <div style="display: flex; flex-direction: column; gap: 4px;"><h2 id="or-s1" style="margin: 0; font-size: 18px; letter-spacing: .1em; text-transform: uppercase;">{{ L.pick }}</h2><span style="font-size: 14px; color: {{ c.muted }};">{{ L.pickHint }}</span></div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-              <sc-for list="{{ items }}" as="p" hint-placeholder-count="2">
-                <div style="display: flex; gap: 20px; align-items: flex-start; padding: 16px; border: 1px solid {{ p.border }};">
-                  <img src="{{ p.img }}" alt="{{ p.name }}" style="flex: none; width: 110px; height: 140px; object-fit: cover; display: block; background: {{ c.stone }};">
-                  <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+            <sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding: 8px 0;">
+                <p style="margin: 0; font-size: 17px;">{{ L.cartEmpty }}</p>
+                <a href="product.html#henley" class="or-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; background: #890000; color: #f1ebe2; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;">{{ L.shop }}</a>
+              </div>
+            </sc-if>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="1">
+                <div style="display: flex; gap: 20px; align-items: flex-start; padding: 16px; border: 1px solid {{ c.hair }};">
+                  <img src="{{ ln.img }}" alt="{{ ln.name }}" style="flex: none; width: 96px; height: 120px; object-fit: cover; display: block; background: {{ c.stone }};">
+                  <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
                     <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline;">
-                      <span class="pe-script" style="font-size: 26px;">{{ p.name }}</span>
-                      <span style="font-size: 15px; letter-spacing: .08em;">{{ p.priceText }}</span>
+                      <span class="pe-script" style="font-size: 26px;">{{ ln.name }}</span>
+                      <span style="font-size: 17px; font-weight: 700;">{{ ln.sub }}</span>
                     </div>
-                    <div role="group" aria-label="{{ L.size }}" style="display: flex; gap: 8px; flex-wrap: wrap;">
-                      <sc-for list="{{ p.sizes }}" as="z" hint-placeholder-count="4">
-                        <button type="button" class="or-size" onClick="{{ z.pick }}" aria-pressed="{{ z.on }}">{{ z.label }}</button>
-                      </sc-for>
-                    </div>
+                    <span style="font-size: 15px; letter-spacing: .08em;">{{ L.size }}: <b>{{ ln.size }}</b></span>
                     <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                       <div style="display: flex; align-items: center;">
-                        <button type="button" class="or-step" onClick="{{ p.minus }}" aria-label="{{ L.less }}">−</button>
-                        <span aria-live="polite" style="min-width: 44px; text-align: center; font-size: 16px;">{{ p.qty }}</span>
-                        <button type="button" class="or-step" onClick="{{ p.plus }}" aria-label="{{ L.more }}">+</button>
+                        <button type="button" class="or-step" onClick="{{ ln.minus }}" aria-label="{{ L.less }}">−</button>
+                        <span aria-live="polite" style="min-width: 44px; text-align: center; font-size: 17px; font-weight: 700;">{{ ln.qty }}</span>
+                        <button type="button" class="or-step" onClick="{{ ln.plus }}" aria-label="{{ L.more }}">+</button>
                       </div>
-                      <button type="button" class="or-btn" onClick="{{ p.add }}" style="min-height: 48px; padding: 0 22px; background: #890000; color: #f1ebe2; border: 0; font: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;">{{ L.add }}</button>
-                      <span style="font-size: 13px; color: #a30000;">{{ p.err }}</span>
+                      <button type="button" onClick="{{ ln.remove }}" style="min-height: 44px; padding: 0 8px; background: none; border: 0; color: {{ c.muted }}; font: inherit; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; text-decoration: underline; cursor: pointer;">{{ L.remove }}</button>
                     </div>
                   </div>
                 </div>
               </sc-for>
             </div>
+            <sc-if value="{{ hasLines }}" hint-placeholder-val="{{ true }}">
+              <a href="product.html#henley" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">+ {{ L.addMore }}</a>
+            </sc-if>
           </section>
 
           <section class="or-panel" aria-labelledby="or-s2" style="background: {{ panelBg }}; border: 1px solid {{ c.silver }}; padding: 28px;">
@@ -351,7 +355,7 @@ class Component extends DCLogic {
     const th = st.th;
     const L = th ? {
       kicker: 'พรีออเดอร์ — ดรอป 01', title: 'สั่งจอง', intro: 'สั่งและจ่ายวันนี้ เราผลิตตามจำนวนที่สั่ง แล้วจัดส่งประมาณ ' + S.shipDate + ' ทุกตัวเย็บจากล็อตเดียวกัน',
-      pick: 'เลือกสินค้า', pickHint: 'เลือกไซซ์และจำนวน แล้วกดใส่ออเดอร์', shipHint: 'ใช้สำหรับจัดส่งและติดต่อเรื่องออเดอร์นี้', payHint: 'โอนตามยอดรวม แล้วแนบสลิป', size: 'ไซซ์', less: 'ลดจำนวน', more: 'เพิ่มจำนวน', add: 'ใส่ออเดอร์', needSize: 'เลือกไซซ์ก่อน',
+      pick: 'ตะกร้าของคุณ', pickHint: 'ตรวจไซซ์และจำนวนก่อนสั่ง', cartEmpty: 'ตะกร้ายังว่าง เลือกสินค้าและไซซ์จากหน้าสินค้าก่อน', shop: 'ไปเลือกสินค้า', addMore: 'เพิ่มสินค้าอื่น', shipHint: 'ใช้สำหรับจัดส่งและติดต่อเรื่องออเดอร์นี้', payHint: 'โอนตามยอดรวม แล้วแนบสลิป', size: 'ไซซ์', less: 'ลดจำนวน', more: 'เพิ่มจำนวน', add: 'ใส่ออเดอร์', needSize: 'เลือกไซซ์ก่อน',
       ship: 'ข้อมูลจัดส่ง', name: 'ชื่อ-นามสกุล', phone: 'เบอร์โทร', email: 'อีเมล', addr: 'ที่อยู่จัดส่ง', note: 'หมายเหตุ',
       pay: 'ชำระเงิน', accName: 'ชื่อบัญชี', amount: 'ยอดโอน', payHow: 'สแกน QR หรือโอนเข้าพร้อมเพย์ด้วยยอดด้านบน แล้วแนบสลิป', slip: 'แนบสลิปโอนเงิน', slipAlt: 'สลิปที่แนบ',
       summary: 'สรุปออเดอร์', empty: 'ยังไม่มีสินค้า', remove: 'เอาออก', items: 'สินค้า', shipFee: 'ค่าส่ง', total: 'รวม',
@@ -362,7 +366,7 @@ class Component extends DCLogic {
       doneKicker: 'ได้รับพรีออเดอร์แล้ว', doneTitle: 'ขอบคุณ', doneBody: 'เราจะตรวจสลิปและยืนยันทางเบอร์โทรหรือ Instagram ภายใน 1–2 วัน', orderNo: 'เลขออเดอร์', doneNote: 'แคปหน้านี้เก็บไว้ได้เลย', back: 'กลับหน้าแรก'
     } : {
       kicker: 'Pre-order — Drop 01', title: 'Pre-order', intro: 'Order and pay today. We make what is ordered and ship around ' + S.shipDate + '. Every piece comes from the same run.',
-      pick: 'Pick your pieces', pickHint: 'Choose a size and quantity, then add it to your order.', shipHint: 'Where we send it, and how we reach you about this order.', payHint: 'Pay the total, then attach the slip.', size: 'Size', less: 'One less', more: 'One more', add: 'Add to order', needSize: 'Pick a size first',
+      pick: 'Your cart', pickHint: 'Check sizes and quantities before you order.', cartEmpty: 'Your cart is empty. Pick a piece and a size on the product page first.', shop: 'Shop Drop 01', addMore: 'Add another piece', shipHint: 'Where we send it, and how we reach you about this order.', payHint: 'Pay the total, then attach the slip.', size: 'Size', less: 'One less', more: 'One more', add: 'Add to order', needSize: 'Pick a size first',
       ship: 'Shipping details', name: 'Full name', phone: 'Phone', email: 'Email', addr: 'Shipping address', note: 'Note',
       pay: 'Payment', accName: 'Account name', amount: 'Amount', payHow: 'Scan the QR or send the amount above by PromptPay, then attach the slip.', slip: 'Attach payment slip', slipAlt: 'Attached slip',
       summary: 'Your order', empty: 'Nothing added yet.', remove: 'Remove', items: 'Items', shipFee: 'Shipping', total: 'Total',
@@ -411,9 +415,15 @@ class Component extends DCLogic {
       }),
       lines: st.lines.map((l, i) => {
         const p = S.products.find((q) => q.id === l.id) || { name: l.id, price: null };
-        return { label: p.name + ' · ' + l.size + ' × ' + l.qty, sub: money(p.price == null ? null : p.price * l.qty, '[PRICE]'), remove: () => this.setCart(this.state.lines.filter((x, k) => k !== i)) };
+        const upd = (d) => this.setCart(this.state.lines.map((x, k) => (k === i ? { ...x, qty: Math.max(1, Math.min(9, x.qty + d)) } : x)));
+        return {
+          label: p.name + ' · ' + l.size + ' × ' + l.qty, sub: money(p.price == null ? null : p.price * l.qty, '[PRICE]'),
+          name: p.name, img: p.img, size: l.size, qty: l.qty,
+          minus: () => upd(-1), plus: () => upd(1),
+          remove: () => this.setCart(this.state.lines.filter((x, k) => k !== i))
+        };
       }),
-      emptyCart: !st.lines.length,
+      emptyCart: !st.lines.length, hasLines: st.lines.length > 0,
       itemsText: st.lines.length ? money(T.items, '[PRICE]') : '—',
       shipText: st.lines.length ? money(S.shipping, '[SHIPPING]') : '—',
       totalText: st.lines.length ? money(T.total, '[TOTAL]') : '—',
