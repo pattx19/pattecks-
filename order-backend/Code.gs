@@ -24,8 +24,12 @@ const COLS = [
   { title: 'สลิป', width: 80 },
   { title: 'หมายเหตุ / เลขพัสดุ', width: 200 },
   { title: 'อีเมล', width: 170 },
-  { title: 'ภาษา', width: 60 }
+  { title: 'ภาษา', width: 60 },
+  { title: 'ส่งใบเสร็จแล้ว', width: 130 }
 ];
+const COL = { received: 1, orderId: 2, status: 3, name: 4, phone: 5, ig: 6, address: 7, items: 8,
+  itemsTotal: 9, shipping: 10, total: 11, slip: 12, note: 13, email: 14, lang: 15, receiptSent: 16 };
+const PAID_STATUS = 'จ่ายแล้ว';
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -41,6 +45,10 @@ function doPost(e) {
       slipUrl ? '=HYPERLINK("' + slipUrl + '","ดูสลิป")' : '', data.note || '', data.email || '', data.lang || ''
     ]);
     notify_(data, items, slipUrl);
+    if (data.email) sendCustomerEmail_('confirm', {
+      orderId: data.orderId, name: data.name, email: data.email, lang: data.lang, items: items,
+      address: data.address, itemsTotal: data.itemsTotal, shipping: data.shipping, total: data.total, date: new Date()
+    });
     return ContentService.createTextOutput(JSON.stringify({ ok: true, orderId: data.orderId })).setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) })).setMimeType(ContentService.MimeType.JSON);
@@ -51,7 +59,126 @@ function doPost(e) {
 
 // Adds a "PattEcks" menu to the sheet, so you can re-tidy it any time.
 function onOpen() {
-  SpreadsheetApp.getUi().createMenu('PattEcks').addItem('จัดหน้าชีตใหม่', 'formatSheet').addToUi();
+  SpreadsheetApp.getUi().createMenu('PattEcks')
+    .addItem('จัดหน้าชีตใหม่', 'formatSheet')
+    .addItem('เปิดระบบส่งใบเสร็จอัตโนมัติ (ทำครั้งเดียว)', 'setupReceiptTrigger')
+    .addItem('ส่งใบเสร็จของแถวที่เลือกอีกครั้ง', 'resendReceipt')
+    .addToUi();
+}
+
+/* ---------- Customer emails ---------- */
+
+// Run once (PattEcks menu). After that, changing a row's status to "จ่ายแล้ว" emails that customer a receipt.
+function setupReceiptTrigger() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'onStatusEdit') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('onStatusEdit').forSpreadsheet(ss).onEdit().create();
+  const sheet = getSheet_();
+  sheet.getRange(1, COL.receiptSent).setValue(COLS[COL.receiptSent - 1].title)
+    .setBackground('#1a1b1d').setFontColor('#ffffff').setFontWeight('bold').setHorizontalAlignment('center');
+  sheet.setColumnWidth(COL.receiptSent, COLS[COL.receiptSent - 1].width);
+  ss.toast('เปิดแล้ว: เปลี่ยนสถานะเป็น "จ่ายแล้ว" ระบบจะส่งใบเสร็จให้ลูกค้าเอง', 'PattEcks', 6);
+}
+
+function onStatusEdit(e) {
+  if (!e || !e.range) return;
+  const sheet = e.range.getSheet();
+  if (sheet.getName() !== SHEET_NAME || e.range.getColumn() !== COL.status || e.range.getRow() < 2) return;
+  if (e.range.getNumRows() !== 1 || String(e.value) !== PAID_STATUS) return;
+  sendReceiptForRow_(sheet, e.range.getRow(), false);
+}
+
+function resendReceipt() {
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const row = sheet.getActiveRange().getRow();
+  if (sheet.getName() !== SHEET_NAME || row < 2) {
+    SpreadsheetApp.getUi().alert('เลือกแถวออเดอร์ในแท็บ Orders ก่อน');
+    return;
+  }
+  const ok = sendReceiptForRow_(sheet, row, true);
+  SpreadsheetApp.getActiveSpreadsheet().toast(ok ? 'ส่งใบเสร็จแล้ว' : 'ส่งไม่ได้: ออเดอร์นี้ไม่มีอีเมล', 'PattEcks', 5);
+}
+
+function sendReceiptForRow_(sheet, row, force) {
+  const v = sheet.getRange(row, 1, 1, COLS.length).getValues()[0];
+  const email = String(v[COL.email - 1] || '').trim();
+  if (!email) return false;
+  if (v[COL.receiptSent - 1] && !force) return false;   // already sent once
+  sendCustomerEmail_('receipt', {
+    orderId: v[COL.orderId - 1], name: v[COL.name - 1], email: email, lang: v[COL.lang - 1],
+    items: String(v[COL.items - 1] || ''), address: v[COL.address - 1],
+    itemsTotal: v[COL.itemsTotal - 1], shipping: v[COL.shipping - 1], total: v[COL.total - 1],
+    date: v[COL.received - 1] instanceof Date ? v[COL.received - 1] : new Date(), paidOn: new Date()
+  });
+  sheet.getRange(row, COL.receiptSent).setValue(new Date()).setNumberFormat('d mmm yyyy, HH:mm');
+  return true;
+}
+
+// kind: 'confirm' (order received, slip being checked) or 'receipt' (payment confirmed).
+function sendCustomerEmail_(kind, o) {
+  try {
+    const th = String(o.lang || '').toLowerCase() !== 'en';
+    const T = th ? {
+      confirm: 'ได้รับออเดอร์แล้ว', receipt: 'ใบเสร็จรับเงิน',
+      hiConfirm: 'ขอบคุณที่สั่งจอง เราได้รับออเดอร์และสลิปของคุณแล้ว กำลังตรวจสอบยอดโอน เมื่อยืนยันแล้วจะส่งใบเสร็จตามมาอีกฉบับ',
+      hiReceipt: 'ยืนยันการชำระเงินเรียบร้อย ขอบคุณที่สนับสนุน PattEcks! สินค้าเป็นแบบพรีออเดอร์ เราจะแจ้งเลขพัสดุเมื่อจัดส่ง',
+      hello: 'สวัสดีคุณ', order: 'เลขออเดอร์', date: 'วันที่สั่ง', paid: 'วันที่ชำระ', items: 'รายการ',
+      sub: 'ค่าสินค้า', ship: 'ค่าส่ง', total: 'ยอดรวม', addr: 'ที่อยู่จัดส่ง', tbc: 'แจ้งภายหลัง',
+      foot: 'มีคำถามตอบกลับอีเมลนี้ได้เลย', status: 'สถานะ', stConfirm: 'รอตรวจสลิป', stReceipt: 'ชำระแล้ว'
+    } : {
+      confirm: 'Order received', receipt: 'Receipt',
+      hiConfirm: "Thanks for your pre-order. We've got your order and payment slip and are checking the transfer. You'll get a receipt once it's confirmed.",
+      hiReceipt: "Payment confirmed. Thank you for supporting PattEcks! This is a pre-order; we'll send your tracking number when it ships.",
+      hello: 'Hi', order: 'Order no.', date: 'Ordered', paid: 'Paid', items: 'Items',
+      sub: 'Subtotal', ship: 'Shipping', total: 'Total', addr: 'Ship to', tbc: 'TBC',
+      foot: 'Questions? Just reply to this email.', status: 'Status', stConfirm: 'Checking slip', stReceipt: 'Paid'
+    };
+    const isReceipt = kind === 'receipt';
+    const tz = Session.getScriptTimeZone() || 'Asia/Bangkok';
+    const fmtD = function (d) { return Utilities.formatDate(d, tz, 'd MMM yyyy, HH:mm'); };
+    const baht = function (n) { return (n === '' || n == null || isNaN(Number(n))) ? T.tbc : '฿' + Number(n).toLocaleString('en-US'); };
+    const esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    const lines = String(o.items || '').split('\n').filter(String);
+    const row = function (k, val, bold) {
+      return '<tr><td style="padding:6px 0;color:#6b7075">' + k + '</td><td style="padding:6px 0;text-align:right;' + (bold ? 'font-weight:700;font-size:18px;color:#1a1b1d' : 'color:#1a1b1d') + '">' + val + '</td></tr>';
+    };
+    const html =
+      '<div style="background:#f4efe6;padding:32px 12px;font-family:Helvetica,Arial,sans-serif">' +
+      '<div style="max-width:520px;margin:0 auto;background:#ffffff;border:1px solid #d9d4c7">' +
+      '<div style="background:#1a1b1d;color:#ffffff;padding:22px 28px;font-size:22px;font-weight:700;letter-spacing:1px">PattEcks!' +
+      '<span style="float:right;font-size:13px;font-weight:400;letter-spacing:' + (th ? '0' : '2px') + ';color:#d9d4c7;padding-top:6px">' + (isReceipt ? T.receipt : T.confirm).toUpperCase() + '</span></div>' +
+      '<div style="height:4px;background:#890000"></div>' +
+      '<div style="padding:28px">' +
+      '<p style="margin:0 0 6px;font-size:16px;color:#1a1b1d">' + T.hello + ' ' + esc(o.name) + '</p>' +
+      '<p style="margin:0 0 22px;font-size:14px;line-height:1.6;color:#45484c">' + (isReceipt ? T.hiReceipt : T.hiConfirm) + '</p>' +
+      '<table style="width:100%;border-collapse:collapse;font-size:14px">' +
+      row(T.order, '<b>' + esc(o.orderId) + '</b>') + row(T.date, fmtD(o.date)) +
+      (isReceipt ? row(T.paid, fmtD(o.paidOn)) : '') +
+      row(T.status, '<span style="color:' + (isReceipt ? '#2e7d32' : '#890000') + ';font-weight:700">' + (isReceipt ? T.stReceipt : T.stConfirm) + '</span>') +
+      '</table>' +
+      '<div style="border-top:1px solid #e6e1d6;margin:18px 0 10px"></div>' +
+      '<div style="font-size:12px;letter-spacing:' + (th ? '0' : '1.5px') + ';color:#6b7075;margin-bottom:6px">' + T.items.toUpperCase() + '</div>' +
+      lines.map(function (l) { return '<div style="padding:5px 0;font-size:15px;color:#1a1b1d">' + esc(l) + '</div>'; }).join('') +
+      '<div style="border-top:1px solid #e6e1d6;margin:12px 0 6px"></div>' +
+      '<table style="width:100%;border-collapse:collapse;font-size:14px">' +
+      row(T.sub, baht(o.itemsTotal)) + row(T.ship, baht(o.shipping)) + row(T.total, baht(o.total), true) + '</table>' +
+      '<div style="border-top:1px solid #e6e1d6;margin:16px 0 10px"></div>' +
+      '<div style="font-size:12px;letter-spacing:' + (th ? '0' : '1.5px') + ';color:#6b7075;margin-bottom:6px">' + T.addr.toUpperCase() + '</div>' +
+      '<div style="font-size:14px;line-height:1.6;color:#1a1b1d;white-space:pre-line">' + esc(o.address) + '</div>' +
+      '</div>' +
+      '<div style="padding:16px 28px;background:#f4efe6;font-size:12px;color:#6b7075">' + T.foot + '<br>pattx19.github.io/pattecks-</div>' +
+      '</div></div>';
+    const text = [(isReceipt ? T.receipt : T.confirm) + ' — PattEcks!', T.order + ': ' + o.orderId, '', lines.join('\n'), '',
+      T.total + ': ' + baht(o.total), T.addr + ': ' + o.address].join('\n');
+    MailApp.sendEmail({
+      to: o.email,
+      subject: 'PattEcks! — ' + (isReceipt ? T.receipt : T.confirm) + ' ' + o.orderId,
+      body: text, htmlBody: html, name: 'PattEcks!',
+      replyTo: Session.getEffectiveUser().getEmail()
+    });
+  } catch (err) {}
 }
 
 // Run this once (or from the PattEcks menu) to make the sheet easy to read.
