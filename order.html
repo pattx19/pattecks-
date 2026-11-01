@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PattEcks! — Pre-order</title>
+<meta name="description" content="Pre-order PattEcks! Drop 01: linen gauze henley and raw slub denim.">
+<link rel="icon" href="assets/wordmark-ink.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Jim+Nightshade&amp;display=swap" rel="stylesheet">
+<style>
+*{font-synthesis-weight:none}
+.pe-script{font-family:"Jim Nightshade","SOV UI","SOV MuekMod",serif;letter-spacing:0}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-regular.woff") format("woff");font-weight:400;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV MuekMod";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:700;font-display:swap;size-adjust:125%}
+@font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0E00-0E7F;size-adjust:138%}
+@font-face{font-family:"SOV UI";src:url("assets/sov-muekmod-bold.woff") format("woff");font-weight:100 900;font-display:swap;unicode-range:U+0000-0DFF,U+0E80-FFFF;size-adjust:112%}
+.tx-bg > div{transition:opacity .9s ease}
+.is-th *{letter-spacing:.01em !important}
+body{margin:0;font-family:"SOV UI","SOV MuekMod","Helvetica Neue",Arial,sans-serif;letter-spacing:.03em}
+a{color:inherit;text-decoration:none}
+::selection{background:#890000;color:#f1ebe2}
+.pd-nav a{position:relative}
+.pd-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--silver,#b4b9be);transition:right .4s ease}
+.pd-nav a:hover::after{right:0}
+.or-root a:focus-visible,.or-root button:focus-visible,.or-root input:focus-visible,.or-root textarea:focus-visible{outline:2px solid var(--silver,#b4b9be);outline-offset:2px}
+.or-btn{transition:background .3s ease}
+.or-btn:hover{background:#a30d0d}
+.or-in{box-sizing:border-box;width:100%;min-height:52px;padding:12px 14px;border:1px solid var(--silver,#6b7075);background:transparent;color:inherit;font:inherit;font-size:16px;letter-spacing:.02em}
+.or-in::placeholder{color:var(--muted,#54575b);opacity:.8}
+.or-size{min-width:52px;min-height:48px;border:1px solid var(--silver,#6b7075);background:transparent;color:inherit;font:inherit;font-size:14px;letter-spacing:.1em;cursor:pointer}
+.or-size[aria-pressed="true"]{background:var(--ink,#1a1b1d);color:var(--ground,#e8e2d6);border-color:var(--ink,#1a1b1d)}
+.or-step{width:48px;min-height:48px;border:1px solid var(--silver,#6b7075);background:transparent;color:inherit;font:inherit;font-size:20px;cursor:pointer}
+.or-lab{display:block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.is-th .or-lab{text-transform:none}
+@media (max-width:900px){.or-cols{flex-direction:column !important}.or-side{position:static !important;width:100% !important}.or-pad{padding-left:24px !important;padding-right:24px !important}.or-big{font-size:34px !important}.or-nav{display:none !important}}
+
+</style>
+<script src="assets/gsap.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+<div class="or-root {{ thCls }}" style="--silver: {{ c.silver }}; --ink: {{ c.ink }}; --ground: {{ c.ground }}; --muted: {{ c.muted }}; position: relative; isolation: isolate; min-height: 100vh; overflow: hidden; background: {{ c.ground }}; color: {{ c.ink }}; transition: background-color .9s ease, color .9s ease;">
+  <div class="tx-bg" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.weave }}; background-size: 510px 510px; opacity: {{ tx.weave }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.concrete }}; background-size: 510px 510px; opacity: {{ tx.concrete }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.grain }}; background-size: 510px 510px; opacity: {{ tx.grain }}; mix-blend-mode: {{ tx.blend }};"></div>
+    <div style="position: absolute; inset: 0; background-image: {{ tx.img.leather }}; background-size: 510px 510px; opacity: {{ tx.leather }};"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 55% at 45% 22%, rgba(255,255,255,0.05), rgba(255,255,255,0)); opacity: {{ tx.sheen }};"></div>
+  </div>
+
+  <header class="or-pad" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
+    <a href="index.html" aria-label="PattEcks! home" style="display: inline-flex; align-items: center; min-height: 44px;"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
+    <nav class="pd-nav or-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+      <a href="index.html#collection">{{ t.collection }}</a>
+      <a href="about.html">{{ t.about }}</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+      <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
+      <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
+    </div>
+  </header>
+
+  <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+  <main class="or-pad" style="padding: 24px 48px 96px; position: relative; z-index: 2;">
+    <div style="max-width: 1240px; margin: 0 auto;">
+      <span style="display: block; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; margin-bottom: 14px;">{{ L.kicker }}</span>
+      <h1 class="or-big" style="margin: 0 0 14px; font-family: 'SOV MuekMod', 'Courier New', monospace; font-weight: 700; font-size: 52px; line-height: 1.05; text-transform: uppercase;">{{ L.title }}</h1>
+      <p style="margin: 0 0 48px; max-width: 60ch; font-size: 16px; line-height: 26px; color: {{ c.muted }};">{{ L.intro }}</p>
+
+      <div class="or-cols" style="display: flex; gap: 48px; align-items: flex-start;">
+        <div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 48px;">
+
+          <section aria-labelledby="or-s1">
+            <h2 id="or-s1" style="margin: 0 0 20px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">1 — {{ L.pick }}</h2>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <sc-for list="{{ items }}" as="p" hint-placeholder-count="2">
+                <div style="display: flex; gap: 20px; align-items: flex-start; padding: 16px; border: 1px solid {{ p.border }};">
+                  <img src="{{ p.img }}" alt="{{ p.name }}" style="flex: none; width: 110px; height: 140px; object-fit: cover; display: block; background: {{ c.stone }};">
+                  <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline;">
+                      <span class="pe-script" style="font-size: 26px;">{{ p.name }}</span>
+                      <span style="font-size: 15px; letter-spacing: .08em;">{{ p.priceText }}</span>
+                    </div>
+                    <div role="group" aria-label="{{ L.size }}" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                      <sc-for list="{{ p.sizes }}" as="z" hint-placeholder-count="4">
+                        <button type="button" class="or-size" onClick="{{ z.pick }}" aria-pressed="{{ z.on }}">{{ z.label }}</button>
+                      </sc-for>
+                    </div>
+                    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                      <div style="display: flex; align-items: center;">
+                        <button type="button" class="or-step" onClick="{{ p.minus }}" aria-label="{{ L.less }}">−</button>
+                        <span aria-live="polite" style="min-width: 44px; text-align: center; font-size: 16px;">{{ p.qty }}</span>
+                        <button type="button" class="or-step" onClick="{{ p.plus }}" aria-label="{{ L.more }}">+</button>
+                      </div>
+                      <button type="button" class="or-btn" onClick="{{ p.add }}" style="min-height: 48px; padding: 0 22px; background: #890000; color: #f1ebe2; border: 0; font: inherit; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;">{{ L.add }}</button>
+                      <span style="font-size: 13px; color: #a30000;">{{ p.err }}</span>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+
+          <section aria-labelledby="or-s2">
+            <h2 id="or-s2" style="margin: 0 0 20px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">2 — {{ L.ship }}</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px;">
+              <div><label class="or-lab" for="or-name">{{ L.name }} *</label><input id="or-name" class="or-in" autocomplete="name" value="{{ f.name }}" onInput="{{ setName }}"></div>
+              <div><label class="or-lab" for="or-phone">{{ L.phone }} *</label><input id="or-phone" class="or-in" type="tel" inputmode="tel" autocomplete="tel" value="{{ f.phone }}" onInput="{{ setPhone }}"></div>
+              <div><label class="or-lab" for="or-email">{{ L.email }}</label><input id="or-email" class="or-in" type="email" autocomplete="email" value="{{ f.email }}" onInput="{{ setEmail }}"></div>
+              <div><label class="or-lab" for="or-ig">Instagram</label><input id="or-ig" class="or-in" placeholder="@" value="{{ f.ig }}" onInput="{{ setIg }}"></div>
+              <div style="grid-column: 1 / -1;"><label class="or-lab" for="or-addr">{{ L.addr }} *</label><textarea id="or-addr" class="or-in" rows="3" autocomplete="street-address" onInput="{{ setAddr }}" style="resize: vertical;">{{ f.addr }}</textarea></div>
+              <div style="grid-column: 1 / -1;"><label class="or-lab" for="or-note">{{ L.note }}</label><input id="or-note" class="or-in" value="{{ f.note }}" onInput="{{ setNote }}"></div>
+            </div>
+          </section>
+
+          <section aria-labelledby="or-s3">
+            <h2 id="or-s3" style="margin: 0 0 20px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">3 — {{ L.pay }}</h2>
+            <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+              <div style="flex: none; width: 220px; height: 220px; border: 1px dashed {{ c.silver }}; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; box-sizing: border-box; font-size: 13px; color: {{ c.muted }};">
+                <sc-if value="{{ hasQr }}" hint-placeholder-val="{{ false }}"><img src="{{ qrSrc }}" alt="PromptPay QR" style="width: 100%; height: 100%; object-fit: contain; background: #fff;"></sc-if>
+                <sc-if value="{{ noQr }}" hint-placeholder-val="{{ true }}"><span>[PromptPay QR]</span></sc-if>
+              </div>
+              <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 24px;">
+                <span>PromptPay: <b>{{ payId }}</b></span>
+                <span>{{ L.accName }}: <b>{{ payName }}</b></span>
+                <span>{{ L.amount }}: <b>{{ totalText }}</b></span>
+                <span style="color: {{ c.muted }}; font-size: 14px;">{{ L.payHow }}</span>
+                <label class="or-lab" for="or-slip" style="margin: 10px 0 0;">{{ L.slip }} *</label>
+                <input id="or-slip" type="file" accept="image/*" onChange="{{ pickSlip }}" style="font: inherit; font-size: 14px; min-height: 44px;">
+                <sc-if value="{{ hasSlip }}" hint-placeholder-val="{{ false }}"><img src="{{ slipSrc }}" alt="{{ L.slipAlt }}" style="max-width: 180px; max-height: 240px; object-fit: contain; border: 1px solid {{ c.hair }};"></sc-if>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="or-side" aria-labelledby="or-sum" style="flex: none; width: 380px; position: sticky; top: 24px; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 28px; box-sizing: border-box; background: {{ c.ground }};">
+          <h2 id="or-sum" style="margin: 0 0 18px; font-size: 15px; letter-spacing: .12em; text-transform: uppercase;">{{ L.summary }}</h2>
+          <sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ true }}"><p style="margin: 0 0 18px; font-size: 14px; color: {{ c.muted }};">{{ L.empty }}</p></sc-if>
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px;">
+            <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="0">
+              <div style="display: flex; justify-content: space-between; gap: 12px; align-items: center; font-size: 14px;">
+                <span>{{ ln.label }}</span>
+                <span style="display: flex; gap: 10px; align-items: center;"><span>{{ ln.sub }}</span><button type="button" onClick="{{ ln.remove }}" aria-label="{{ L.remove }} {{ ln.label }}" style="min-width: 44px; min-height: 44px; background: none; border: 0; color: inherit; font: inherit; font-size: 18px; cursor: pointer;">×</button></span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-top: 1px solid {{ c.hair }}; padding-top: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
+            <div style="display: flex; justify-content: space-between;"><span>{{ L.items }}</span><span>{{ itemsText }}</span></div>
+            <div style="display: flex; justify-content: space-between;"><span>{{ L.shipFee }}</span><span>{{ shipText }}</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 17px; margin-top: 6px;"><b>{{ L.total }}</b><b>{{ totalText }}</b></div>
+          </div>
+          <p style="margin: 18px 0 0; font-size: 13px; line-height: 21px; color: {{ c.muted }};">{{ L.preNote }}</p>
+          <label style="display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 0; font-size: 13px; line-height: 20px; cursor: pointer;"><input type="checkbox" onChange="{{ setConsent }}" style="width: 20px; height: 20px; margin: 0; flex: none;"><span>{{ L.consent }}</span></label>
+          <button type="button" class="or-btn" onClick="{{ submit }}" style="width: 100%; min-height: 56px; margin-top: 18px; background: #890000; color: #f1ebe2; border: 0; font: inherit; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer;">{{ submitLabel }}</button>
+          <p role="alert" style="margin: 12px 0 0; font-size: 14px; line-height: 21px; color: #c2271b;">{{ errText }}</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+  <main class="or-pad" style="padding: 48px 48px 120px; position: relative; z-index: 2;">
+    <div style="max-width: 720px; margin: 0 auto; border: 1px solid {{ c.silver }}; outline: 1px dashed {{ c.silver }}; outline-offset: -8px; padding: 40px; box-sizing: border-box; background: {{ c.ground }};">
+      <span style="display: block; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">{{ L.doneKicker }}</span>
+      <h1 class="or-big" style="margin: 12px 0 18px; font-family: 'SOV MuekMod', 'Courier New', monospace; font-weight: 700; font-size: 44px; line-height: 1.05; text-transform: uppercase;">{{ L.doneTitle }}</h1>
+      <p style="margin: 0 0 22px; font-size: 16px; line-height: 26px;">{{ L.doneBody }}</p>
+      <div style="font-size: 15px; line-height: 26px; border-top: 1px solid {{ c.hair }}; padding-top: 16px;">
+        <div>{{ L.orderNo }}: <b>{{ orderId }}</b></div>
+        <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="0"><div>{{ ln.label }} — {{ ln.sub }}</div></sc-for>
+        <div>{{ L.total }}: <b>{{ totalText }}</b></div>
+      </div>
+      <p style="margin: 22px 0 0; font-size: 14px; color: {{ c.muted }};">{{ L.doneNote }}</p>
+      <a href="index.html" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 18px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">{{ L.back }}</a>
+    </div>
+  </main>
+  </sc-if>
+
+  <footer class="or-pad" style="padding: 32px 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">
+    <span>Instagram @[HANDLE]</span><span>{{ L.footer }}</span>
+  </footer>
+</div>
+</template>
+<script src="dc-lite.js"></script>
+<script>
+DC.mount(document.getElementById('tpl'), document.getElementById('app'), function (DCLogic) {
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    const mq = (q) => !!(window.matchMedia && window.matchMedia(q).matches);
+    this.sysDark = mq('(prefers-color-scheme: dark)');
+    this.reduced = mq('(prefers-reduced-motion: reduce)');
+    // ---- Shop settings: fill these in, everything else follows ----
+    // price: number in THB, or null while it is not set (the page then shows [PRICE]).
+    this.shop = {
+      products: [
+        { id: 'henley', name: 'Linen Gauze Henley', img: 'assets/henley.jpg', price: null },
+        { id: 'denim', name: 'Raw Slub Denim', img: 'assets/denim.jpg', price: null }
+      ],
+      sizes: ['S', 'M', 'L', 'XL'],
+      shipping: null,            // flat shipping fee in THB, or null for [SHIPPING]
+      promptPayId: '[PROMPTPAY NUMBER]',
+      accountName: '[ACCOUNT NAME]',
+      qrImage: '',               // uploaded image of your PromptPay QR; empty shows a placeholder
+      shipDate: '[DATE]',
+      orderUrl: ''               // the Google Apps Script web app URL that saves orders to your Google Sheet
+    };
+    this.state = { theme: null, th: false, t: 0, sel: {}, qty: {}, err: {}, lines: [], f: { name: '', phone: '', email: '', ig: '', addr: '', note: '' }, slip: null, consent: false, sending: false, error: '', done: null };
+    try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
+    this.running = false;
+  }
+  componentDidMount() {
+    this.syncPrefs();
+    this.onStore = () => this.syncPrefs();
+    window.addEventListener('storage', this.onStore);
+    this.start();
+    this.bakeTiles();
+  }
+  bakeTiles() {
+    // Draw each code texture ONCE into a small seamless tile, then the page just repeats the picture.
+    // The tile is drawn 3x3 with the noise stitched, and only the centre is kept, so edges match.
+    const T = 510, W = 3 * T;
+    const turb = (a, r) => `<feTurbulence ${a} stitchTiles="stitch" x="0" y="0" width="${T}" height="${T}" result="${r}0"/><feTile in="${r}0" x="0" y="0" width="${W}" height="${W}" result="${r}"/>`;
+    const fl = (inner) => `<filter id="f" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${W}" color-interpolation-filters="sRGB">${inner}</filter>`;
+    const lit = 'azimuth="235" elevation="48"';
+    const src = {
+      leather: [fl(turb('type="fractalNoise" baseFrequency="0.1" numOctaves="4" seed="9"', 'pebble') + turb('type="turbulence" baseFrequency="0.012 0.02" numOctaves="3" seed="21"', 'crease') + `<feComposite in="pebble" in2="crease" operator="arithmetic" k1="0" k2="0.75" k3="0.45" k4="-0.1" result="h"/><feDiffuseLighting in="h" surfaceScale="2.2" diffuseConstant="1" lighting-color="#ffffff" result="lit"><feDistantLight ${lit}/></feDiffuseLighting><feSpecularLighting in="h" surfaceScale="2.2" specularConstant="0.3" specularExponent="30" lighting-color="#ffffff" result="spec"><feDistantLight ${lit}/></feSpecularLighting><feComposite in="spec" in2="SourceAlpha" operator="in" result="spec2"/><feColorMatrix in="lit" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1 0 0 0 1" result="shade"/><feMerge><feMergeNode in="shade"/><feMergeNode in="spec2"/></feMerge>`), `<rect width="${W}" height="${W}" fill="#000" filter="url(#f)"/>`],
+      grain: [fl(turb('type="fractalNoise" baseFrequency="0.9" numOctaves="2"', 'g') + '<feColorMatrix in="g" type="saturate" values="0"/>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      concrete: [fl(turb('type="fractalNoise" baseFrequency="0.006 0.009" numOctaves="5" seed="11"', 'c') + '<feColorMatrix in="c" type="saturate" values="0"/><feComponentTransfer><feFuncR type="gamma" exponent="1.8"/><feFuncG type="gamma" exponent="1.8"/><feFuncB type="gamma" exponent="1.8"/></feComponentTransfer>'), `<rect width="${W}" height="${W}" fill="#808080" filter="url(#f)"/>`],
+      weave: [fl(turb('type="fractalNoise" baseFrequency="0.03 0.5" numOctaves="2" seed="4"', 'n') + '<feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>') + '<pattern id="p" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 1.5H6M0 4.5H6" stroke="#1a1b1d" stroke-width="0.8" opacity="0.7" fill="none"/><path d="M1.5 0V6M4.5 0V6" stroke="#1a1b1d" stroke-width="0.6" opacity="0.45" fill="none"/></pattern>', `<rect width="${W}" height="${W}" fill="url(#p)" filter="url(#f)"/>`],
+    };
+    const one = (name) => new Promise((done) => {
+      const [defs, body] = src[name];
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${W}"><defs>${defs}</defs>${body}</svg>`;
+      const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const cv = document.createElement('canvas'); cv.width = T; cv.height = T;
+          cv.getContext('2d').drawImage(img, T, T, T, T, 0, 0, T, T);
+          cv.toBlob((b) => done(b ? URL.createObjectURL(b) : null), 'image/png');
+        } catch (e) { done(null); }
+      };
+      img.onerror = () => done(null);
+      img.src = url;
+    });
+    const order = ['leather', 'weave', 'grain', 'concrete'];
+    const next = (i) => {
+      if (this.stopped || i >= order.length) return;
+      one(order[i]).then((u) => {
+        if (this.stopped) return;
+        if (u) this.setState({ tiles: { ...(this.state.tiles || {}), [order[i]]: u } });
+        setTimeout(() => next(i + 1), 60);
+      });
+    };
+    setTimeout(() => next(0), 200);
+  }
+  syncPrefs() {
+    // Same saved language and theme as every other page.
+    try {
+      const th = localStorage.getItem('pe-lang') === 'th';
+      const tm = localStorage.getItem('pe-theme');
+      const theme = tm === 'night' || tm === 'linen' ? tm : null;
+      if (th !== this.state.th || theme !== this.state.theme) this.setState({ th, theme });
+    } catch (e) {}
+  }
+  componentWillUnmount() { this.stopped = true; try { Object.values(this.state.tiles || {}).forEach((u) => URL.revokeObjectURL(u)); } catch (e) {} if (this.tick && window.gsap) window.gsap.ticker.remove(this.tick); if (this.raf) cancelAnimationFrame(this.raf); }
+  start() {
+    if (this.running) return;
+    this.running = true;
+    let last = performance.now();
+    const step = () => {
+      const now = performance.now();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      this.syncN = (this.syncN || 0) + 1;
+      if (this.syncN % 20 === 0) this.syncPrefs();
+      this.setState({ t: this.state.t + dt * (this.reduced ? 0.3 : 1) });
+    };
+    if (window.gsap) { this.tick = step; window.gsap.ticker.fps(30); window.gsap.ticker.add(this.tick); }
+    else { const f = () => { if (this.stopped) return; step(); this.raf = requestAnimationFrame(f); }; this.raf = requestAnimationFrame(f); }
+  }
+  money(n) { return n == null ? null : '฿' + Number(n).toLocaleString('en-US'); }
+  totals() {
+    const S = this.shop, lines = this.state.lines;
+    let items = 0, known = true;
+    lines.forEach((l) => { const p = S.products.find((q) => q.id === l.id); if (!p || p.price == null) known = false; else items += p.price * l.qty; });
+    const ship = lines.length ? S.shipping : 0;
+    if (lines.length && ship == null) known = false;
+    return { items: known ? items : null, ship, total: known ? items + (ship || 0) : null, known };
+  }
+  shrink(file) {
+    // Make the slip photo small enough to send: at most 1400px, JPEG.
+    return new Promise((done) => {
+      const r = new FileReader();
+      r.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const k = Math.min(1, 1400 / Math.max(img.width, img.height));
+            const cv = document.createElement('canvas'); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+            cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+            done(cv.toDataURL('image/jpeg', 0.82));
+          } catch (e) { done(r.result); }
+        };
+        img.onerror = () => done(null);
+        img.src = r.result;
+      };
+      r.onerror = () => done(null);
+      r.readAsDataURL(file);
+    });
+  }
+  newId() {
+    const d = new Date(), p = (n) => String(n).padStart(2, '0');
+    return 'PE-' + String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate()) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+  }
+  renderVals() {
+    const st = this.state, S = this.shop;
+    const dark = st.theme === null ? this.sysDark : st.theme === 'night';
+    const c = dark
+      ? { ground: '#141619', raised: '#1e2125', stone: '#2a2e33', hair: '#33373c', silver: '#b4b9be', ink: '#e6e2da', muted: '#9ca0a6' }
+      : { ground: '#e8e2d6', raised: '#dbd3c4', stone: '#cfc7b7', hair: '#c4bcad', silver: '#6b7075', ink: '#1a1b1d', muted: '#54575b' };
+    const th = st.th;
+    const L = th ? {
+      kicker: 'พรีออเดอร์ — ดรอป 01', title: 'สั่งจอง', intro: 'สั่งและจ่ายวันนี้ เราผลิตตามจำนวนที่สั่ง แล้วจัดส่งประมาณ ' + S.shipDate + ' ทุกตัวเย็บจากล็อตเดียวกัน',
+      pick: 'เลือกชิ้น', size: 'ไซซ์', less: 'ลดจำนวน', more: 'เพิ่มจำนวน', add: 'ใส่ออเดอร์', needSize: 'เลือกไซซ์ก่อน',
+      ship: 'ที่อยู่จัดส่ง', name: 'ชื่อ-นามสกุล', phone: 'เบอร์โทร', email: 'อีเมล', addr: 'ที่อยู่จัดส่ง', note: 'หมายเหตุ',
+      pay: 'ชำระเงิน', accName: 'ชื่อบัญชี', amount: 'ยอดโอน', payHow: 'สแกน QR หรือโอนเข้าพร้อมเพย์ด้วยยอดด้านบน แล้วแนบสลิป', slip: 'แนบสลิปโอนเงิน', slipAlt: 'สลิปที่แนบ',
+      summary: 'สรุปออเดอร์', empty: 'ยังไม่มีสินค้า', remove: 'เอาออก', items: 'สินค้า', shipFee: 'ค่าส่ง', total: 'รวม',
+      preNote: 'นี่คือพรีออเดอร์ สินค้าจะผลิตหลังปิดรับ ส่งประมาณ ' + S.shipDate,
+      consent: 'ยินยอมให้ PattEcks! ใช้ชื่อ เบอร์ และที่อยู่นี้ เพื่อจัดการและจัดส่งออเดอร์นี้เท่านั้น',
+      send: 'ยืนยันพรีออเดอร์', sending: 'กำลังส่ง…', footer: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ',
+      eLines: 'เพิ่มสินค้าอย่างน้อย 1 ชิ้น', eFields: 'กรอกชื่อ เบอร์โทร และที่อยู่ให้ครบ', eSlip: 'แนบสลิปโอนเงินก่อน', eConsent: 'ติ๊กยินยอมการใช้ข้อมูลก่อน', eClosed: 'ยังไม่เปิดรับออเดอร์ออนไลน์ ทักมาทาง Instagram ได้เลย', eSend: 'ส่งไม่สำเร็จ ลองอีกครั้ง หรือทักทาง Instagram',
+      doneKicker: 'ได้รับพรีออเดอร์แล้ว', doneTitle: 'ขอบคุณ', doneBody: 'เราจะตรวจสลิปและยืนยันทางเบอร์โทรหรือ Instagram ภายใน 1–2 วัน', orderNo: 'เลขออเดอร์', doneNote: 'แคปหน้านี้เก็บไว้ได้เลย', back: 'กลับหน้าแรก'
+    } : {
+      kicker: 'Pre-order — Drop 01', title: 'Pre-order', intro: 'Order and pay today. We make what is ordered and ship around ' + S.shipDate + '. Every piece comes from the same run.',
+      pick: 'Pick your pieces', size: 'Size', less: 'One less', more: 'One more', add: 'Add to order', needSize: 'Pick a size first',
+      ship: 'Shipping details', name: 'Full name', phone: 'Phone', email: 'Email', addr: 'Shipping address', note: 'Note',
+      pay: 'Payment', accName: 'Account name', amount: 'Amount', payHow: 'Scan the QR or send the amount above by PromptPay, then attach the slip.', slip: 'Attach payment slip', slipAlt: 'Attached slip',
+      summary: 'Your order', empty: 'Nothing added yet.', remove: 'Remove', items: 'Items', shipFee: 'Shipping', total: 'Total',
+      preNote: 'This is a pre-order. Pieces are made after orders close and ship around ' + S.shipDate + '.',
+      consent: 'PattEcks! may use this name, phone and address only to handle and ship this order.',
+      send: 'Place pre-order', sending: 'Sending…', footer: 'Everyday. Timeless. Never plain.',
+      eLines: 'Add at least one piece.', eFields: 'Fill in your name, phone and address.', eSlip: 'Attach the payment slip.', eConsent: 'Tick the consent box first.', eClosed: 'Online orders are not open yet. Message us on Instagram.', eSend: 'Could not send. Try again, or message us on Instagram.',
+      doneKicker: 'Pre-order received', doneTitle: 'Thank you', doneBody: 'We will check the slip and confirm by phone or Instagram within 1–2 days.', orderNo: 'Order number', doneNote: 'Take a screenshot of this page to keep.', back: 'Back to home'
+    };
+    const T = this.totals();
+    const money = (n, ph) => (n == null ? ph : this.money(n));
+    const setF = (k) => (e) => { const f = { ...this.state.f }; f[k] = e.target.value; this.state.f = f; };
+    return {
+      c, L,
+      logo: dark ? 'assets/wordmark-white.png' : 'assets/wordmark-ink.png',
+      themeLabel: dark ? 'Linen' : 'Leather',
+      t: th ? { collection: 'คอลเลกชัน', about: 'เกี่ยวกับเรา' } : { collection: 'Collection', about: 'About us' },
+      thCls: th ? 'is-th' : '',
+      langLabel: th ? 'EN' : 'TH',
+      tx: (() => {
+        // Background texture, drawn in code (no images): linen weave, wet concrete or film grain.
+        const kind = this.props.texture || 'linen';
+        const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
+        const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
+        const tl = this.state.tiles || {};
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
+        if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
+        return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
+      })(),
+      showForm: !st.done, showDone: !!st.done, orderId: st.done || '',
+      items: S.products.map((p) => {
+        const sel = st.sel[p.id] || null, q = st.qty[p.id] || 1;
+        return {
+          name: p.name, img: p.img, priceText: money(p.price, '[PRICE]'), qty: q, border: c.hair, err: st.err[p.id] ? L.needSize : '',
+          sizes: S.sizes.map((z) => ({ label: z, on: sel === z, pick: () => this.setState({ sel: { ...this.state.sel, [p.id]: z }, err: { ...this.state.err, [p.id]: false } }) })),
+          minus: () => this.setState({ qty: { ...this.state.qty, [p.id]: Math.max(1, q - 1) } }),
+          plus: () => this.setState({ qty: { ...this.state.qty, [p.id]: Math.min(9, q + 1) } }),
+          add: () => {
+            if (!sel) { this.setState({ err: { ...this.state.err, [p.id]: true } }); return; }
+            const lines = this.state.lines.slice();
+            const ex = lines.find((l) => l.id === p.id && l.size === sel);
+            if (ex) ex.qty = Math.min(9, ex.qty + q); else lines.push({ id: p.id, size: sel, qty: q });
+            this.setState({ lines, error: '' });
+          }
+        };
+      }),
+      lines: st.lines.map((l, i) => {
+        const p = S.products.find((q) => q.id === l.id) || { name: l.id, price: null };
+        return { label: p.name + ' · ' + l.size + ' × ' + l.qty, sub: money(p.price == null ? null : p.price * l.qty, '[PRICE]'), remove: () => this.setState({ lines: this.state.lines.filter((x, k) => k !== i) }) };
+      }),
+      emptyCart: !st.lines.length,
+      itemsText: st.lines.length ? money(T.items, '[PRICE]') : '—',
+      shipText: st.lines.length ? money(S.shipping, '[SHIPPING]') : '—',
+      totalText: st.lines.length ? money(T.total, '[TOTAL]') : '—',
+      f: st.f,
+      setName: setF('name'), setPhone: setF('phone'), setEmail: setF('email'), setIg: setF('ig'), setAddr: setF('addr'), setNote: setF('note'),
+      payId: S.promptPayId, payName: S.accountName,
+      hasQr: !!S.qrImage, noQr: !S.qrImage, qrSrc: S.qrImage,
+      hasSlip: !!st.slip, slipSrc: st.slip || '',
+      pickSlip: (e) => { const file = e.target.files && e.target.files[0]; if (!file) return; this.shrink(file).then((d) => this.setState({ slip: d, error: '' })); },
+      setConsent: (e) => { this.state.consent = !!e.target.checked; },
+      submitLabel: st.sending ? L.sending : L.send,
+      errText: st.error,
+      submit: () => {
+        const s = this.state, f = s.f;
+        if (s.sending) return;
+        let err = '';
+        if (!s.lines.length) err = L.eLines;
+        else if (!f.name.trim() || !f.phone.trim() || !f.addr.trim()) err = L.eFields;
+        else if (!s.slip) err = L.eSlip;
+        else if (!s.consent) err = L.eConsent;
+        else if (!S.orderUrl) err = L.eClosed;
+        if (err) { this.setState({ error: err }); return; }
+        const id = this.newId();
+        const body = {
+          orderId: id, createdAt: new Date().toISOString(), lang: th ? 'th' : 'en',
+          name: f.name.trim(), phone: f.phone.trim(), email: f.email.trim(), instagram: f.ig.trim(), address: f.addr.trim(), note: f.note.trim(),
+          items: s.lines.map((l) => { const p = S.products.find((q) => q.id === l.id); return { product: p ? p.name : l.id, size: l.size, qty: l.qty, price: p ? p.price : null }; }),
+          itemsTotal: T.items, shipping: S.shipping, total: T.total, slip: s.slip
+        };
+        this.setState({ sending: true, error: '' });
+        // text/plain keeps the browser from a pre-flight check that Apps Script does not answer.
+        fetch(S.orderUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })
+          .then(() => { this.setState({ sending: false, done: id }); try { window.scrollTo(0, 0); } catch (e) {} })
+          .catch(() => this.setState({ sending: false, error: L.eSend }));
+      },
+      toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
+      toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); }
+    };
+  }
+}
+return Component;
+}, {"texture": "linen", "textureStrength": 1});
+</script>
+</body>
+</html>
