@@ -744,15 +744,11 @@ class Component extends DCLogic {
       // the next vertical line hanging below this horizontal, in the direction of travel
       const xs = G.V.filter((q) => Math.abs(q.a - y) < 3 && (dir > 0 ? q.x > x + 4 : q.x < x - 4)).map((q) => q.x).sort((p, q) => dir * (p - q));
       const target = xs.length ? xs[0] : (dir > 0 ? line.b : line.a);
-      // Sideways the blood always fills the whole channel to the next crossing, so the horizontal
-      // line is covered end to end; at a crossing it keeps running along and also falls down.
-      const L = Math.abs(target - x), dur = L / VSIDE, w = Math.max(1.8, wOf(vol) * 0.85);
-      segs.push({ x1: x, y1: y, x2: x + dir * L, y2: y, t0, dur, w, end: false, vert: false });
-      const rest = Math.max(0, vol - L * 0.35), t1 = t0 + dur;
-      if (xs.length) {
-        down(target, y, rest * 0.5, t1, depth + 1);
-        side(target, y, dir, Math.max(rest * 0.5, 40), t1 + 0.05, depth + 1, line);
-      } else hangs.push({ x: target, y, t0: t1, w, vol: Math.max(rest, 60) }); // gathers at the edge and drops off
+      const L = Math.abs(target - x), run = Math.min(L, vol), dur = run / VSIDE;
+      segs.push({ x1: x, y1: y, x2: x + dir * run, y2: y, t0, dur, w: wOf(vol) * 0.85, end: run < L, vert: false });
+      if (run < L) return;
+      if (xs.length) down(target, y, vol - L, t0 + dur, depth + 1);
+      else hangs.push({ x: target, y, t0: t0 + dur, w: wOf(vol) * 0.85, vol: vol - L }); // gathers at the edge and drops off
     };
     down(v.x, c.y0, 2.4 * rowH + 2 * colW, this.state.t, 0);
     // splatter only where the blood hits a rivet: a small burst of dots around the crossing
