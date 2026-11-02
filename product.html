@@ -210,8 +210,8 @@ class Component extends DCLogic {
         fitTh: 'ทรงครอป ตัดเข้าตัว ไม่ใช่ทรงหลวม',
         fabricLine: '100% linen gauze / cropped / tilted placket',
         shots: [
-          { src: 'assets/sheer-linen.jpg', alt: 'Reference: linen held to the light', label: 'Fabric — held to the light', tag: 'Reference', light: true },
-          { src: 'assets/neck-label.jpg', alt: 'Reference: neck label detail', label: 'Detail — neck label', tag: 'Reference', light: true }
+          { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen slub held up to window light', label: 'Fabric — held to the light', tag: '', light: true },
+          { src: 'assets/linen-drape.jpg', alt: 'Drop 01 linen slub in loose folds', label: 'Fabric — drape', tag: '', light: true }
         ],
         fabric: [{ k: 'Fabric', v: '100% linen, gauze weave' }, { k: 'Feel', v: 'Open, light, breathes in heat' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Dry', v: '[Drying instructions]' }]
       },
@@ -374,9 +374,9 @@ class Component extends DCLogic {
         const k = this.props.textureStrength == null ? 1 : Number(this.props.textureStrength);
         const on = (n, v) => (kind === n ? (v * k).toFixed(3) : 0);
         const tl = this.state.tiles || {};
-        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: tl.weave ? `url(${tl.weave})` : 'none', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
+        const img = { leather: tl.leather ? `url(${tl.leather})` : 'none', weave: this.props.linenPhoto === false ? (tl.weave ? `url(${tl.weave})` : 'none') : 'url(assets/linen-tile.png)', grain: tl.grain ? `url(${tl.grain})` : 'none', concrete: tl.concrete ? `url(${tl.concrete})` : 'none' };
         if (dark) return { weave: 0, concrete: 0, grain: (0.05 * k).toFixed(3), leather: (0.26 * k).toFixed(3), sheen: 1, blend: 'screen', img };
-        return { weave: on('linen', 0.15), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
+        return { weave: on('linen', this.props.linenPhoto === false ? 0.15 : 0.35), concrete: on('concrete', dark ? 0.22 : 0.18), grain: kind === 'linen' ? (0.06 * k).toFixed(3) : on('grain', dark ? 0.16 : 0.12), blend: 'multiply', leather: 0, sheen: 0, img };
       })(),
       nameDrops: st.wet ? this.rain(this.reduced ? this.drops.filter((d, k) => k % 2 === 0) : this.drops, st.t) : [],
       lensShow: st.lens,
