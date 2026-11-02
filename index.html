@@ -691,14 +691,18 @@ class Component extends DCLogic {
   readGrid() {
     const cat = document.querySelector('.hm-cat');
     if (!cat) return null;
-    const cb = cat.getBoundingClientRect();
+    // The blood layer sits inside the grid's border, so measure from there; each line is drawn
+    // through the middle of the cell's border, whatever its width.
+    const r0 = cat.getBoundingClientRect();
+    const cb = { left: r0.left + cat.clientLeft, top: r0.top + cat.clientTop };
     const cells = Array.from(cat.querySelectorAll(':scope > .hm-cell'));
     const V = [], H = [];
     cells.forEach((el) => {
       const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
+      const bw = parseFloat(cs.borderRightWidth) || 0, bh = parseFloat(cs.borderBottomWidth) || 0;
       const x0 = r.left - cb.left, x1 = r.right - cb.left, y0 = r.top - cb.top, y1 = r.bottom - cb.top;
-      if (parseFloat(cs.borderRightWidth) > 0) V.push({ x: x1 - 0.5, a: y0, b: y1 });
-      if (parseFloat(cs.borderBottomWidth) > 0) H.push({ y: y1 - 0.5, a: x0, b: x1 });
+      if (bw > 0) V.push({ x: x1 - bw / 2, a: y0, b: y1 });
+      if (bh > 0) H.push({ y: y1 - bh / 2, a: x0, b: x1 });
     });
     // join the bottom edges of one row into one long line
     H.sort((p, q) => p.y - q.y || p.a - q.a);
