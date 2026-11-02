@@ -724,7 +724,7 @@ class Component extends DCLogic {
     const v = vs.sort((p, q) => Math.min(Math.abs(p.x - c.x1), Math.abs(p.x - c.x0)) - Math.min(Math.abs(q.x - c.x1), Math.abs(q.x - c.x0)))[0];
     const rowH = c.y1 - c.y0, colW = c.x1 - c.x0;
     const segs = [], hangs = [];
-    const VDOWN = 340, VSIDE = 320; // px per second
+    const VDOWN = 340, VSIDE = 150; // px per second
     const wOf = (vol) => Math.max(1.6, Math.min(4, 1.3 + vol / 650));
     const down = (x, y, vol, t0, depth) => {
       const seg = G.V.find((q) => Math.abs(q.x - x) < 2 && q.a <= y + 2 && q.b > y + 4);
