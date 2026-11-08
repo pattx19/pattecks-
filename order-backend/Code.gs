@@ -168,7 +168,7 @@ function sendCustomerEmail_(kind, o) {
       '<div style="font-size:12px;letter-spacing:' + (th ? '0' : '1.5px') + ';color:#6b7075;margin-bottom:6px">' + T.addr.toUpperCase() + '</div>' +
       '<div style="font-size:14px;line-height:1.6;color:#1a1b1d;white-space:pre-line">' + esc(o.address) + '</div>' +
       '</div>' +
-      '<div style="padding:16px 28px;background:#f4efe6;font-size:12px;color:#6b7075">' + T.foot + '<br>pattx19.github.io/pattecks-</div>' +
+      '<div style="padding:16px 28px;background:#f4efe6;font-size:12px;color:#6b7075">' + T.foot + '<br><a href="https://www.pattecks.com" style="color:#6b7075">www.pattecks.com</a></div>' +
       '</div></div>';
     const text = [(isReceipt ? T.receipt : T.confirm) + ' — PattEcks!', T.order + ': ' + o.orderId, '', lines.join('\n'), '',
       T.total + ': ' + baht(o.total), T.addr + ': ' + o.address].join('\n');
