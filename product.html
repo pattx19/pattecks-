@@ -60,8 +60,8 @@ a{color:inherit;text-decoration:none}
   <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
     <a href="/" aria-label="PattEcks! home"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
     <nav class="pd-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-family: {{ navFont }};">
-      <a href="/#collection">{{ t.collection }}</a>
-      <a href="/#archive">{{ t.archive }}</a>
+      <a href="/collection">{{ t.collection }}</a>
+      <a href="/archive">{{ t.archive }}</a>
       <a href="/about">{{ t.about }}</a>
       <a href="/order">Pre-order</a>
     </nav>
@@ -73,7 +73,7 @@ a{color:inherit;text-decoration:none}
   </header>
 
   <div style="padding: 8px 48px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }};">
-    <span><a href="/#collection">{{ t.collection }}</a> / Drop 01 / {{ p.no }}</span>
+    <span><a href="/collection">{{ t.collection }}</a> / Drop 01 / {{ p.no }}</span>
     <span style="display: flex; gap: 24px;">
       <button type="button" onClick="{{ prev }}" style="background: none; border: 0; padding: 0; color: inherit; font: inherit; letter-spacing: inherit; text-transform: inherit; min-height: 24px;">{{ L.prev }}</button>
       <span>{{ p.no }} / 02</span>
@@ -294,7 +294,8 @@ class Component extends DCLogic {
       if (cn !== this.state.cartN) this.setState({ cartN: cn });
       // Open on the product that was clicked on the Home page (or named in the link, e.g. #denim).
       const pick = localStorage.getItem('pe-product') || '';
-      const hash = (window.location && window.location.hash || '').replace('#', '');
+      const lp = (window.location && window.location.pathname || '').replace(/^\/|\.html$/g, '');
+      const hash = (window.location && window.location.hash || '').replace('#', '') || (lp === 'henley' || lp === 'denim' ? lp : '');
       const tok = pick + '|' + hash;
       if (tok !== this.lastPick) {
         this.lastPick = tok;
@@ -435,5 +436,6 @@ class Component extends DCLogic {
 return Component;
 }, {"texture": "linen", "textureStrength": 1});
 </script>
+<script src="/short-urls.js"></script>
 </body>
 </html>
