@@ -64,10 +64,24 @@ function onOpen() {
     .addItem('จัดหน้าชีตใหม่', 'formatSheet')
     .addItem('เปิดระบบส่งใบเสร็จอัตโนมัติ (ทำครั้งเดียว)', 'setupReceiptTrigger')
     .addItem('ส่งใบเสร็จของแถวที่เลือกอีกครั้ง', 'resendReceipt')
+    .addItem('เช็กอีเมลผู้ส่ง', 'checkSender')
     .addToUi();
 }
 
 /* ---------- Customer emails ---------- */
+
+// Shows which Google account sends the order emails and whether it can send as support@pattecks.com.
+function checkSender() {
+  const me = Session.getEffectiveUser().getEmail();
+  const aliases = GmailApp.getAliases();
+  const ok = aliases.indexOf(SHOP_EMAIL) !== -1;
+  const msg = 'สคริปต์นี้ส่งอีเมลจากบัญชี: ' + me + '\n' +
+    'ชื่อแทนที่บัญชีนี้ใช้ได้: ' + (aliases.length ? aliases.join(', ') : '(ไม่มี)') + '\n\n' +
+    (ok ? 'พร้อมแล้ว: อีเมลออเดอร์จะส่งจาก ' + SHOP_EMAIL
+        : 'ยังไม่พร้อม: ต้องเพิ่ม ' + SHOP_EMAIL + ' ใน "ส่งอีเมลในชื่อ" ของ Gmail บัญชี ' + me);
+  Logger.log(msg);
+  try { SpreadsheetApp.getUi().alert(msg); } catch (e) {}
+}
 
 // Run once (PattEcks menu). After that, changing a row's status to "จ่ายแล้ว" emails that customer a receipt.
 function setupReceiptTrigger() {
