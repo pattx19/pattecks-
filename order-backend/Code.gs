@@ -126,14 +126,14 @@ function sendCustomerEmail_(kind, o) {
       hiReceipt: 'ยืนยันการชำระเงินเรียบร้อย ขอบคุณที่สนับสนุน PattEcks! สินค้าเป็นแบบพรีออเดอร์ เราจะแจ้งเลขพัสดุเมื่อจัดส่ง',
       hello: 'สวัสดีคุณ', order: 'เลขออเดอร์', date: 'วันที่สั่ง', paid: 'วันที่ชำระ', items: 'รายการ',
       sub: 'ค่าสินค้า', ship: 'ค่าส่ง', total: 'ยอดรวม', addr: 'ที่อยู่จัดส่ง', tbc: 'แจ้งภายหลัง',
-      foot: 'มีคำถามตอบกลับอีเมลนี้ได้เลย', status: 'สถานะ', stConfirm: 'รอตรวจสลิป', stReceipt: 'ชำระแล้ว'
+      foot: 'มีคำถามตอบกลับอีเมลนี้ หรือเขียนมาที่ support@pattecks.com', status: 'สถานะ', stConfirm: 'รอตรวจสลิป', stReceipt: 'ชำระแล้ว'
     } : {
       confirm: 'Order received', receipt: 'Receipt',
       hiConfirm: "Thanks for your pre-order. We've got your order and payment slip and are checking the transfer. You'll get a receipt once it's confirmed.",
       hiReceipt: "Payment confirmed. Thank you for supporting PattEcks! This is a pre-order; we'll send your tracking number when it ships.",
       hello: 'Hi', order: 'Order no.', date: 'Ordered', paid: 'Paid', items: 'Items',
       sub: 'Subtotal', ship: 'Shipping', total: 'Total', addr: 'Ship to', tbc: 'TBC',
-      foot: 'Questions? Just reply to this email.', status: 'Status', stConfirm: 'Checking slip', stReceipt: 'Paid'
+      foot: 'Questions? Reply to this email or write to support@pattecks.com', status: 'Status', stConfirm: 'Checking slip', stReceipt: 'Paid'
     };
     const isReceipt = kind === 'receipt';
     const tz = Session.getScriptTimeZone() || 'Asia/Bangkok';
@@ -176,7 +176,7 @@ function sendCustomerEmail_(kind, o) {
     const subject = th
       ? (isReceipt ? 'ใบเสร็จออเดอร์ ' : 'ยืนยันออเดอร์ ') + o.orderId + ' จาก PattEcks'
       : (isReceipt ? 'Your receipt for order ' : 'Your PattEcks order ') + o.orderId;
-    GmailApp.sendEmail(o.email, subject, text, { htmlBody: html, name: 'PattEcks' });
+    GmailApp.sendEmail(o.email, subject, text, { htmlBody: html, name: 'PattEcks', replyTo: 'support@pattecks.com' });
   } catch (err) {}
 }
 
