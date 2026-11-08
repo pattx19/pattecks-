@@ -53,10 +53,10 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <header class="or-pad" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
-    <a href="index.html" aria-label="PattEcks! home" style="display: inline-flex; align-items: center; min-height: 44px;"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
+    <a href="/" aria-label="PattEcks! home" style="display: inline-flex; align-items: center; min-height: 44px;"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
     <nav class="pd-nav or-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
-      <a href="index.html#collection">{{ t.collection }}</a>
-      <a href="about.html">{{ t.about }}</a>
+      <a href="/#collection">{{ t.collection }}</a>
+      <a href="/about">{{ t.about }}</a>
     </nav>
     <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
       <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
@@ -82,7 +82,7 @@ a{color:inherit;text-decoration:none}
             <sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ false }}">
               <div style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding: 8px 0;">
                 <p style="margin: 0; font-size: 17px;">{{ L.cartEmpty }}</p>
-                <a href="product.html#henley" class="or-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; background: #890000; color: #f1ebe2; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;">{{ L.shop }}</a>
+                <a href="/product#henley" class="or-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; background: #890000; color: #f1ebe2; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;">{{ L.shop }}</a>
               </div>
             </sc-if>
             <div style="display: flex; flex-direction: column; gap: 16px;">
@@ -108,7 +108,7 @@ a{color:inherit;text-decoration:none}
               </sc-for>
             </div>
             <sc-if value="{{ hasLines }}" hint-placeholder-val="{{ true }}">
-              <a href="product.html#henley" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">+ {{ L.addMore }}</a>
+              <a href="/product#henley" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">+ {{ L.addMore }}</a>
             </sc-if>
           </section>
 
@@ -188,7 +188,7 @@ a{color:inherit;text-decoration:none}
         <div>{{ L.total }}: <b>{{ totalText }}</b></div>
       </div>
       <p style="margin: 22px 0 0; font-size: 14px; color: {{ c.muted }};">{{ L.doneNote }}</p>
-      <a href="index.html" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 18px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">{{ L.back }}</a>
+      <a href="/" style="display: inline-flex; align-items: center; min-height: 44px; margin-top: 18px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1px solid {{ c.silver }};">{{ L.back }}</a>
     </div>
   </main>
   </sc-if>

@@ -63,12 +63,12 @@ a{color:inherit;text-decoration:none}
   </div>
 
   <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
-    <a href="index.html" aria-label="PattEcks! home"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
+    <a href="/" aria-label="PattEcks! home"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
     <nav class="ab-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-family: {{ navFont }};">
-      <a href="index.html#collection">{{ t.collection }}</a>
-      <a href="index.html#archive">{{ t.archive }}</a>
-      <a href="about.html" aria-current="page">{{ t.about }}</a>
-      <a href="order.html">Pre-order</a>
+      <a href="/#collection">{{ t.collection }}</a>
+      <a href="/#archive">{{ t.archive }}</a>
+      <a href="/about" aria-current="page">{{ t.about }}</a>
+      <a href="/order">Pre-order</a>
     </nav>
     <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
       <a href="https://www.instagram.com/" style="margin-right: 12px;">Instagram</a>
@@ -197,7 +197,7 @@ a{color:inherit;text-decoration:none}
   <section style="padding: 0 48px 120px; display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: flex-end;">
     <h2 style="margin: 0; font-family: {{ displayFont }}; font-weight: 800; font-size: 40px; line-height: 1.1; letter-spacing: 0; text-transform: uppercase; max-width: 18ch;">{{ L.ctaTitle }}</h2>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a class="ab-btn" href="index.html#collection" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: #890000; color: #f1ebe2; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.cta }}</a>
+      <a class="ab-btn" href="/#collection" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; background: #890000; color: #f1ebe2; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">{{ L.cta }}</a>
       <a href="https://www.instagram.com/" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border: 1px solid {{ c.silver }}; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">Instagram</a>
     </div>
   </section>
