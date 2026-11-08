@@ -30,6 +30,7 @@ const COLS = [
 const COL = { received: 1, orderId: 2, status: 3, name: 4, phone: 5, ig: 6, address: 7, items: 8,
   itemsTotal: 9, shipping: 10, total: 11, slip: 12, note: 13, email: 14, lang: 15, receiptSent: 16 };
 const PAID_STATUS = 'จ่ายแล้ว';
+const SHOP_EMAIL = 'support@pattecks.com';
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
@@ -176,7 +177,10 @@ function sendCustomerEmail_(kind, o) {
     const subject = th
       ? (isReceipt ? 'ใบเสร็จออเดอร์ ' : 'ยืนยันออเดอร์ ') + o.orderId + ' จาก PattEcks'
       : (isReceipt ? 'Your receipt for order ' : 'Your PattEcks order ') + o.orderId;
-    GmailApp.sendEmail(o.email, subject, text, { htmlBody: html, name: 'PattEcks', replyTo: 'support@pattecks.com' });
+    const opts = { htmlBody: html, name: 'PattEcks', replyTo: SHOP_EMAIL };
+    // Send from support@pattecks.com once it is set up in Gmail as "Send mail as"; until then, from your Gmail.
+    if (GmailApp.getAliases().indexOf(SHOP_EMAIL) !== -1) opts.from = SHOP_EMAIL;
+    GmailApp.sendEmail(o.email, subject, text, opts);
   } catch (err) {}
 }
 
