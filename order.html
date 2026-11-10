@@ -60,6 +60,16 @@ a{color:inherit;text-decoration:none}
 @keyframes pe-pop{0%{transform:scale(.4)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
 @keyframes pe-toast{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.pe-cart svg,.pe-cart .pe-h,.pe-cart-n{animation:none !important;transition:none !important}}
+
+@media (max-width:600px){
+.pe-head{padding:16px 24px !important;gap:10px !important;flex-wrap:nowrap !important}
+.pe-head > a:first-child img{height:30px !important}
+.pe-head nav,.pe-head .pe-ig{display:none !important}
+.pe-menu-btn{display:inline-flex !important}
+.pe-tools{gap:8px !important;margin-left:auto}
+.pe-tools button{padding:0 10px !important}
+}
+.pe-mnav a{display:flex;align-items:center;min-height:56px}
 </style>
 <script src="assets/gsap.min.js"></script>
 </head>
@@ -75,13 +85,13 @@ a{color:inherit;text-decoration:none}
     <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 55% 55% at 45% 22%, rgba(255,255,255,0.05), rgba(255,255,255,0)); opacity: {{ tx.sheen }};"></div>
   </div>
 
-  <header class="or-pad" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
+  <header class="pe-head or-pad" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 48px; position: relative; z-index: 4;">
     <a href="/" aria-label="PattEcks! home" style="display: inline-flex; align-items: center; min-height: 44px;"><img src="{{ logo }}" alt="PattEcks!" style="height: 44px; width: auto; display: block;"></a>
     <nav class="pd-nav or-nav" style="display: flex; gap: 40px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
       <a href="/collection">{{ t.collection }}</a>
       <a href="/about">{{ t.about }}</a>
     </nav>
-    <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
+    <div class="pe-tools" style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
       <span class="pe-cart-wrap" style="position: relative; display: inline-flex;"><a href="/order" class="pe-cart {{ cartCls }}" aria-label="{{ cartAria }}" style="color: {{ c.ink }};">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="pe-h" d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M5 8h14l-1.1 12H6.1L5 8z"/></svg>
         <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}"><span class="pe-cart-n">{{ cartCount }}</span></sc-if>
@@ -91,8 +101,17 @@ a{color:inherit;text-decoration:none}
       </span>
       <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
       <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
+          <button type="button" class="pe-menu-btn" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-controls="pe-mnav" style="display: none; align-items: center; min-height: 44px; padding: 0 12px; background: {{ c.ink }}; border: 1px solid {{ c.ink }}; color: {{ c.ground }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ menuLabel }}</button>
     </div>
   </header>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav id="pe-mnav" class="pe-mnav" aria-label="Menu" style="position: relative; z-index: 5; display: flex; flex-direction: column; padding: 0 24px 24px; background: {{ c.ground }}; border-bottom: 1px solid {{ c.hair }}; font-weight: 800; font-size: 22px; letter-spacing: .06em; text-transform: uppercase;">
+      <a href="/collection" style="border-bottom: 1px solid {{ c.hair }};">{{ t.collection }}</a>
+      <a href="/about" style="border-bottom: 1px solid {{ c.hair }};">{{ t.about }}</a>
+      <a href="/order" style="border-bottom: 1px solid {{ c.hair }};">Pre-order</a>
+      <a href="https://www.instagram.com/" style="font-weight: 400; font-size: 13px; letter-spacing: .12em;">Instagram</a>
+    </nav>
+  </sc-if>
 
   <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
   <main class="or-pad" style="padding: 24px 48px 96px; position: relative; z-index: 2;">
@@ -412,6 +431,10 @@ class Component extends DCLogic {
     const money = (n, ph) => (n == null ? ph : this.money(n));
     const setF = (k) => (e) => { const f = { ...this.state.f }; f[k] = e.target.value; this.state.f = f; };
     return {
+      menuOpen: !!this.state.menu,
+      menuLabel: this.state.menu ? (this.state.th ? 'ปิด' : 'Close') : (this.state.th ? 'เมนู' : 'Menu'),
+      toggleMenu: () => this.setState({ menu: !this.state.menu }),
+
       hasCart: (this.state.cartN || 0) > 0,
       cartCount: this.state.cartN || 0,
       cartCls: ((this.state.cartN || 0) > 0 ? '' : 'is-empty ') + (this.state.cartBump ? 'is-bump ' : '') + ((typeof c !== 'undefined' && c && c.ground && parseInt(c.ground.slice(1, 3), 16) < 100) ? 'is-dark' : ''),
