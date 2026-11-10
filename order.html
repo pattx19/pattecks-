@@ -52,9 +52,9 @@ a{color:inherit;text-decoration:none}
 .pe-cart:hover .pe-cart-tip,.pe-cart:focus-visible .pe-cart-tip{opacity:1;transform:translateY(0)}
 .pe-toast{position:absolute;top:calc(100% + 10px);right:0;width:max-content;max-width:min(320px,80vw);padding:12px 14px;background:var(--ink,#1a1b1d);color:var(--ground,#e8e2d6);font-size:13px;letter-spacing:.02em;text-transform:none;line-height:1.5;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:10;animation:pe-toast .35s ease}
 .pe-toast::before{content:"";position:absolute;top:-6px;right:16px;width:12px;height:12px;background:var(--ink,#1a1b1d);transform:rotate(45deg)}
-.pe-toast b{display:block;font-weight:700}
+.pe-toast--dark,.pe-toast--dark::before{background:#e6e2da;color:#141619}.pe-toast.pe-toast--dark a{color:#141619;border-bottom-color:#d61f2c}.pe-toast b{display:block;font-weight:700}
 .pe-toast a{display:inline-block;margin-top:6px;color:#f1ebe2;border-bottom:2px solid #890000;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px;text-decoration:none}
-.pe-fly{position:fixed;z-index:60;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#890000;box-shadow:0 0 0 3px rgba(137,0,0,.25);pointer-events:none}
+.pe-fly{position:fixed;z-index:60;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#890000;box-shadow:0 0 0 3px rgba(137,0,0,.25);pointer-events:none}.pe-fly--dark{width:18px;height:18px;margin:-9px 0 0 -9px;background:#ff2a3a;box-shadow:0 0 0 3px #f1ebe2,0 0 22px 8px rgba(255,42,58,.8)}.pe-cart.is-dark .pe-cart-n{background:#d61f2c;color:#fff;box-shadow:0 0 0 2px #141619}.pe-cart.is-dark .pe-cart-tip{background:#e6e2da;color:#141619}
 @keyframes pe-swing{0%{transform:rotate(0)}25%{transform:rotate(-10deg)}55%{transform:rotate(8deg)}80%{transform:rotate(-4deg)}100%{transform:rotate(0)}}
 @keyframes pe-bump{0%{transform:scale(1)}40%{transform:scale(1.25) rotate(-6deg)}100%{transform:scale(1)}}
 @keyframes pe-pop{0%{transform:scale(.4)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
@@ -87,7 +87,7 @@ a{color:inherit;text-decoration:none}
         <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}"><span class="pe-cart-n">{{ cartCount }}</span></sc-if>
         <span class="pe-cart-tip">{{ cartTip }}</span>
       </a>
-        <sc-if value="{{ cartToastOn }}" hint-placeholder-val="{{ false }}"><span class="pe-toast" role="status"><b>{{ cartToast }}</b>{{ cartToastSub }}<br><a href="/order">{{ cartToastLink }}</a></span></sc-if>
+        <sc-if value="{{ cartToastOn }}" hint-placeholder-val="{{ false }}"><span class="pe-toast {{ cartToastCls }}" role="status"><b>{{ cartToast }}</b>{{ cartToastSub }}<br><a href="/order">{{ cartToastLink }}</a></span></sc-if>
       </span>
       <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
       <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; min-width: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
@@ -414,10 +414,11 @@ class Component extends DCLogic {
     return {
       hasCart: (this.state.cartN || 0) > 0,
       cartCount: this.state.cartN || 0,
-      cartCls: ((this.state.cartN || 0) > 0 ? '' : 'is-empty ') + (this.state.cartBump ? 'is-bump' : ''),
+      cartCls: ((this.state.cartN || 0) > 0 ? '' : 'is-empty ') + (this.state.cartBump ? 'is-bump ' : '') + ((typeof c !== 'undefined' && c && c.ground && parseInt(c.ground.slice(1, 3), 16) < 100) ? 'is-dark' : ''),
       cartAria: this.state.th ? 'ตะกร้า ' + (this.state.cartN || 0) + ' ชิ้น' : 'Cart, ' + (this.state.cartN || 0) + ' items',
       cartTip: (this.state.cartN || 0) > 0 ? (this.state.th ? 'ตะกร้า · ' + this.state.cartN + ' ชิ้น — กดเพื่อสั่งจอง' : 'Cart · ' + this.state.cartN + (this.state.cartN > 1 ? ' pieces' : ' piece') + ' — tap to pre-order') : (this.state.th ? 'ตะกร้าว่าง' : 'Cart is empty'),
       cartToastOn: !!this.state.cartToast,
+      cartToastCls: (typeof c !== 'undefined' && c && c.ground && parseInt(c.ground.slice(1, 3), 16) < 100) ? 'pe-toast--dark' : '',
       cartToast: this.state.cartToast || '',
       cartToastSub: this.state.th ? 'อยู่ในตะกร้าแล้ว (' + (this.state.cartN || 0) + ' ชิ้น)' : 'is in your cart (' + (this.state.cartN || 0) + ')',
       cartToastLink: this.state.th ? 'ไปที่ตะกร้า →' : 'Go to cart →',
