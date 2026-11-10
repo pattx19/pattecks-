@@ -40,6 +40,29 @@ a{color:inherit;text-decoration:none}
 .pd-input:focus,.pd-root a:focus-visible,.pd-root button:focus-visible{outline:2px solid var(--silver,#b4b9be);outline-offset:2px}
 @media (max-width:900px){.pd-cols{flex-direction:column}.pd-info{position:static !important}.pd-big{font-size:40px !important}}
 
+
+/* cart icon */
+.pe-cart{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;margin-right:4px;color:inherit;text-decoration:none}
+.pe-cart svg{display:block;transition:transform .25s ease;transform-origin:50% 20%}
+.pe-cart .pe-h{transition:transform .25s ease;transform-origin:50% 100%}
+.pe-cart:hover svg{animation:pe-swing .7s ease}
+.pe-cart:hover .pe-h{transform:translateY(-1.5px)}
+.pe-cart-n{position:absolute;top:2px;right:0;min-width:18px;height:18px;padding:0 5px;box-sizing:border-box;border-radius:9px;background:#890000;color:#f1ebe2;font-size:11px;font-weight:700;letter-spacing:0;line-height:18px;text-align:center;font-family:"Courier Prime","Courier New",monospace}
+.pe-cart.is-empty svg{opacity:.55}
+.pe-cart.is-bump svg{animation:pe-bump .6s cubic-bezier(.3,1.6,.4,1)}
+.pe-cart.is-bump .pe-cart-n{animation:pe-pop .6s cubic-bezier(.3,1.6,.4,1)}
+.pe-cart-tip{position:absolute;top:calc(100% + 6px);right:0;white-space:nowrap;padding:6px 10px;background:var(--ink,#1a1b1d);color:var(--ground,#e8e2d6);font-size:11px;letter-spacing:.08em;text-transform:none;opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .2s,transform .2s;z-index:9}
+.pe-cart:hover .pe-cart-tip,.pe-cart:focus-visible .pe-cart-tip{opacity:1;transform:translateY(0)}
+.pe-toast{position:absolute;top:calc(100% + 10px);right:0;width:max-content;max-width:min(320px,80vw);padding:12px 14px;background:var(--ink,#1a1b1d);color:var(--ground,#e8e2d6);font-size:13px;letter-spacing:.02em;text-transform:none;line-height:1.5;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:10;animation:pe-toast .35s ease}
+.pe-toast::before{content:"";position:absolute;top:-6px;right:16px;width:12px;height:12px;background:var(--ink,#1a1b1d);transform:rotate(45deg)}
+.pe-toast b{display:block;font-weight:700}
+.pe-toast a{display:inline-block;margin-top:6px;color:#f1ebe2;border-bottom:2px solid #890000;font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px;text-decoration:none}
+.pe-fly{position:fixed;z-index:60;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#890000;box-shadow:0 0 0 3px rgba(137,0,0,.25);pointer-events:none}
+@keyframes pe-swing{0%{transform:rotate(0)}25%{transform:rotate(-10deg)}55%{transform:rotate(8deg)}80%{transform:rotate(-4deg)}100%{transform:rotate(0)}}
+@keyframes pe-bump{0%{transform:scale(1)}40%{transform:scale(1.25) rotate(-6deg)}100%{transform:scale(1)}}
+@keyframes pe-pop{0%{transform:scale(.4)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes pe-toast{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pe-cart svg,.pe-cart .pe-h,.pe-cart-n{animation:none !important;transition:none !important}}
 </style>
 <script src="assets/gsap.min.js"></script>
 </head>
@@ -67,6 +90,13 @@ a{color:inherit;text-decoration:none}
     </nav>
     <div style="display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;">
       <a href="https://www.instagram.com/" style="margin-right: 12px;">Instagram</a>
+      <span class="pe-cart-wrap" style="position: relative; display: inline-flex;"><a href="/order" class="pe-cart {{ cartCls }}" aria-label="{{ cartAria }}" style="color: {{ c.ink }};">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="pe-h" d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/><path d="M5 8h14l-1.1 12H6.1L5 8z"/></svg>
+        <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}"><span class="pe-cart-n">{{ cartCount }}</span></sc-if>
+        <span class="pe-cart-tip">{{ cartTip }}</span>
+      </a>
+        <sc-if value="{{ cartToastOn }}" hint-placeholder-val="{{ false }}"><span class="pe-toast" role="status"><b>{{ cartToast }}</b>{{ cartToastSub }}<br><a href="/order">{{ cartToastLink }}</a></span></sc-if>
+      </span>
       <button type="button" onClick="{{ toggleTheme }}" aria-label="Switch light or dark" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em; text-transform: uppercase;">{{ themeLabel }}</button>
       <button type="button" onClick="{{ toggleLang }}" aria-label="Switch language" style="min-height: 44px; padding: 0 12px; background: none; border: 1px solid {{ c.silver }}; color: {{ c.ink }}; font: inherit; letter-spacing: .12em;">{{ langLabel }}</button>
     </div>
@@ -355,6 +385,16 @@ class Component extends DCLogic {
       { id: 'ship', title: th ? 'การจัดส่ง' : 'Shipping', rows: [{ k: th ? 'ในไทย' : 'Thailand', v: th ? '[ขนส่งและระยะเวลา]' : '[Courier and delivery time]' }, { k: th ? 'ต่างประเทศ' : 'Abroad', v: th ? '[รอยืนยัน]' : '[To confirm]' }, { k: th ? 'คืนสินค้า' : 'Returns', v: th ? '[นโยบายรอยืนยัน]' : '[Policy to confirm]' }] }
     ];
     return {
+      hasCart: (this.state.cartN || 0) > 0,
+      cartCount: this.state.cartN || 0,
+      cartCls: ((this.state.cartN || 0) > 0 ? '' : 'is-empty ') + (this.state.cartBump ? 'is-bump' : ''),
+      cartAria: this.state.th ? 'ตะกร้า ' + (this.state.cartN || 0) + ' ชิ้น' : 'Cart, ' + (this.state.cartN || 0) + ' items',
+      cartTip: (this.state.cartN || 0) > 0 ? (this.state.th ? 'ตะกร้า · ' + this.state.cartN + ' ชิ้น — กดเพื่อสั่งจอง' : 'Cart · ' + this.state.cartN + (this.state.cartN > 1 ? ' pieces' : ' piece') + ' — tap to pre-order') : (this.state.th ? 'ตะกร้าว่าง' : 'Cart is empty'),
+      cartToastOn: !!this.state.cartToast,
+      cartToast: this.state.cartToast || '',
+      cartToastSub: this.state.th ? 'อยู่ในตะกร้าแล้ว (' + (this.state.cartN || 0) + ' ชิ้น)' : 'is in your cart (' + (this.state.cartN || 0) + ')',
+      cartToastLink: this.state.th ? 'ไปที่ตะกร้า →' : 'Go to cart →',
+
       c,
       L,
       p: { ...p, desc: th ? p.descTh : p.desc, fit: th ? p.fitTh : p.fit, shots: p.shots.map((s) => ({ ...s, empty: !s.src, capColor: s.src ? '#f1ebe2' : c.muted })) },
@@ -426,7 +466,22 @@ class Component extends DCLogic {
         const ex = lines.find((l) => l.id === id && l.size === s.size);
         if (ex) ex.qty = Math.min(9, (ex.qty || 1) + 1); else lines.push({ id, size: s.size, qty: 1 });
         try { localStorage.setItem('pe-cart', JSON.stringify(lines)); } catch (e) {}
-        this.setState({ cartMsg: L.added + ' ' + p.name + ' — ' + s.size, cartN: lines.reduce((a, l) => a + (l.qty || 1), 0) });
+        this.setState({ cartMsg: L.added + ' ' + p.name + ' — ' + s.size, cartN: lines.reduce((a, l) => a + (l.qty || 1), 0), cartToast: p.name + ' — ' + s.size });
+        try {
+          const bEl = document.querySelector('.pd-btn'), cEl = document.querySelector('.pe-cart');
+          if (bEl && cEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const b = bEl.getBoundingClientRect(), c = cEl.getBoundingClientRect();
+            const d = document.createElement('span'); d.className = 'pe-fly';
+            d.style.left = (b.left + b.width / 2) + 'px'; d.style.top = (b.top + b.height / 2) + 'px';
+            document.body.appendChild(d);
+            d.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: 'translate(' + (c.left + c.width / 2 - b.left - b.width / 2) + 'px,' + (c.top + c.height / 2 - b.top - b.height / 2) + 'px) scale(.35)', opacity: .95 }], { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)' }).onfinish = () => d.remove();
+          }
+        } catch (e) {}
+        clearTimeout(this.bumpT); clearTimeout(this.toastT);
+        this.bumpT = setTimeout(() => this.setState({ cartBump: Date.now() }), 600);
+        this.toastT = setTimeout(() => this.setState({ cartBump: 0 }), 1500);
+        this.toast2T = setTimeout(() => this.setState({ cartToast: '' }), 4500);
+
       },
       join: (e) => { e.preventDefault(); this.setState({ joined: true }); }
     };
