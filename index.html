@@ -213,7 +213,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
         <sc-for list="{{ looks }}" as="l" hint-placeholder-count="10">
           <figure class="hm-tile" style="margin: 0; flex: none; width: 220px; display: flex; flex-direction: column; gap: 6px;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
             <div style="height: 330px; overflow: hidden; background: {{ c.stone }};"><img loading="lazy" decoding="async" src="{{ l.src }}" alt="{{ l.alt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
-            <figcaption style="display: flex; justify-content: space-between; padding: 0 4px 4px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }};"><span>{{ l.no }}</span><span>Reference</span></figcaption>
+            <figcaption style="display: flex; justify-content: space-between; padding: 0 4px 4px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }};"><span>{{ l.no }}</span><span>Drop 01</span></figcaption>
           </figure>
         </sc-for>
       </div>
@@ -521,14 +521,14 @@ class Component extends DCLogic {
     // Language and theme are shared by every page through this browser's storage.
     try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
     const imgs = [
-      ['assets/henley-front.jpg', 'Linen Henley flat-lay'],
-      ['assets/linen-light.jpg', 'Drop 01 linen held to the light'],
-      ['assets/silver-mask.jpg', 'Reference: silver mask'],
-      ['assets/street.jpg', 'Reference: street editorial'],
-      ['assets/linen-drape.jpg', 'Drop 01 linen in folds']
+      ['assets/look-01.jpg', 'Look 01: Slub Linen Henley under an open leather jacket, blue', 'Look 01'],
+      ['assets/look-02.jpg', 'Look 02: Slub Linen Henley under a leather jacket, grain', 'Look 02'],
+      ['assets/look-03.jpg', 'Look 03: Slub Linen Henley worn alone, dark red', 'Look 03'],
+      ['assets/look-04.jpg', 'Look 04: tilted placket in late sun', 'Look 04'],
+      ['assets/henley-front.jpg', 'Slub Linen Henley flat-lay', 'Flat lay']
     ];
     this.looks = [];
-    for (let i = 0; i < 12; i++) { const m = imgs[i % 6 === 5 ? 0 : i % 6]; this.looks.push({ src: m[0], alt: m[1], no: 'Look ' + String((i % 6) + 1).padStart(2, '0') }); }
+    for (let i = 0; i < 10; i++) { const m = imgs[i % 5]; this.looks.push({ src: m[0], alt: m[1], no: m[2] }); }
     // Hero rain lands on the top of the headline: line 1 (x < 610px) at 312px, line 2 at 396px.
     // Rain on the look frame: falls about 150px and lands on its top edge.
     this.frameRain = [];
@@ -647,7 +647,7 @@ class Component extends DCLogic {
   start() {
     if (this.running) return;
     this.running = true;
-    const loop = () => 6 * ((this.small ? 160 : 220) + 4); // six looks then the strip repeats
+    const loop = () => 5 * ((this.small ? 160 : 220) + 4); // five looks then the strip repeats
     let last = performance.now();
     const step = () => {
       const now = performance.now();
