@@ -207,6 +207,31 @@ a{color:inherit;text-decoration:none}
                   <span style="color: {{ c.muted }}; text-transform: uppercase; letter-spacing: .12em;">{{ r.k }}</span><span>{{ r.v }}</span>
                 </sc-for>
               </div>
+              <sc-if value="{{ a.hasTable }}" hint-placeholder-val="{{ false }}">
+                <div class="pd-sz" style="padding: 0 4px 28px;">
+                  <div role="group" aria-label="Unit" style="display: inline-flex; border: 1px solid {{ c.silver }}; margin-bottom: 14px;">
+                    <button type="button" onClick="{{ unitIn }}" aria-pressed="{{ unitIsIn }}" style="min-height: 40px; min-width: 64px; padding: 0 14px; border: 0; font: inherit; font-size: 13px; font-weight: 700; letter-spacing: .1em; background: {{ inBg }}; color: {{ inFg }}; cursor: pointer;">{{ L.inch }}</button>
+                    <button type="button" onClick="{{ unitCm }}" aria-pressed="{{ unitIsCm }}" style="min-height: 40px; min-width: 64px; padding: 0 14px; border: 0; font: inherit; font-size: 13px; font-weight: 700; letter-spacing: .1em; background: {{ cmBg }}; color: {{ cmFg }}; cursor: pointer;">{{ L.cm }}</button>
+                  </div>
+                  <div role="table" aria-label="{{ L.size }}" style="font-variant-numeric: tabular-nums;">
+                    <div role="row" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; background: {{ c.ink }}; color: {{ c.ground }};">
+                      <span role="columnheader" style="padding: 12px 10px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase;">{{ L.size }}</span>
+                      <span role="columnheader" style="padding: 12px 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; text-align: center;">{{ L.chest }}</span>
+                      <span role="columnheader" style="padding: 12px 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; text-align: center;">{{ L.length }}</span>
+                      <span role="columnheader" style="padding: 12px 8px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; text-align: center;">{{ L.sleeve }}</span>
+                    </div>
+                    <sc-for list="{{ a.table }}" as="t" hint-placeholder-count="4">
+                      <div role="row" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; align-items: center; background: {{ t.bg }}; border-bottom: 1px solid {{ c.silver }};">
+                        <span role="rowheader" style="padding: 14px 10px; font-size: 18px; font-weight: 800; color: {{ t.fg }};">{{ t.s }}</span>
+                        <span role="cell" style="padding: 14px 8px; font-size: 16px; font-weight: 700; text-align: center;">{{ t.a }}</span>
+                        <span role="cell" style="padding: 14px 8px; font-size: 16px; font-weight: 700; text-align: center;">{{ t.b }}</span>
+                        <span role="cell" style="padding: 14px 8px; font-size: 16px; font-weight: 700; text-align: center;">{{ t.d }}</span>
+                      </div>
+                    </sc-for>
+                    <p style="margin: 12px 0 0; font-size: 12px; line-height: 18px; color: {{ c.muted }};">{{ L.measureNote }}</p>
+                  </div>
+                </div>
+              </sc-if>
             </sc-if>
           </div>
         </sc-for>
@@ -399,11 +424,12 @@ class Component extends DCLogic {
     const o = this.products[(st.i + 1) % this.products.length];
     const Z = 2.6;
     const L = th
-      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: p.chart ? 'ดูตารางไซซ์ด้านล่าง' : 'รอยืนยันไซซ์', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', add: 'เพิ่มลงตะกร้า', pickSize: 'เลือกไซซ์ก่อน', needSize: 'เลือกไซซ์ก่อนกดเพิ่มลงตะกร้า', added: 'เพิ่มแล้ว:', goCart: 'ไปที่ตะกร้า / พรีออเดอร์', preNote: 'พรีออเดอร์ ผลิตหลังปิดรับ', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
-      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: p.chart ? 'Size chart below' : 'Sizes to confirm', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', add: 'Add to cart', pickSize: 'Select a size', needSize: 'Pick a size first.', added: 'Added:', goCart: 'Go to cart / pre-order', preNote: 'Pre-order. Made after orders close.', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
+      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: p.chart ? 'ดูตารางไซซ์ด้านล่าง' : 'รอยืนยันไซซ์', inch: 'นิ้ว', cm: 'ซม.', chest: 'รอบอก', length: 'ยาว', sleeve: 'แขน', measureNote: 'วัดจากตัวเสื้อวางราบ รอบอกวัดใต้แขนแล้วคูณ 2 · ความยาววัดจากคอถึงชายเสื้อ · คลาดเคลื่อนได้ ±0.5 นิ้ว', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', add: 'เพิ่มลงตะกร้า', pickSize: 'เลือกไซซ์ก่อน', needSize: 'เลือกไซซ์ก่อนกดเพิ่มลงตะกร้า', added: 'เพิ่มแล้ว:', goCart: 'ไปที่ตะกร้า / พรีออเดอร์', preNote: 'พรีออเดอร์ ผลิตหลังปิดรับ', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
+      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: p.chart ? 'Size chart below' : 'Sizes to confirm', inch: 'IN', cm: 'CM', chest: 'Chest', length: 'Length', sleeve: 'Sleeve', measureNote: 'Measured on the garment laid flat. Chest = armpit to armpit × 2. Length = collar to hem. Allow ±0.5 in.', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', add: 'Add to cart', pickSize: 'Select a size', needSize: 'Pick a size first.', added: 'Added:', goCart: 'Go to cart / pre-order', preNote: 'Pre-order. Made after orders close.', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
+    const cm = st.unit === 'cm';
     const sec = [
       { id: 'fabric', title: th ? 'เนื้อผ้าและการดูแล' : 'Fabric and care', rows: p.fabric },
-      { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }, ...(p.chart ? [{ k: th ? 'หน่วย' : 'Unit', v: th ? 'นิ้ว (ซม.) — วัดจากตัวเสื้อ' : 'inches (cm), measured on the garment' }].concat(p.chart.map((r) => ({ k: r[0], v: (th ? 'รอบอก ' : 'Chest ') + r[1] + '" (' + Math.round(r[1] * 2.54) + ')  ·  ' + (th ? 'ยาว ' : 'Length ') + r[2] + '" (' + Math.round(r[2] * 2.54) + ')  ·  ' + (th ? 'แขน ' : 'Sleeve ') + r[3] + '" (' + Math.round(r[3] * 2.54) + ')' }))) : [{ k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }])] },
+      { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }].concat(p.chart ? [] : [{ k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }]), table: p.chart ? p.chart.map((r) => { const f = (v) => cm ? String(Math.round(v * 2.54)) : String(v); const on = st.size === r[0]; return { s: r[0], a: f(r[1]), b: f(r[2]), d: f(r[3]), bg: on ? 'rgba(137,0,0,.12)' : 'transparent', fg: on ? (st.theme === 'night' ? '#e5484d' : '#890000') : 'inherit' }; }) : null },
       { id: 'ship', title: th ? 'การจัดส่ง' : 'Shipping', rows: [{ k: th ? 'ในไทย' : 'Thailand', v: th ? 'Flash Express ได้รับใน 1–3 วันหลังส่งของ' : 'Flash Express, 1–3 days after dispatch' }, { k: th ? 'ต่างประเทศ' : 'Abroad', v: th ? '[รอยืนยัน]' : '[To confirm]' }, { k: th ? 'คืนสินค้า' : 'Returns', v: th ? 'ติดต่อ support@pattecks.com' : 'Contact support@pattecks.com' }] }
     ];
     return {
@@ -435,7 +461,11 @@ class Component extends DCLogic {
       displayFont: th ? '"SOV MuekMod", "Courier New", monospace' : '"SOV MuekMod", "Arial Black", sans-serif',
       sizes: this.sizeList.map((s) => ({ label: s, on: st.size === s, bg: st.size === s ? c.ink : 'transparent', fg: st.size === s ? c.ground : c.ink, pick: () => this.setState({ size: st.size === s ? null : s, cartMsg: '' }) })),
       sizeNote: st.size ? ', size ' + st.size : '',
-      sections: sec.map((s) => ({ ...s, open: st.open === s.id, rot: st.open === s.id ? 45 : 0, toggle: () => this.setState({ open: st.open === s.id ? null : s.id }) })),
+      unitIsIn: !cm, unitIsCm: cm,
+      inBg: cm ? 'transparent' : c.ink, inFg: cm ? c.ink : c.ground,
+      cmBg: cm ? c.ink : 'transparent', cmFg: cm ? c.ground : c.ink,
+      unitIn: () => this.setState({ unit: 'in' }), unitCm: () => this.setState({ unit: 'cm' }),
+      sections: sec.map((s) => ({ ...s, hasTable: !!s.table, open: st.open === s.id, rot: st.open === s.id ? 45 : 0, toggle: () => this.setState({ open: st.open === s.id ? null : s.id }) })),
       tx: (() => {
         // Background texture, drawn in code (no images): linen weave, wet concrete or film grain.
         const kind = this.props.texture || 'linen';
