@@ -73,6 +73,7 @@ a{color:inherit;text-decoration:none}
 .pe-tools button{padding:0 10px !important}
 }
 .pe-mnav a{display:flex;align-items:center;min-height:56px}
+.pe-mx{color:#0b8a24;font-family:'Courier Prime','Courier New',monospace;letter-spacing:.08em}.ux-dark .pe-mx,.pe-mx.is-dark{color:#2bff6a;text-shadow:0 0 8px rgba(43,255,106,.55)}.pe-mx .pe-cur{display:inline-block;animation:pe-blink 1s steps(1) infinite}@keyframes pe-blink{50%{opacity:0}}.pe-bin{font-family:'Courier Prime','Courier New',monospace !important;letter-spacing:.04em;word-spacing:.25em}
 </style>
 <script src="assets/gsap.min.js"></script>
 </head>
@@ -159,7 +160,7 @@ a{color:inherit;text-decoration:none}
     <aside class="pd-info" style="flex: 5 1 0; min-width: 0; position: sticky; top: 24px; display: flex; flex-direction: column; gap: 28px;">
       <div style="position: relative;" onMouseEnter="{{ wetOn }}" onMouseLeave="{{ wetOff }}">
         <span style="display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: {{ c.muted }}; margin-bottom: 12px;">{{ p.no }} — Drop 01</span>
-        <h1 class="pd-big pe-script" style="margin: 0; font-size: 60px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
+        <h1 class="pd-big pe-script {{ h1Cls }}" style="margin: 0; font-size: 60px; line-height: 1; letter-spacing: -.01em; font-weight: 400;">{{ p.name }}</h1>
         <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 0; pointer-events: none;">
           <sc-for list="{{ nameDrops }}" as="d" hint-placeholder-count="0">
             <span style="position: absolute; left: {{ d.x }}px; top: 0; width: 1px; height: {{ d.h }}px; background: #890000; opacity: {{ d.lo }}; transform: translateY({{ d.y }}px);"></span>
@@ -168,7 +169,7 @@ a{color:inherit;text-decoration:none}
             <span style="position: absolute; left: {{ d.x }}px; top: {{ d.land }}px; width: 2px; height: 2px; border-radius: 50%; background: #890000; opacity: {{ d.so }}; transform: translate(-{{ d.dx }}px, {{ d.dy }}px);"></span>
           </sc-for>
         </span>
-        <span style="display: block; margin-top: 18px; font-size: 30px; font-weight: 700; letter-spacing: .04em;">{{ p.price }}</span>
+        <span class="{{ priceCls }}" style="display: block; margin-top: 18px; font-size: 30px; font-weight: 700; letter-spacing: .04em;">{{ p.price }}</span>
       </div>
 
       <p style="margin: 0; font-size: 16px; line-height: 26px; color: {{ c.muted }}; max-width: 44ch;">{{ p.desc }}</p>
@@ -184,7 +185,7 @@ a{color:inherit;text-decoration:none}
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 10px;">
-        <button type="button" class="pd-btn" onClick="{{ addCart }}" style="min-height: 68px; padding: 0 28px; background: {{ cartBg }}; color: #f1ebe2; border: 0; font: inherit; font-size: 18px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;">{{ cartLabel }}</button>
+        <button type="button" class="pd-btn" onClick="{{ addCart }}" style="min-height: 68px; padding: 0 28px; background: {{ cartBg }}; color: {{ cartFg }}; border: 0; font: inherit; font-size: 18px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;">{{ cartLabel }}</button>
         <span role="status" style="font-size: 16px; font-weight: 700; min-height: 22px;">{{ cartMsg }}</span>
         <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
           <a href="/order" style="display: inline-flex; align-items: center; min-height: 44px; align-self: flex-start; font-size: 16px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border-bottom: 2px solid #890000;">{{ L.goCart }} ({{ cartCount }})</a>
@@ -291,18 +292,18 @@ class Component extends DCLogic {
         fabric: [{ k: 'Fabric', v: '100% slub linen' }, { k: 'Feel', v: 'Light, uneven slub texture, breathes in heat' }, { k: 'Wash', v: 'Cold, gentle cycle or by hand. No bleach.' }, { k: 'Dry', v: 'Line dry in shade. No tumble dry. Iron warm while damp.' }]
       },
       {
-        no: '02', name: 'Raw Slub Denim', price: 'Coming soon', soon: true, ratio: '4 / 5', weave: 'slub', isNew: false,
-        main: 'assets/denim.jpg', mainAlt: 'Raw slub denim jeans laid flat on concrete', mainTag: '',
-        desc: 'Unwashed raw denim with a slub yarn that leaves the surface uneven by design. It fades to the person who wears it.',
-        descTh: 'ยีนส์ดิบไม่ผ่านการซัก เส้นด้าย slub ทำให้ผิวผ้าไม่เรียบโดยตั้งใจ สีจะซีดตามคนที่ใส่',
+        no: '02', name: '01001010 01001110', price: 'COMING SOON_', soon: true, ratio: '4 / 5', weave: 'slub', isNew: false,
+        main: 'assets/x02.jpg', mainAlt: 'Unreleased jeans, drawn as a green grid', mainTag: '',
+        desc: 'Not ready to be seen yet. Denim, straight leg. More when it is finished.',
+        descTh: 'ยังไม่ถึงเวลาให้เห็น ยีนส์ ขาตรง รายละเอียดเพิ่มเติมเร็วๆ นี้',
         fit: 'Straight leg.',
         fitTh: 'ขาตรง',
-        fabricLine: 'Raw slub denim / unwashed',
+        fabricLine: 'Denim / [redacted]',
         shots: [
-          { src: '', alt: 'Slub texture close-up — photo coming', label: 'Fabric — slub texture', tag: '', light: false },
-          { src: '', alt: 'Pocket and hardware detail — photo coming', label: 'Detail — pocket', tag: '', light: false }
+          { src: '', alt: 'Classified', label: '[Classified]', tag: '', light: false },
+          { src: '', alt: 'Classified', label: '[Classified]', tag: '', light: false }
         ],
-        fabric: [{ k: 'Fabric', v: 'Raw slub denim, unwashed' }, { k: 'Weight', v: '[oz to confirm]' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Note', v: 'Indigo may transfer before the first wash' }]
+        fabric: [{ k: 'Fabric', v: '01100100 01100101 01101110' }, { k: 'Weight', v: '[redacted]' }, { k: 'Status', v: 'In work' }]
       }
     ];
     this.sizeList = ['S', 'M', 'L', 'XL'];
@@ -507,8 +508,11 @@ class Component extends DCLogic {
       toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
       toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); },
       // Add to cart: needs a size; the cart lives in this browser and the pre-order page reads it.
-      cartLabel: p.soon ? (th ? 'เร็วๆ นี้ — ยังไม่เปิดขาย' : 'Coming soon — not on sale yet') : (st.size ? L.add + ' — ' + st.size : L.pickSize),
-      cartBg: p.soon ? 'rgba(90,90,90,0.55)' : (st.size ? '#890000' : 'rgba(137,0,0,0.45)'),
+      priceCls: p.soon ? ('pe-mx' + (st.theme === 'night' ? ' is-dark' : '')) : '',
+      h1Cls: p.soon ? 'pe-bin' : '',
+      cartLabel: p.soon ? (th ? '> เร็วๆ นี้_' : '> Coming soon_') : (st.size ? L.add + ' — ' + st.size : L.pickSize),
+      cartFg: p.soon ? '#2bff6a' : '#f1ebe2',
+      cartBg: p.soon ? '#0b1a0e' : (st.size ? '#890000' : 'rgba(137,0,0,0.45)'),
       cartMsg: st.cartMsg || '',
       hasCart: (st.cartN || 0) > 0,
       cartCount: st.cartN || 0,
