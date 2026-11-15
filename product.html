@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PattEcks! — Product</title>
-<meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: slub linen and raw slub denim.">
 <meta property="og:title" content="PattEcks! — Product">
-<meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
+<meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: slub linen and raw slub denim.">
 <meta property="og:image" content="https://www.pattecks.com/assets/og-henley-v2.jpg">
 <link rel="icon" href="assets/wordmark-ink.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -251,13 +251,13 @@ class Component extends DCLogic {
     try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
     this.products = [
       {
-        no: '01', name: 'Linen Gauze Henley', ratio: '952 / 865', weave: 'gauze', isNew: true,
+        no: '01', name: 'Slub Linen Henley', ratio: '952 / 865', weave: 'slub', isNew: true,
         main: 'assets/henley-front.jpg', mainAlt: 'Linen Henley laid flat on raw concrete', mainTag: '',
-        desc: 'A long-sleeve henley in open linen gauze. Cropped and cut close, with the placket set on a tilt. Made to be worn every day in Bangkok heat.',
-        descTh: 'เฮนลีย์แขนยาวผ้าลินินกอซ ทรงครอปตัดเข้าตัว กระดุมคอเอียง ทำมาให้ใส่ได้ทุกวันในอากาศร้อนของกรุงเทพ',
+        desc: 'A long-sleeve henley in slub linen. Cropped and cut close, with the placket set on a tilt. Made to be worn every day in Bangkok heat.',
+        descTh: 'เฮนลีย์แขนยาวผ้าลินินสลาฟ ทรงครอปตัดเข้าตัว กระดุมคอเอียง ทำมาให้ใส่ได้ทุกวันในอากาศร้อนของกรุงเทพ',
         fit: 'Cropped and cut close to the body. Not oversized.',
         fitTh: 'ทรงครอป ตัดเข้าตัว ไม่ใช่ทรงหลวม',
-        fabricLine: '100% linen gauze / cropped / tilted placket',
+        fabricLine: '100% slub linen / cropped / tilted placket',
         shots: [
           { src: 'assets/henley-roll.jpg', alt: 'Linen Henley laid sideways on concrete', label: 'Flat lay', tag: '', light: true, wide: true },
           { src: 'assets/henley-placket.jpg', alt: 'Tilted placket with four shell buttons', label: 'Detail — tilted placket', tag: '', light: true },
@@ -265,7 +265,7 @@ class Component extends DCLogic {
           { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen slub held up to window light', label: 'Fabric — held to the light', tag: '', light: true },
           { src: 'assets/linen-drape.jpg', alt: 'Drop 01 linen slub in loose folds', label: 'Fabric — drape', tag: '', light: true }
         ],
-        fabric: [{ k: 'Fabric', v: '100% linen, gauze weave' }, { k: 'Feel', v: 'Open, light, breathes in heat' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Dry', v: '[Drying instructions]' }]
+        fabric: [{ k: 'Fabric', v: '100% slub linen' }, { k: 'Feel', v: 'Light, uneven slub texture, breathes in heat' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Dry', v: '[Drying instructions]' }]
       },
       {
         no: '02', name: 'Raw Slub Denim', ratio: '4 / 5', weave: 'slub', isNew: true,
