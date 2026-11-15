@@ -251,7 +251,7 @@ class Component extends DCLogic {
     try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
     this.products = [
       {
-        no: '01', name: 'Slub Linen Henley', price: 'THB 860', ratio: '952 / 865', weave: 'slub', isNew: true,
+        no: '01', name: 'Slub Linen Henley', price: 'THB 860', chart: [['S', 37, 25, 22], ['M', 39, 26, 22.5], ['L', 41, 27, 23], ['XL', 43, 28, 23.5]], ratio: '952 / 865', weave: 'slub', isNew: true,
         main: 'assets/henley-front.jpg', mainAlt: 'Linen Henley laid flat on raw concrete', mainTag: '',
         desc: 'A long-sleeve henley in slub linen. Cropped and cut close, with the placket set on a tilt. Made to be worn every day in Bangkok heat.',
         descTh: 'เฮนลีย์แขนยาวผ้าลินินสลาฟ ทรงครอปตัดเข้าตัว กระดุมคอเอียง ทำมาให้ใส่ได้ทุกวันในอากาศร้อนของกรุงเทพ',
@@ -399,11 +399,11 @@ class Component extends DCLogic {
     const o = this.products[(st.i + 1) % this.products.length];
     const Z = 2.6;
     const L = th
-      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: 'รอยืนยันไซซ์', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', add: 'เพิ่มลงตะกร้า', pickSize: 'เลือกไซซ์ก่อน', needSize: 'เลือกไซซ์ก่อนกดเพิ่มลงตะกร้า', added: 'เพิ่มแล้ว:', goCart: 'ไปที่ตะกร้า / พรีออเดอร์', preNote: 'พรีออเดอร์ ผลิตหลังปิดรับ', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
-      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: 'Sizes to confirm', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', add: 'Add to cart', pickSize: 'Select a size', needSize: 'Pick a size first.', added: 'Added:', goCart: 'Go to cart / pre-order', preNote: 'Pre-order. Made after orders close.', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
+      ? { prev: 'ก่อนหน้า', next: 'ถัดไป', hoverZoom: 'ชี้เพื่อดูเนื้อผ้าใกล้ๆ', size: 'ไซซ์', sizeTbc: p.chart ? 'ดูตารางไซซ์ด้านล่าง' : 'รอยืนยันไซซ์', notifyLabel: 'ยังไม่เปิดขาย — รับอีเมลเดียวตอนดรอป', notify: 'แจ้งเตือนฉัน', onList: 'ลงชื่อรอแล้ว:', askIg: 'ถามเรื่องทรงทาง Instagram', add: 'เพิ่มลงตะกร้า', pickSize: 'เลือกไซซ์ก่อน', needSize: 'เลือกไซซ์ก่อนกดเพิ่มลงตะกร้า', added: 'เพิ่มแล้ว:', goCart: 'ไปที่ตะกร้า / พรีออเดอร์', preNote: 'พรีออเดอร์ ผลิตหลังปิดรับ', also: 'อยู่ในดรอป 01 ด้วย', view: 'ดู', tagline: 'ใส่ได้ทุกวัน ไม่ตกยุค ไม่เรียบ' }
+      : { prev: 'Previous', next: 'Next', hoverZoom: 'Hover to see the ' + p.weave + ' up close', size: 'Size', sizeTbc: p.chart ? 'Size chart below' : 'Sizes to confirm', notifyLabel: 'Not on sale yet — get one email when it drops', notify: 'Notify me', onList: 'You are on the list for', askIg: 'Ask about fit on Instagram', add: 'Add to cart', pickSize: 'Select a size', needSize: 'Pick a size first.', added: 'Added:', goCart: 'Go to cart / pre-order', preNote: 'Pre-order. Made after orders close.', also: 'Also in Drop 01', view: 'View', tagline: 'Everyday. Timeless. Never plain.' };
     const sec = [
       { id: 'fabric', title: th ? 'เนื้อผ้าและการดูแล' : 'Fabric and care', rows: p.fabric },
-      { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }, { k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }] },
+      { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }, ...(p.chart ? [{ k: th ? 'หน่วย' : 'Unit', v: th ? 'นิ้ว (ซม.) — วัดจากตัวเสื้อ' : 'inches (cm), measured on the garment' }].concat(p.chart.map((r) => ({ k: r[0], v: (th ? 'รอบอก ' : 'Chest ') + r[1] + '" (' + Math.round(r[1] * 2.54) + ')  ·  ' + (th ? 'ยาว ' : 'Length ') + r[2] + '" (' + Math.round(r[2] * 2.54) + ')  ·  ' + (th ? 'แขน ' : 'Sleeve ') + r[3] + '" (' + Math.round(r[3] * 2.54) + ')' }))) : [{ k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }])] },
       { id: 'ship', title: th ? 'การจัดส่ง' : 'Shipping', rows: [{ k: th ? 'ในไทย' : 'Thailand', v: th ? 'Flash Express ได้รับใน 1–3 วันหลังส่งของ' : 'Flash Express, 1–3 days after dispatch' }, { k: th ? 'ต่างประเทศ' : 'Abroad', v: th ? '[รอยืนยัน]' : '[To confirm]' }, { k: th ? 'คืนสินค้า' : 'Returns', v: th ? 'ติดต่อ support@pattecks.com' : 'Contact support@pattecks.com' }] }
     ];
     return {
