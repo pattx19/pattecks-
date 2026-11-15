@@ -117,6 +117,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 @keyframes pe-pop{0%{transform:scale(.4)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
 @keyframes pe-toast{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.pe-cart svg,.pe-cart .pe-h,.pe-cart-n{animation:none !important;transition:none !important}}
+.hm-dot{display:none !important}/*off*/
 </style>
 <script src="assets/gsap.min.js"></script>
 </head>
@@ -297,7 +298,6 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
               <span style="color: {{ c.muted }};">Dry</span><span>Shade. No tumble. Iron damp.</span>
               <span style="color: {{ c.muted }};">Fit</span><span>Cropped / cut close</span>
               <span style="color: {{ c.muted }};">Size</span><span>Measurements coming with the first run</span>
-              <span style="color: {{ c.muted }};">Model</span><span>[Height] cm wears [Size]</span>
             </span>
             <span style="align-self: flex-end; font-size: 11px; color: {{ c.muted }}; border-bottom: 1px solid {{ c.silver }}; padding-bottom: 2px;">Flip back</span>
           </span>
