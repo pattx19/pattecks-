@@ -145,7 +145,7 @@ a{color:inherit;text-decoration:none}
       </figure>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
         <sc-for list="{{ p.shots }}" as="s" hint-placeholder-count="2">
-          <figure class="pd-shot" style="margin: 0; position: relative; overflow: hidden; aspect-ratio: 3 / 4; background: {{ c.stone }};">
+          <figure class="pd-shot" style="margin: 0; position: relative; overflow: hidden; aspect-ratio: {{ s.ar }}; grid-column: {{ s.col }}; background: {{ c.stone }};">
             <sc-if value="{{ s.src }}" hint-placeholder-val="{{ true }}">
               <img src="{{ s.src }}" alt="{{ s.alt }}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </sc-if>
@@ -251,7 +251,7 @@ class Component extends DCLogic {
     try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
     this.products = [
       {
-        no: '01', name: 'Linen Gauze Henley', ratio: '3 / 4', weave: 'gauze', isNew: true,
+        no: '01', name: 'Linen Gauze Henley', ratio: '952 / 865', weave: 'gauze', isNew: true,
         main: 'assets/henley.jpg', mainAlt: 'Linen Henley laid flat on raw concrete', mainTag: '',
         desc: 'A long-sleeve henley in open linen gauze. Cropped and cut close, with the placket set on a tilt. Made to be worn every day in Bangkok heat.',
         descTh: 'เฮนลีย์แขนยาวผ้าลินินกอซ ทรงครอปตัดเข้าตัว กระดุมคอเอียง ทำมาให้ใส่ได้ทุกวันในอากาศร้อนของกรุงเทพ',
@@ -259,6 +259,7 @@ class Component extends DCLogic {
         fitTh: 'ทรงครอป ตัดเข้าตัว ไม่ใช่ทรงหลวม',
         fabricLine: '100% linen gauze / cropped / tilted placket',
         shots: [
+          { src: 'assets/henley-roll.jpg', alt: 'Linen Henley laid sideways on concrete', label: 'Flat lay', tag: '', light: true, wide: true },
           { src: 'assets/henley-placket.jpg', alt: 'Tilted placket with four shell buttons', label: 'Detail — tilted placket', tag: '', light: true },
           { src: 'assets/henley-placket-open.jpg', alt: 'Placket opened, showing buttonholes and collar band', label: 'Detail — open placket', tag: '', light: true },
           { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen slub held up to window light', label: 'Fabric — held to the light', tag: '', light: true },
@@ -423,7 +424,7 @@ class Component extends DCLogic {
 
       c,
       L,
-      p: { ...p, desc: th ? p.descTh : p.desc, fit: th ? p.fitTh : p.fit, shots: p.shots.map((s) => ({ ...s, empty: !s.src, capColor: s.src ? '#f1ebe2' : c.muted })) },
+      p: { ...p, desc: th ? p.descTh : p.desc, fit: th ? p.fitTh : p.fit, shots: p.shots.map((s) => ({ ...s, ar: s.wide ? '1168 / 820' : '3 / 4', col: s.wide ? '1 / -1' : 'auto', empty: !s.src, capColor: s.src ? '#f1ebe2' : c.muted })) },
       o,
       logo: dark ? 'assets/wordmark-white.png' : 'assets/wordmark-ink.png',
       themeLabel: dark ? 'Linen' : 'Leather',
