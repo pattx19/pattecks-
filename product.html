@@ -268,12 +268,12 @@ class Component extends DCLogic {
         fabric: [{ k: 'Fabric', v: '100% slub linen' }, { k: 'Feel', v: 'Light, uneven slub texture, breathes in heat' }, { k: 'Wash', v: 'Cold, gentle cycle or by hand. No bleach.' }, { k: 'Dry', v: 'Line dry in shade. No tumble dry. Iron warm while damp.' }]
       },
       {
-        no: '02', name: 'Raw Slub Denim', price: 'THB [PRICE]', ratio: '4 / 5', weave: 'slub', isNew: true,
+        no: '02', name: 'Raw Slub Denim', price: 'Coming soon', soon: true, ratio: '4 / 5', weave: 'slub', isNew: false,
         main: 'assets/denim.jpg', mainAlt: 'Raw slub denim jeans laid flat on concrete', mainTag: '',
         desc: 'Unwashed raw denim with a slub yarn that leaves the surface uneven by design. It fades to the person who wears it.',
         descTh: 'ยีนส์ดิบไม่ผ่านการซัก เส้นด้าย slub ทำให้ผิวผ้าไม่เรียบโดยตั้งใจ สีจะซีดตามคนที่ใส่',
-        fit: 'Straight leg. [Rise and leg opening to confirm]',
-        fitTh: 'ขาตรง [เอวและปลายขารอยืนยัน]',
+        fit: 'Straight leg.',
+        fitTh: 'ขาตรง',
         fabricLine: 'Raw slub denim / unwashed',
         shots: [
           { src: '', alt: 'Slub texture close-up — photo coming', label: 'Fabric — slub texture', tag: '', light: false },
@@ -479,13 +479,14 @@ class Component extends DCLogic {
       toggleTheme: () => { const v = dark ? 'linen' : 'night'; try { localStorage.setItem('pe-theme', v); } catch (e) {} this.setState({ theme: v }); },
       toggleLang: () => { try { localStorage.setItem('pe-lang', th ? 'en' : 'th'); } catch (e) {} this.setState({ th: !th }); },
       // Add to cart: needs a size; the cart lives in this browser and the pre-order page reads it.
-      cartLabel: st.size ? L.add + ' — ' + st.size : L.pickSize,
-      cartBg: st.size ? '#890000' : 'rgba(137,0,0,0.45)',
+      cartLabel: p.soon ? (th ? 'เร็วๆ นี้ — ยังไม่เปิดขาย' : 'Coming soon — not on sale yet') : (st.size ? L.add + ' — ' + st.size : L.pickSize),
+      cartBg: p.soon ? 'rgba(90,90,90,0.55)' : (st.size ? '#890000' : 'rgba(137,0,0,0.45)'),
       cartMsg: st.cartMsg || '',
       hasCart: (st.cartN || 0) > 0,
       cartCount: st.cartN || 0,
       addCart: () => {
         const s = this.state;
+        if (p.soon) { this.setState({ cartMsg: th ? 'ยีนส์ตัวนี้ยังไม่เปิดขาย รอดรอปถัดไป' : 'This denim is not on sale yet. It comes in a later drop.' }); return; }
         if (!s.size) { this.setState({ cartMsg: L.needSize }); return; }
         const id = s.i === 1 ? 'denim' : 'henley';
         let lines = [];
