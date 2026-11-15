@@ -527,8 +527,8 @@ class Component extends DCLogic {
       ['assets/look-04.jpg', 'Look 04: tilted placket in late sun', 'Look 04']
     ];
     this.looks = [];
-    // New random order on every visit; the same order repeats so the endless loop has no jump.
-    for (let i = imgs.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [imgs[i], imgs[j]] = [imgs[j], imgs[i]]; }
+    // Fixed running order: Look 02, 03, 04, 01.
+    imgs.push(imgs.shift());
     for (let i = 0; i < 16; i++) { const m = imgs[i % imgs.length]; this.looks.push({ src: m[0], alt: m[1], no: m[2] }); }
     // Hero rain lands on the top of the headline: line 1 (x < 610px) at 312px, line 2 at 396px.
     // Rain on the look frame: falls about 150px and lands on its top edge.
