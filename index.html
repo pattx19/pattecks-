@@ -255,7 +255,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
       <article class="hm-cell" onMouseEnter="{{ ce1 }}" onMouseLeave="{{ cl1 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 2px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
           <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp1 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Soon</span><span style="font-family: 'SOV MuekMod', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">Next — In work</span></span>
-          <a href="/denim" onClick="{{ goD }}" aria-label="View 01001010 01001110, coming soon" style="display: block; width: 100%; height: 100%;"><img src="assets/x02.png" loading="lazy" decoding="async" alt="Unreleased jeans, drawn as a green grid" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
+          <a href="/denim" onClick="{{ goD }}" aria-label="View 01001010 01001110, coming soon" style="display: block; width: 100%; height: 100%;"><img src="assets/x02b.png" loading="lazy" decoding="async" alt="Unreleased jeans, drawn as a green grid" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
         </figure>
         <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 class="pe-bin" style="margin: 0; font-size: 24px; font-weight: 400;">01001010 01001110</h3></div>
         <span class="hm-plate"><span class="hm-pd"></span><span>PE-02 / <span class="pe-mx">COMING SOON<span class="pe-cur">_</span></span></span><span class="hm-pd"></span></span>
@@ -535,7 +535,7 @@ class Component extends DCLogic {
     for (let i = 0; i < 7; i++) this.frameRain.push({ x: 14 + ((i * 89) % 272), land: 0, top: 150, h: 22 + (i * 11) % 26, v: 760 + (i % 3) * 140, off: i * 0.33, gap: 0.2 + (i % 3) * 0.3, o: 0.85 });
     this.frameLooks = [
       { src: 'assets/henley-front.jpg', alt: 'Linen Henley flat-lay', name: 'Slub Linen Henley', tag: '' },
-      { src: 'assets/x02.png', alt: 'Unreleased jeans, drawn as a green grid', name: '01001010 01001110', tag: '' },
+      { src: 'assets/x02b.png', alt: 'Unreleased jeans, drawn as a green grid', name: '01001010 01001110', tag: '' },
       { src: 'assets/look-01.jpg', alt: 'Look 01: Slub Linen Henley under an open leather jacket', name: 'Look 01', tag: '' },
       { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen held to the light', name: 'Linen to the light', tag: '' }
     ];
@@ -552,7 +552,7 @@ class Component extends DCLogic {
     }
     const rowsData = [
       { id: 'h', no: '01', name: 'Slub Linen Henley', fabric: '100% slub linen / cropped', price: 'THB 860', href: '/henley', src: 'assets/henley-front.jpg' },
-      { id: 'd', no: '02', name: '01001010 01001110', fabric: 'Denim / [redacted]', price: 'Coming soon', mx: true, href: '/denim', src: 'assets/x02.png' },
+      { id: 'd', no: '02', name: '01001010 01001110', fabric: 'Denim / [redacted]', price: 'Coming soon', mx: true, href: '/denim', src: 'assets/x02b.png' },
       { id: 'a', no: '00', name: 'Archive — Behind the scenes', fabric: 'Moodboard and fittings', price: 'View', href: '#archive', src: 'assets/linen-fold.jpg' }
     ];
     this.rowsData = rowsData.map((r) => ({ ...r, show: () => this.setState({ hover: r.id }) }));
