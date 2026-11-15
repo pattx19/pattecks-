@@ -7,7 +7,7 @@
 <meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
 <meta property="og:title" content="PattEcks! — Product">
 <meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
-<meta property="og:image" content="assets/henley.jpg">
+<meta property="og:image" content="https://www.pattecks.com/assets/og-henley.jpg">
 <link rel="icon" href="assets/wordmark-ink.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -152,7 +152,7 @@ a{color:inherit;text-decoration:none}
             <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ false }}">
               <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; text-align: center; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ c.muted }};">{{ s.alt }}</span>
             </sc-if>
-            <figcaption style="position: absolute; left: 12px; bottom: 12px; right: 12px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ s.capColor }};"><span>{{ s.label }}</span><span>{{ s.tag }}</span></figcaption>
+            <figcaption style="position: absolute; left: 0; bottom: 0; right: 0; padding: 32px 12px 12px; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5)); display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: {{ s.capColor }};"><span>{{ s.label }}</span><span>{{ s.tag }}</span></figcaption>
           </figure>
         </sc-for>
       </div>
@@ -252,13 +252,15 @@ class Component extends DCLogic {
     this.products = [
       {
         no: '01', name: 'Linen Gauze Henley', ratio: '3 / 4', weave: 'gauze', isNew: true,
-        main: 'assets/henley.jpg', mainAlt: 'Reference: white gauze henley laid flat on raw concrete', mainTag: 'Reference',
+        main: 'assets/henley.jpg', mainAlt: 'Linen Henley laid flat on raw concrete', mainTag: '',
         desc: 'A long-sleeve henley in open linen gauze. Cropped and cut close, with the placket set on a tilt. Made to be worn every day in Bangkok heat.',
         descTh: 'เฮนลีย์แขนยาวผ้าลินินกอซ ทรงครอปตัดเข้าตัว กระดุมคอเอียง ทำมาให้ใส่ได้ทุกวันในอากาศร้อนของกรุงเทพ',
         fit: 'Cropped and cut close to the body. Not oversized.',
         fitTh: 'ทรงครอป ตัดเข้าตัว ไม่ใช่ทรงหลวม',
         fabricLine: '100% linen gauze / cropped / tilted placket',
         shots: [
+          { src: 'assets/henley-placket.jpg', alt: 'Tilted placket with four shell buttons', label: 'Detail — tilted placket', tag: '', light: true },
+          { src: 'assets/henley-placket-open.jpg', alt: 'Placket opened, showing buttonholes and collar band', label: 'Detail — open placket', tag: '', light: true },
           { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen slub held up to window light', label: 'Fabric — held to the light', tag: '', light: true },
           { src: 'assets/linen-drape.jpg', alt: 'Drop 01 linen slub in loose folds', label: 'Fabric — drape', tag: '', light: true }
         ],

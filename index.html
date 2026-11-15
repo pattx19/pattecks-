@@ -7,7 +7,7 @@
 <meta name="description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
 <meta property="og:title" content="PattEcks! — Drop 01">
 <meta property="og:description" content="PattEcks! — Bangkok clothing. Drop 01: linen gauze and raw slub denim.">
-<meta property="og:image" content="assets/henley.jpg">
+<meta property="og:image" content="https://www.pattecks.com/assets/og-henley.jpg">
 <link rel="icon" href="assets/wordmark-ink.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -232,7 +232,7 @@ a.hm-cell{min-height:0 !important;justify-content:flex-start !important}
 
       <article class="hm-cell" onMouseEnter="{{ ce0 }}" onMouseLeave="{{ cl0 }}" style="position: relative; padding: 32px 28px 36px; border-bottom: 2px solid {{ c.grid }}; display: flex; flex-direction: column; gap: 14px;">
         <figure class="hm-tile" style="margin: 0; position: relative; height: 340px; overflow: hidden;" onMouseEnter="{{ grow }}" onMouseLeave="{{ shrink }}">
-          <a href="/henley" onClick="{{ goH }}" aria-label="View Linen Gauze Henley" style="display: block; width: 100%; height: 100%;"><img src="assets/henley.jpg" loading="lazy" decoding="async" alt="Reference: white gauze henley laid flat on raw concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
+          <a href="/henley" onClick="{{ goH }}" aria-label="View Linen Gauze Henley" style="display: block; width: 100%; height: 100%;"><img src="assets/henley.jpg" loading="lazy" decoding="async" alt="Linen Henley laid flat on raw concrete" style="width: 100%; height: 100%; object-fit: contain; display: block;"></a>
           <span aria-hidden="true" style="position: absolute; top: 18px; right: 14px; z-index: 2; transform: rotate(-9deg) scale({{ stamp0 }}); border: 3px double #a30000; color: #a30000; padding: 6px 10px 5px; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'SOV MuekMod', 'Arial Black', sans-serif; font-weight: 800; font-size: 15px; line-height: 1; text-transform: uppercase; -webkit-mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); mask-image: repeating-linear-gradient(115deg, #000 0 3px, rgba(0,0,0,.45) 3px 4px, #000 4px 9px); opacity: .92;"><span>Drop 01</span><span style="font-family: 'SOV MuekMod', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: .2em;">New — 2026</span></span>
         </figure>
         <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;"><h3 class="pe-script" style="margin: 0; font-size: 26px; font-weight: 400; letter-spacing: -.01em;">Linen Gauze Henley</h3></div>
@@ -521,7 +521,7 @@ class Component extends DCLogic {
     // Language and theme are shared by every page through this browser's storage.
     try { this.state.th = localStorage.getItem('pe-lang') === 'th'; const tm = localStorage.getItem('pe-theme'); if (tm === 'night' || tm === 'linen') this.state.theme = tm; } catch (e) {}
     const imgs = [
-      ['assets/henley.jpg', 'Reference: gauze henley flat-lay'],
+      ['assets/henley.jpg', 'Linen Henley flat-lay'],
       ['assets/linen-light.jpg', 'Drop 01 linen held to the light'],
       ['assets/silver-mask.jpg', 'Reference: silver mask'],
       ['assets/street.jpg', 'Reference: street editorial'],
@@ -534,7 +534,7 @@ class Component extends DCLogic {
     this.frameRain = [];
     for (let i = 0; i < 7; i++) this.frameRain.push({ x: 14 + ((i * 89) % 272), land: 0, top: 150, h: 22 + (i * 11) % 26, v: 760 + (i % 3) * 140, off: i * 0.33, gap: 0.2 + (i % 3) * 0.3, o: 0.85 });
     this.frameLooks = [
-      { src: 'assets/henley.jpg', alt: 'Reference: gauze henley flat-lay', name: 'Linen Gauze Henley', tag: 'Reference' },
+      { src: 'assets/henley.jpg', alt: 'Linen Henley flat-lay', name: 'Linen Gauze Henley', tag: '' },
       { src: 'assets/denim.jpg', alt: 'Raw slub denim laid flat', name: 'Raw Slub Denim', tag: '' },
       { src: 'assets/street.jpg', alt: 'Reference: street editorial', name: 'Street look', tag: 'Reference' },
       { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen held to the light', name: 'Linen to the light', tag: '' }
