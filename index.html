@@ -524,11 +524,12 @@ class Component extends DCLogic {
       ['assets/look-01.jpg', 'Look 01: Slub Linen Henley under an open leather jacket, blue', 'Look 01'],
       ['assets/look-02.jpg', 'Look 02: Slub Linen Henley under a leather jacket, grain', 'Look 02'],
       ['assets/look-03.jpg', 'Look 03: Slub Linen Henley worn alone, dark red', 'Look 03'],
-      ['assets/look-04.jpg', 'Look 04: tilted placket in late sun', 'Look 04'],
-      ['assets/henley-front.jpg', 'Slub Linen Henley flat-lay', 'Flat lay']
+      ['assets/look-04.jpg', 'Look 04: tilted placket in late sun', 'Look 04']
     ];
     this.looks = [];
-    for (let i = 0; i < 10; i++) { const m = imgs[i % 5]; this.looks.push({ src: m[0], alt: m[1], no: m[2] }); }
+    // New random order on every visit; the same order repeats so the endless loop has no jump.
+    for (let i = imgs.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [imgs[i], imgs[j]] = [imgs[j], imgs[i]]; }
+    for (let i = 0; i < 16; i++) { const m = imgs[i % imgs.length]; this.looks.push({ src: m[0], alt: m[1], no: m[2] }); }
     // Hero rain lands on the top of the headline: line 1 (x < 610px) at 312px, line 2 at 396px.
     // Rain on the look frame: falls about 150px and lands on its top edge.
     this.frameRain = [];
@@ -647,7 +648,7 @@ class Component extends DCLogic {
   start() {
     if (this.running) return;
     this.running = true;
-    const loop = () => 5 * ((this.small ? 160 : 220) + 4); // five looks then the strip repeats
+    const loop = () => 4 * ((this.small ? 160 : 220) + 4); // four looks then the strip repeats
     let last = performance.now();
     const step = () => {
       const now = performance.now();
