@@ -265,7 +265,7 @@ class Component extends DCLogic {
           { src: 'assets/linen-light.jpg', alt: 'Drop 01 linen slub held up to window light', label: 'Fabric — held to the light', tag: '', light: true },
           { src: 'assets/linen-drape.jpg', alt: 'Drop 01 linen slub in loose folds', label: 'Fabric — drape', tag: '', light: true }
         ],
-        fabric: [{ k: 'Fabric', v: '100% slub linen' }, { k: 'Feel', v: 'Light, uneven slub texture, breathes in heat' }, { k: 'Wash', v: '[Care instructions]' }, { k: 'Dry', v: '[Drying instructions]' }]
+        fabric: [{ k: 'Fabric', v: '100% slub linen' }, { k: 'Feel', v: 'Light, uneven slub texture, breathes in heat' }, { k: 'Wash', v: 'Cold, gentle cycle or by hand. No bleach.' }, { k: 'Dry', v: 'Line dry in shade. No tumble dry. Iron warm while damp.' }]
       },
       {
         no: '02', name: 'Raw Slub Denim', ratio: '4 / 5', weave: 'slub', isNew: true,
@@ -404,7 +404,7 @@ class Component extends DCLogic {
     const sec = [
       { id: 'fabric', title: th ? 'เนื้อผ้าและการดูแล' : 'Fabric and care', rows: p.fabric },
       { id: 'fit', title: th ? 'ไซซ์และทรง' : 'Size and fit', rows: [{ k: th ? 'ทรง' : 'Fit', v: th ? p.fitTh : p.fit }, { k: th ? 'ไซซ์' : 'Size', v: th ? 'สัดส่วนจริงมาพร้อมล็อตแรก' : 'Measurements coming with the first run' }, { k: th ? 'นายแบบ' : 'Model', v: th ? 'สูง [ส่วนสูง] ซม. ใส่ไซซ์ [ไซซ์]' : '[Height] cm wears [Size]' }] },
-      { id: 'ship', title: th ? 'การจัดส่ง' : 'Shipping', rows: [{ k: th ? 'ในไทย' : 'Thailand', v: th ? '[ขนส่งและระยะเวลา]' : '[Courier and delivery time]' }, { k: th ? 'ต่างประเทศ' : 'Abroad', v: th ? '[รอยืนยัน]' : '[To confirm]' }, { k: th ? 'คืนสินค้า' : 'Returns', v: th ? '[นโยบายรอยืนยัน]' : '[Policy to confirm]' }] }
+      { id: 'ship', title: th ? 'การจัดส่ง' : 'Shipping', rows: [{ k: th ? 'ในไทย' : 'Thailand', v: th ? 'Flash Express ได้รับใน 1–3 วันหลังส่งของ' : 'Flash Express, 1–3 days after dispatch' }, { k: th ? 'ต่างประเทศ' : 'Abroad', v: th ? '[รอยืนยัน]' : '[To confirm]' }, { k: th ? 'คืนสินค้า' : 'Returns', v: th ? '[นโยบายรอยืนยัน]' : '[Policy to confirm]' }] }
     ];
     return {
       menuOpen: !!this.state.menu,
